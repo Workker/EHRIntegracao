@@ -1,0 +1,13 @@
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\EHRIntegracao.InfraEstrutura.Nhibernate.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\EHRIntegracao.InfraEstrutura.Nhibernate.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\EHRIntegracao.Domain.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\FluentNHibernate.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\Iesi.Collections.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\NHibernate.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\EHRIntegracao.Domain.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\FluentNHibernate.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\Iesi.Collections.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\bin\Debug\NHibernate.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\obj\Debug\EHRIntegracao.InfraEstrutura.Nhibernate.csprojResolveAssemblyReference.cache
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\obj\Debug\EHRIntegracao.InfraEstrutura.Nhibernate.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.InfraEstrutura.Nhibernate\obj\Debug\EHRIntegracao.InfraEstrutura.Nhibernate.pdb
