@@ -10,8 +10,8 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria
 {
     public interface IPatientSpecificationCriteria
     {
-        void AddCriteria(PatientDTO candidate, ICriteria criteria);
-        bool IsSatisfiedBy(PatientDTO candidate);
+        void AddCriteria(IPatientDTO candidate, ICriteria criteria);
+        bool IsSatisfiedBy(IPatientDTO candidate);
         IPatientSpecificationCriteria And(IPatientSpecificationCriteria other);
     }
 }

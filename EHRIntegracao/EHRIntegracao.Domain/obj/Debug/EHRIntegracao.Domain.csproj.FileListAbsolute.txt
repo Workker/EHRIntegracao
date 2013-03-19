@@ -8,4 +8,3 @@ D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\Iesi.Coll
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\NHibernate.xml
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.dll
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.pdb
-D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.csprojResolveAssemblyReference.cache

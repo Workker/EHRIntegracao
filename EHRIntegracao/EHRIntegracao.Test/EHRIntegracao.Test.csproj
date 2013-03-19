@@ -61,8 +61,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\PatientSpecificationCriteria\FactoryPatientSpecificationTest.cs" />
+    <Compile Include="Domain\PatientSpecificationCriteria\PatientDateBirthdaytest.cs" />
+    <Compile Include="Domain\PatientSpecificationCriteria\PatientIdentityEqualsTest.cs" />
+    <Compile Include="Domain\PatientSpecificationCriteria\PatientNameEqualsTest.cs" />
     <Compile Include="InfraStructure\CreateDataBaseTest.cs" />
     <Compile Include="InfraStructure\LoadPatientsFromDBTest.cs" />
+    <Compile Include="Mocks\Criterion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\PatientsTest.cs" />
   </ItemGroup>
@@ -75,6 +80,9 @@
       <Project>{8a76b66e-8929-4bf5-918e-51054ceac368}</Project>
       <Name>EHRIntegracao.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

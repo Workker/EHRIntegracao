@@ -11,13 +11,13 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria.PatientSpecif
 {
     public class PatientNameEqualsSpecification : PatientSpecificationCriteria
     {
-        public override void AddCriteria(PatientDTO candidate, NHibernate.ICriteria criteria)
+        public override void AddCriteria(IPatientDTO candidate, NHibernate.ICriteria criteria)
         {
             if (IsSatisfiedBy(candidate))
                 criteria.Add(Expression.Eq("p.Name", candidate.Name));
         }
 
-        public override bool IsSatisfiedBy(PatientDTO candidate)
+        public override bool IsSatisfiedBy(IPatientDTO candidate)
         {
             return !string.IsNullOrEmpty(candidate.Name);
         }

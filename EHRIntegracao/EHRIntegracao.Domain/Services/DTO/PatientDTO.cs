@@ -6,12 +6,21 @@ using System.Threading.Tasks;
 
 namespace EHRIntegracao.Domain.Services.DTO
 {
-    public class PatientDTO
+    public enum HospitalPatientEnum : short
+    {
+        QuintaDor = 1,
+        NiteroiDor,
+        CopaDor,
+        BarraDor
+    }
+
+    public class PatientDTO : IPatientDTO
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
         public virtual DateTime DateBirthday { get; set; }
         public virtual string CPF { get; set; }
         public virtual string Identity { get; set; }
+        public virtual HospitalPatientEnum Hospital { get; set; }
     }
 }

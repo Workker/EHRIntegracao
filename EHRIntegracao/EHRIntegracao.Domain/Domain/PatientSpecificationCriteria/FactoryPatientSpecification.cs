@@ -11,7 +11,7 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria
 {
     public class FactoryPatientSpecification
     {
-        public static void CreateCriteria(PatientDTO patient,ICriteria criteria) 
+        public static void CreateCriteria(IPatientDTO patient, ICriteria criteria) 
         {
             var nameEqualsSpecification = new PatientNameEqualsSpecification();
             var dateBirthayEqualsSpecification = new PatientDateBirthdayEqualsSpecification();

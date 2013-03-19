@@ -34,7 +34,7 @@ namespace EHRIntegracao.Domain.Repository
             return base.All<Patient>();
         }
 
-        public IList<Patient> GetPatientsBy(PatientDTO patientDTO) 
+        public IList<Patient> GetPatientsBy(IPatientDTO patientDTO) 
         {
             var patientCriteria = Session.CreateCriteria<Patient>("p");
 

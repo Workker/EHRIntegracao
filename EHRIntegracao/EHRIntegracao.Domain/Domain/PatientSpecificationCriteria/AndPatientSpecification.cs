@@ -19,13 +19,13 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria
             Other = patientB;
         }
 
-        public override void AddCriteria(PatientDTO candidate, ICriteria criteria)
+        public override void AddCriteria(IPatientDTO candidate, ICriteria criteria)
         {
             One.AddCriteria(candidate, criteria);
             Other.AddCriteria(candidate, criteria);
         }
 
-        public override bool IsSatisfiedBy(PatientDTO candidate)
+        public override bool IsSatisfiedBy(IPatientDTO candidate)
         {
             return true;
         }
