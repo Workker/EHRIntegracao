@@ -3,10 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria.PatientSpecification;
+using EHRIntegracao.Domain.Services.DTO;
+using EHRIntegracao.Test.Mocks;
+using NUnit.Framework;
 
 namespace EHRIntegracao.Test.Domain.PatientSpecificationCriteria
 {
-    class PatientNameEqualsTest
+    [TestFixture]
+    public class PatientNameEqualsTest
     {
+        [Test]
+        public void add_criteria_criterion_with_successfully()
+        {
+            var criterion = new Criterion();
+            var nameEqualsSpecification = new PatientNameEqualsSpecification();
+            nameEqualsSpecification.AddCriteria(new PatientDTO() { Name = "test" }, criterion);
+
+            Assert.AreEqual(criterion.criterions.Count(), 1);
+        }
     }
 }
