@@ -32,14 +32,16 @@ namespace EHRIntegracao.Domain.Services
             }
         }
 
-        public IList<IPatientDTO> GetAllPatients(IPatientDTO Patient) 
+        public IList<IPatientDTO> GetAllPatients(IPatientDTO Patient,DbEnum source) 
         {
-            var patientQuintaDor = GetPatientsService.GetPatients(DbEnum.QuintaDor,Patient);
-
-            var PatientCopador = GetPatientsService.GetPatients(DbEnum.CopaDor, Patient);
-
-            ((List<IPatientDTO>)patientsDTO).AddRange(patientQuintaDor);
-            ((List<IPatientDTO>)patientsDTO).AddRange(PatientCopador);
+            try
+            {
+                PatientsDTO = GetPatientsService.GetPatients(source, Patient);
+            }
+            catch (Exception ex)
+            {    
+                throw ex;
+            }
 
             return patientsDTO;
         }

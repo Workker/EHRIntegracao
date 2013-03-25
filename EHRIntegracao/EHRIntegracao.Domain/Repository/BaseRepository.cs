@@ -43,16 +43,24 @@ namespace EHRIntegracao.Domain.Repository
         public void AlterFactory(DbEnum db)
         {
             Factory = FactorryNhibernate.GetSession(db);
+            _session = null;
         }
 
-        public virtual void Save(IAggregateRoot<int> root)
+        public void Dispose() 
+        {
+            _session.Disconnect();
+            _session.Dispose();
+            _session = null;
+        }
+
+        public virtual void Save<T>(IAggregateRoot<T> root)
         {
             var transaction = Session.BeginTransaction();
             Session.SaveOrUpdate(root);
             transaction.Commit();
         }
 
-        public virtual void Delete(IAggregateRoot<int> root)
+        public virtual void Delete<T>(IAggregateRoot<T> root)
         {
             var transaction = Session.BeginTransaction();
             Session.Delete(root);

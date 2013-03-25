@@ -8,3 +8,13 @@ D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\Iesi.Coll
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\NHibernate.xml
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.dll
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\Db4objects.Db4o.Data.Services.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\Db4objects.Db4o.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\Db4objects.Db4o.Linq.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\Mono.Reflection.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\bin\Debug\Db4objects.Db4o.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.csprojResolveAssemblyReference.cache
+D:\Projetos\EHRIntegracao\EHR\Lib\EHRIntegracao.Domain.dll
+D:\Projetos\EHRIntegracao\EHR\Lib\EHRIntegracao.Domain.pdb
+D:\Projetos\EHR\Lib\EHRIntegracao.Domain.dll
+D:\Projetos\EHR\Lib\EHRIntegracao.Domain.pdb

@@ -13,7 +13,7 @@ namespace EHRIntegracao.Domain.Mapping
         public PatientMap()
         {
             Table("faprtcad");
-            Id(p => p.Id, "cod_prt");
+            Id(p => p.Id, "cod_prt").GeneratedBy.Assigned();
             Map(p => p.Cpf, "CPF");
             Map(p => p.DateBirthday, "NASCIMENTO");
             Map(p => p.Identity, "IDENTIDADE");

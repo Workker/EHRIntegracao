@@ -11,7 +11,8 @@ namespace EHRIntegracao.Domain.Factorys
     {
         QuintaDor = 1,
         CopaDor = 2,
-        sumario
+        sumario,
+        QuintaDorWorkker
 
     }
 
@@ -28,6 +29,8 @@ namespace EHRIntegracao.Domain.Factorys
                     return "CopaDor";
                 case DbEnum.sumario:
                     return "Sumario";
+                case DbEnum.QuintaDorWorkker:
+                    return "QuintaDorWorkker";
                 default:
                     throw new Exception("Nenhuma chave corresponde ao valor informado");
             }

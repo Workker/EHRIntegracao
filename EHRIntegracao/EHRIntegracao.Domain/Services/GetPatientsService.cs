@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHRCache;
 using EHRIntegracao.Domain.Domain;
+using EHRIntegracao.Domain.Domain.PatientSpecificationQuery;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.DTO;
@@ -41,16 +43,27 @@ namespace EHRIntegracao.Domain.Services
 
             var patients = patientRepository.GetPatientsBy(patient);
             PatientConverter(patients);
-           
+
             return patientsDTO;
+        }
+
+        public IList<IPatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)
+        {
+            ClearPatient();
+
+            var service = new EHRCache.Service.GetPatientService();
+            var factory = new FactoryPatientSpecificationQuery();
+            var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDorWorkker));
+
+            return patients;
         }
 
         private void ClearPatient()
         {
             patientsDTO = null;
         }
-        
-        private void PatientConverter(IList<Patient> patients) 
+
+        private void PatientConverter(IList<Patient> patients)
         {
             foreach (var patient in patients)
             {

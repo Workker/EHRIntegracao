@@ -1,0 +1,5 @@
+D:\Projetos\EHRIntegracao\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\Projetos\EHRIntegracao\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\Projetos\EHRIntegracao\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\Projetos\EHRIntegracao\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\Projetos\EHRIntegracao\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

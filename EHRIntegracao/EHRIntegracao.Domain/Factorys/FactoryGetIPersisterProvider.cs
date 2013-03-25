@@ -29,7 +29,7 @@ namespace EHRIntegracao.Domain.Factorys
                 );
 
                 default:
-                    return MsSqlConfiguration.MsSql2008.ConnectionString(c => c
+                    return MsSqlConfiguration.MsSql2008.ShowSql().ConnectionString(c => c
              .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
              );
 

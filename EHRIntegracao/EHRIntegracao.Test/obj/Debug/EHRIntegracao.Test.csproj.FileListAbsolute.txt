@@ -18,3 +18,13 @@ D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Rhino.Mocks
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.csprojResolveAssemblyReference.cache
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.dll
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Db4objects.Db4o.Data.Services.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Db4objects.Db4o.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Db4objects.Db4o.Linq.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Mono.Reflection.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Db4objects.Db4o.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRCache.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Enyim.Caching.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRCache.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Enyim.Caching.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Enyim.Caching.xml

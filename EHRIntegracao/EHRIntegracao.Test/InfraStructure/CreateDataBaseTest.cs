@@ -15,6 +15,19 @@ namespace EHRIntegracao.Test.InfraStructure
     [Ignore]
     public class CreateDataBaseTest
     {
+        
+        [Test]
+        public void CreateDataBaseQuintaDOrWorkkerTest()
+        {
+            try
+            {
+                CreateDataBase("QuintaDorWorkker");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         [Test]
         public void CreateDataBaseQuintaDOrTest()
         {

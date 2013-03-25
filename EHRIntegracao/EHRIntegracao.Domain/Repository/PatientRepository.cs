@@ -29,6 +29,8 @@ namespace EHRIntegracao.Domain.Repository
 
         }
 
+        
+
         public virtual IList<Patient> GetAll() 
         {
             return base.All<Patient>();
@@ -41,6 +43,25 @@ namespace EHRIntegracao.Domain.Repository
             FactoryPatientSpecification.CreateCriteria(patientDTO, patientCriteria);
 
             return patientCriteria.List<Patient>().ToList();
+        }
+
+        public virtual void SalvarLista(IList<Patient> roots)
+        {
+            //var transaction = Session.BeginTransaction();
+
+            try
+            {
+                foreach (var root in roots)
+                {
+                    Save<string>(root);
+                }
+              //  transaction.Commit();
+            }
+            catch (System.Exception ex)
+            {
+            //    transaction.Rollback();
+                throw ex;
+            }
         }
     }
 }
