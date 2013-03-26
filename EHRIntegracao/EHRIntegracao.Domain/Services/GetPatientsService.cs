@@ -42,7 +42,7 @@ namespace EHRIntegracao.Domain.Services
             patientRepository = new PatientRepository(FactorryNhibernate.GetSession(db));
 
             var patients = patientRepository.GetPatientsBy(patient);
-            PatientConverter(patients);
+            PatientConverter(patients,db);
 
             return patientsDTO;
         }
@@ -63,7 +63,7 @@ namespace EHRIntegracao.Domain.Services
             patientsDTO = null;
         }
 
-        private void PatientConverter(IList<Patient> patients)
+        private void PatientConverter(IList<Patient> patients,DbEnum db)
         {
             foreach (var patient in patients)
             {
@@ -72,7 +72,8 @@ namespace EHRIntegracao.Domain.Services
                     CPF = patient.Cpf,
                     DateBirthday = patient.DateBirthday,
                     Identity = patient.Identity,
-                    Name = patient.Name
+                    Name = patient.Name,
+                    Hospital  = db
                 };
 
                 PatientsDTO.Add(patientDto);

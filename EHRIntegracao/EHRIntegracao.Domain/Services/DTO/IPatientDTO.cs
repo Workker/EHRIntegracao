@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHRIntegracao.Domain.Factorys;
 
 namespace EHRIntegracao.Domain.Services.DTO
 {
@@ -13,6 +14,6 @@ namespace EHRIntegracao.Domain.Services.DTO
         DateTime DateBirthday { get; set; }
         string CPF { get; set; }
         string Identity { get; set; }
-        HospitalPatientEnum Hospital { get; set; }
+        DbEnum Hospital { get; set; }
     }
 }

@@ -17,3 +17,4 @@ D:\Projetos\EHR\Lib\EHRIntegracao.Domain.dll
 D:\Projetos\EHR\Lib\EHRIntegracao.Domain.pdb
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.dll
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.csprojResolveAssemblyReference.cache

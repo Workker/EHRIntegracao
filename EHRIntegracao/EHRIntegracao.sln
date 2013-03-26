@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRIntegracao.Domain", "EHR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRIntegracao.Test", "EHRIntegracao.Test\EHRIntegracao.Test.csproj", "{A952FD2C-226B-4987-8EF7-A494691B2242}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EHRIntegracao.Console", "EHRIntegracao.Console\EHRIntegracao.Console.csproj", "{78D841BA-F3E5-46C5-BDFF-C11539527FD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{A952FD2C-226B-4987-8EF7-A494691B2242}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A952FD2C-226B-4987-8EF7-A494691B2242}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A952FD2C-226B-4987-8EF7-A494691B2242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D841BA-F3E5-46C5-BDFF-C11539527FD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D841BA-F3E5-46C5-BDFF-C11539527FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D841BA-F3E5-46C5-BDFF-C11539527FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D841BA-F3E5-46C5-BDFF-C11539527FD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
