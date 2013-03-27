@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Db4objects.Db4o;
+using Db4objects.Db4o.CS;
 using Db4objects.Db4o.Query;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
@@ -21,12 +22,18 @@ namespace EHRIntegracao.Domain.Repository
             }
         }
 
-        public virtual IList<IPatientDTO> Todos(IPatientDTO patient,DbEnum dbEnum)
+        public virtual IList<IPatientDTO> Todos(IPatientDTO patient, DbEnum dbEnum)
         {
-            using (IObjectContainer db = Db4oEmbedded.OpenFile("PatientsHospital"))
+            IList<IPatientDTO> patients = new List<IPatientDTO>();
+            using (IObjectServer server = Db4oClientServer.OpenServer("d://Projetos//EHR//PatientsHospital", 0))
             {
-                return db.Query<IPatientDTO>(p => p.Hospital == patient.Hospital && p.Name.Contains(patient.Name) && p.Hospital == dbEnum);
+                using (IObjectContainer db = server.OpenClient())
+                {
+                    var iobject = db.Query<IPatientDTO>(p =>  p.Name.Contains(patient.Name) && p.Hospital == dbEnum);
+                    patients = iobject.Cast<IPatientDTO>().ToList();
+                }
             }
+            return patients;
         }
 
         public virtual IList<PatientDTO> Todos()
@@ -34,11 +41,11 @@ namespace EHRIntegracao.Domain.Repository
             IList<PatientDTO> patients = new List<PatientDTO>();
             using (IObjectContainer db = Db4oEmbedded.OpenFile("PatientsHospital"))
             {
-                
+
                 var Iobject = db.QueryByExample(typeof(PatientDTO));
                 patients = Iobject.Cast<PatientDTO>().ToList();
             }
-           
+
             return patients;
         }
     }
