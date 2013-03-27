@@ -30,14 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Db4objects.Db4o">
+    <Reference Include="Cecil.FlowAnalysis">
+      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Cecil.FlowAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o, Version=8.1.184.15492, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
       <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.dll</HintPath>
     </Reference>
-    <Reference Include="Db4objects.Db4o.Data.Services">
+    <Reference Include="Db4objects.Db4o.Data.Services, Version=8.1.184.15492, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
       <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.Data.Services.dll</HintPath>
     </Reference>
-    <Reference Include="Db4objects.Db4o.Linq">
+    <Reference Include="Db4objects.Db4o.Instrumentation">
+      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.Instrumentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Linq, Version=8.1.184.15492, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
       <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.NativeQueries">
+      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.NativeQueries.dll</HintPath>
     </Reference>
     <Reference Include="FizzWare.NBuilder">
       <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
@@ -48,7 +57,10 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Reflection">
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Mono.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="NCrunch.Framework">
@@ -83,6 +95,7 @@
     <Compile Include="Mocks\Criterion.cs" />
     <Compile Include="Performace\PatientQueryPerformaceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\PatientsDBForTest.cs" />
     <Compile Include="Repository\PatientsTest.cs" />
   </ItemGroup>
   <ItemGroup>

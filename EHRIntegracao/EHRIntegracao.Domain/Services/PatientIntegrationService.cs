@@ -36,7 +36,7 @@ namespace EHRIntegracao.Domain.Services
         {
             try
             {
-                PatientsDTO = GetPatientsService.GetPatients(source, Patient);
+                PatientsDTO = GetPatientsService.GetPatientsDbFor(source, Patient);
             }
             catch (Exception ex)
             {    

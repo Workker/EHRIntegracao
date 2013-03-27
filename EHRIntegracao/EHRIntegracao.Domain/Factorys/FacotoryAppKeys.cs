@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace EHRIntegracao.Domain.Factorys
 {
+    [Serializable]
     public enum DbEnum : short
     {
         QuintaDor = 1,

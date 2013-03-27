@@ -7,9 +7,10 @@ using EHRIntegracao.Domain.Factorys;
 
 namespace EHRIntegracao.Domain.Services.DTO
 {
+    
     public interface IPatientDTO
     {
-        int Id { get; set; }
+        string Id { get; set; }
         string Name { get; set; }
         DateTime DateBirthday { get; set; }
         string CPF { get; set; }

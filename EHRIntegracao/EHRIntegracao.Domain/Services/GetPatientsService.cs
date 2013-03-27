@@ -34,17 +34,36 @@ namespace EHRIntegracao.Domain.Services
             }
         }
 
+        private PatientsDbFor patientRepositoryDbFor;
+        public PatientsDbFor PatientRepositoryDbFor
+        {
+            get { return patientRepositoryDbFor ?? (patientRepositoryDbFor = new PatientsDbFor()); }
+            set
+            {
+                patientRepositoryDbFor = value;
+            }
+        }
+
 
         public IList<IPatientDTO> GetPatients(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();
 
-            patientRepository = new PatientRepository(FactorryNhibernate.GetSession(db));
+            PatientRepository = new PatientRepository(FactorryNhibernate.GetSession(db));
 
-            var patients = patientRepository.GetPatientsBy(patient);
+            var patients = PatientRepository.GetPatientsBy(patient);
             PatientConverter(patients,db);
 
-            return patientsDTO;
+            return PatientsDTO;
+        }
+
+        public IList<IPatientDTO> GetPatientsDbFor(DbEnum db, IPatientDTO patient)
+        {
+            ClearPatient();
+
+            PatientsDTO = PatientRepositoryDbFor.Todos(patient,db);
+
+            return PatientsDTO;
         }
 
         public IList<IPatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)

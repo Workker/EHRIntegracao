@@ -14,10 +14,10 @@ namespace EHRIntegracao.Domain.Services.DTO
         CopaDor,
         BarraDor
     }
-
+    [Serializable]
     public class PatientDTO : IPatientDTO
     {
-        public virtual int Id { get; set; }
+        public virtual string Id { get; set; }
         public virtual string Name { get; set; }
         public virtual DateTime DateBirthday { get; set; }
         public virtual string CPF { get; set; }

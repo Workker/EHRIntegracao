@@ -9,6 +9,7 @@ using EHRIntegracao.Domain.Mapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using System.Configuration;
 
 namespace EHRIntegracao.Domain.Repository
 {
@@ -118,11 +119,16 @@ namespace EHRIntegracao.Domain.Repository
 
         public static ISessionFactory CreateSessionFactory()
         {
-            if (Factory == null)
+            if (Factory == null && NotConsole())
                 return FactorryNhibernate.GetSession(DbEnum.sumario);
             else
                 return Factory;
                
+        }
+
+        private static bool NotConsole()
+        {
+            return ConfigurationManager.AppSettings["Ambiente"].ToString() != "Console";
         }
 
         #endregion

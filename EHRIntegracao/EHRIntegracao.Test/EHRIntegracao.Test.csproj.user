@@ -2,5 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ReferencePath>D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\..\..\..\EHR\Lib\</ReferencePath>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
 </Project>

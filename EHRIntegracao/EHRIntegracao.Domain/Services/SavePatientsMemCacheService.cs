@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EHRCache.Service;
 using EHRIntegracao.Domain.Factorys;
+using EHRIntegracao.Domain.Services.DTO;
 
 namespace EHRIntegracao.Domain.Services
 {
@@ -20,11 +21,11 @@ namespace EHRIntegracao.Domain.Services
 
         public virtual void Save(DbEnum db)
         {
-            GetPatientService service = new GetPatientService();
+            GetPatientsService service = new GetPatientsService();
 
-            var patients = service.GetPatientByKey(db);
+            var patients = service.GetPatients(db,new PatientDTO());
 
-            SavePatientService.SavePatient(db, patients);
+            SavePatientService.SavePatient(db, patients.ToList());
         }
     }
 }

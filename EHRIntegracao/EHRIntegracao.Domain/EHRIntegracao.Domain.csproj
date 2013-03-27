@@ -30,6 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cecil.FlowAnalysis">
+      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Cecil.FlowAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o, Version=8.1.184.15492, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Data.Services, Version=8.1.184.15492, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.Data.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Instrumentation">
+      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.Instrumentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.Linq, Version=8.1.184.15492, Culture=neutral, PublicKeyToken=6199cd4f203aa8eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Db4objects.Db4o.NativeQueries">
+      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.NativeQueries.dll</HintPath>
+    </Reference>
     <Reference Include="EHRCache">
       <HintPath>..\..\..\EHR\Lib\EHRCache.dll</HintPath>
     </Reference>
@@ -39,7 +57,10 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
     </Reference>
-    <Reference Include="Mono.Reflection">
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\db4o-devel.8.1.184.15492\lib\net40\Mono.Reflection.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
@@ -72,7 +93,9 @@
     <Compile Include="Mapping\PatientMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
+    <Compile Include="Repository\IPatientRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
+    <Compile Include="Repository\PatientsDbFor.cs" />
     <Compile Include="Services\DTO\IPatientDTO.cs" />
     <Compile Include="Services\DTO\PatientDTO.cs" />
     <Compile Include="Services\GetPatientsService.cs" />
