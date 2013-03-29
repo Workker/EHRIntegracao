@@ -12,6 +12,8 @@ namespace EHRIntegracao.Console
     {
         static void Main(string[] args)
         {
+             var nome =  "LEA FERNANDES FRANCO                    ".Substring(0,3);
+                
            // SavePatientsCacheService service = new SavePatientsCacheService();
 
             //Esse serviço eu insiro no memcache com a chave quintaDOrWorkker
@@ -20,7 +22,7 @@ namespace EHRIntegracao.Console
             GetPatientsService serviceGet = new GetPatientsService();
 
             //Aqui eu recupero com a chave quintaDOrWorkker
-            var result = serviceGet.GetPatientsRedis(Domain.Factorys.DbEnum.QuintaDorWorkker, new PatientDTO { Name = "ANA" });
+            var result = serviceGet.GetPatientsRedis(Domain.Factorys.DbEnum.QuintaDorWorkker, new PatientDTO { Name = "LEA" });
 
             //Mas como vc viu, nao deu certo ;/
             System.Console.ReadLine();

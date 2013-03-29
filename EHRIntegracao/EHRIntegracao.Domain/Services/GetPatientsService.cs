@@ -94,7 +94,7 @@ namespace EHRIntegracao.Domain.Services
             var factory = new FactoryPatientSpecificationQuery();
             var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDorWorkker));
 
-            return patients;
+            return patients.Take(30).ToList();
         }
 
         private void ClearPatient()

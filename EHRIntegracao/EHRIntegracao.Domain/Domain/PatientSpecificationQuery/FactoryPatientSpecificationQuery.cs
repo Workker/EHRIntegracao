@@ -11,7 +11,7 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationQuery
     {
         public IList<IPatientDTO> GetPatientsByQuery(IPatientDTO patient,List<IPatientDTO> patients)
         {
-            return patients.Where(p => p.Name.Contains(patient.Name)).ToList();
+            return patients.Where(p => !string.IsNullOrEmpty( p.Name) &&  p.Name.Length >= patient.Name.Length && p.Name.Substring(0,patient.Name.Length).Contains(patient.Name)).ToList();
         }
     }
 }
