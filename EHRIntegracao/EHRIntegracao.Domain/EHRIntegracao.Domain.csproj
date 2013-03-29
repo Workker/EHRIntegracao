@@ -103,7 +103,7 @@
     <Compile Include="Services\DTO\PatientDTO.cs" />
     <Compile Include="Services\GetPatientsService.cs" />
     <Compile Include="Services\PatientIntegrationService.cs" />
-    <Compile Include="Services\SavePatientsMemCacheService.cs" />
+    <Compile Include="Services\SavePatientsCacheService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

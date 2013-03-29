@@ -66,11 +66,31 @@ namespace EHRIntegracao.Domain.Services
             return PatientsDTO;
         }
 
+        public IList<IPatientDTO> GetPatientsDbFor()
+        {
+            ClearPatient();
+
+            PatientsDTO = PatientRepositoryDbFor.Todos();
+
+            return PatientsDTO;
+        }
+
         public IList<IPatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();
 
             var service = new EHRCache.Service.GetPatientService();
+            var factory = new FactoryPatientSpecificationQuery();
+            var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDorWorkker));
+
+            return patients;
+        }
+
+        public IList<IPatientDTO> GetPatientsRedis(DbEnum db, IPatientDTO patient)
+        {
+            ClearPatient();
+
+            var service = new EHRCache.Service.GetPatientRedisService();
             var factory = new FactoryPatientSpecificationQuery();
             var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDorWorkker));
 
@@ -89,7 +109,7 @@ namespace EHRIntegracao.Domain.Services
                 var patientDto = new PatientDTO()
                 {
                     CPF = patient.Cpf,
-                    DateBirthday = patient.DateBirthday,
+                    DateBirthday = patient.DateBirthday.ToShortDateString(),
                     Identity = patient.Identity,
                     Name = patient.Name,
                     Hospital  = db

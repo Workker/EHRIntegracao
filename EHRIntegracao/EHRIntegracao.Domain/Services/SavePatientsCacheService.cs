@@ -9,13 +9,13 @@ using EHRIntegracao.Domain.Services.DTO;
 
 namespace EHRIntegracao.Domain.Services
 {
-    public class SavePatientsMemCacheService
+    public class SavePatientsCacheService
     {
-        private SavePatientService savePatientService;
+        private SavePatientRedisService savePatientService;
 
-        public virtual SavePatientService SavePatientService 
+        public virtual SavePatientRedisService SavePatientService 
         {
-            get { return savePatientService ?? (savePatientService = new SavePatientService()); }
+            get { return savePatientService ?? (savePatientService = new SavePatientRedisService()); }
             set { savePatientService = value; }
         }
 
@@ -23,7 +23,7 @@ namespace EHRIntegracao.Domain.Services
         {
             GetPatientsService service = new GetPatientsService();
 
-            var patients = service.GetPatients(db,new PatientDTO());
+            var patients = service.GetPatientsDbFor();
 
             SavePatientService.SavePatient(db, patients.ToList());
         }

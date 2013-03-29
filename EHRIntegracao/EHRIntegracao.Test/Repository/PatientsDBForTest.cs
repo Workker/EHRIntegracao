@@ -30,7 +30,7 @@ namespace EHRIntegracao.Test.Repository
         public void obter_paciente_teste()
         {
             PatientsDbFor repository = new PatientsDbFor();
-            IList<PatientDTO> patients = repository.Todos();
+            IList<IPatientDTO> patients = repository.Todos();
             var count = patients.Count;
 
             Assert.NotNull(patients);
@@ -48,7 +48,7 @@ namespace EHRIntegracao.Test.Repository
             Assert.NotNull(patients);
         }
         [Test]
-        [Ignore]
+  //      [Ignore]
         public void inserir_patients()
         {
             PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
@@ -64,7 +64,7 @@ namespace EHRIntegracao.Test.Repository
                 patients.Add(new PatientDTO()
                 {
                     CPF = paciente.Cpf,
-                    DateBirthday = paciente.DateBirthday,
+                    DateBirthday = paciente.DateBirthday.ToShortDateString(),
                     Identity = paciente.Identity,
                     Id = paciente.Id,
                     Name = paciente.Name,

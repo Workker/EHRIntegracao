@@ -12,7 +12,7 @@ namespace EHRIntegracao.Domain.Services.DTO
     {
         string Id { get; set; }
         string Name { get; set; }
-        DateTime DateBirthday { get; set; }
+        string DateBirthday { get; set; }
         string CPF { get; set; }
         string Identity { get; set; }
         DbEnum Hospital { get; set; }

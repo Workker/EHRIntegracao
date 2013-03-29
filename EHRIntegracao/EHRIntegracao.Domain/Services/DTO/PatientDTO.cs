@@ -19,7 +19,7 @@ namespace EHRIntegracao.Domain.Services.DTO
     {
         public virtual string Id { get; set; }
         public virtual string Name { get; set; }
-        public virtual DateTime DateBirthday { get; set; }
+        public virtual string DateBirthday { get; set; }
         public virtual string CPF { get; set; }
         public virtual string Identity { get; set; }
         public virtual DbEnum Hospital { get; set; }

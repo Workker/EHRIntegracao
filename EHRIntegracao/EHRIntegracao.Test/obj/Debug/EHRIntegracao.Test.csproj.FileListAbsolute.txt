@@ -35,3 +35,11 @@ D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Enyim.Cachi
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.csprojResolveAssemblyReference.cache
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.dll
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Redis.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Interfaces.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Common.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Text.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Redis.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Interfaces.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Common.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Text.xml

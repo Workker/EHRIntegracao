@@ -36,14 +36,14 @@ namespace EHRIntegracao.Domain.Repository
             return patients;
         }
 
-        public virtual IList<PatientDTO> Todos()
+        public virtual IList<IPatientDTO> Todos()
         {
-            IList<PatientDTO> patients = new List<PatientDTO>();
-            using (IObjectContainer db = Db4oEmbedded.OpenFile("PatientsHospital"))
+            IList<IPatientDTO> patients = new List<IPatientDTO>();
+            using (IObjectContainer db = Db4oEmbedded.OpenFile("d://Projetos//EHR//PatientsHospital"))
             {
 
-                var Iobject = db.QueryByExample(typeof(PatientDTO));
-                patients = Iobject.Cast<PatientDTO>().ToList();
+                var Iobject = db.QueryByExample(typeof(IPatientDTO));
+                patients = Iobject.Cast<IPatientDTO>().ToList();
             }
 
             return patients;
