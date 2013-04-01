@@ -75,7 +75,7 @@ namespace EHRIntegracao.Domain.Services
             return PatientsDTO;
         }
 
-        public IList<IPatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)
+        public IList<PatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();
 
@@ -86,7 +86,7 @@ namespace EHRIntegracao.Domain.Services
             return patients;
         }
 
-        public IList<IPatientDTO> GetPatientsRedis(DbEnum db, IPatientDTO patient)
+        public IList<PatientDTO> GetPatientsRedis(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();
 

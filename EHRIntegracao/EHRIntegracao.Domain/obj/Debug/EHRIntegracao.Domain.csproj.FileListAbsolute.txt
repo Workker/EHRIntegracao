@@ -18,3 +18,8 @@ D:\Projetos\EHR\Lib\EHRIntegracao.Domain.pdb
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.dll
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.pdb
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.csprojResolveAssemblyReference.cache
+E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.dll
+E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.pdb
+E:\Projects\EHR\Lib\EHRIntegracao.Domain.dll
+E:\Projects\EHR\Lib\EHRIntegracao.Domain.pdb
+E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Domain\obj\Debug\EHRIntegracao.Domain.csprojResolveAssemblyReference.cache

@@ -21,7 +21,7 @@ namespace EHRIntegracao.Domain.Services
 
         public virtual void Save(DbEnum db)
         {
-            GetPatientsService service = new GetPatientsService();
+            var service = new GetPatientsService();
 
             var patients = service.GetPatientsDbFor();
 

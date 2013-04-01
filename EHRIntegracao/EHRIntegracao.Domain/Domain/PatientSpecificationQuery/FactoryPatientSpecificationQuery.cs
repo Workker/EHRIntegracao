@@ -9,7 +9,7 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationQuery
 {
     public class FactoryPatientSpecificationQuery
     {
-        public IList<IPatientDTO> GetPatientsByQuery(IPatientDTO patient,List<IPatientDTO> patients)
+        public IList<PatientDTO> GetPatientsByQuery(IPatientDTO patient,List<PatientDTO> patients)
         {
             return patients.Where(p => !string.IsNullOrEmpty( p.Name) &&  p.Name.Length >= patient.Name.Length && p.Name.Substring(0,patient.Name.Length).Contains(patient.Name)).ToList();
         }

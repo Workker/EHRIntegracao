@@ -4,15 +4,21 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProtoBuf;
 
 namespace EHRIntegracao.Domain.Factorys
 {
     [Serializable]
+    [ProtoContract(SkipConstructor = true)]
     public enum DbEnum : short
     {
+        [ProtoEnum(Name = "QuintaDor", Value = 1)]
         QuintaDor = 1,
+        [ProtoEnum(Name = "CopaDor", Value = 2)]
         CopaDor = 2,
+        [ProtoEnum(Name = "sumario", Value = 3)]
         sumario,
+        [ProtoEnum(Name = "QuintaDorWorkker", Value = 4)]
         QuintaDorWorkker
 
     }

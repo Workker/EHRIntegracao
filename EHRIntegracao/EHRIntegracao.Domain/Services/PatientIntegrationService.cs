@@ -12,10 +12,10 @@ namespace EHRIntegracao.Domain.Services
 {
     public class PatientIntegrationService
     {
-        private IList<IPatientDTO> patientsDTO;
-        public IList<IPatientDTO> PatientsDTO
+        private IList<PatientDTO> patientsDTO;
+        public IList<PatientDTO> PatientsDTO
         {
-            get { return patientsDTO ?? (patientsDTO = new List<IPatientDTO>()); }
+            get { return patientsDTO ?? (patientsDTO = new List<PatientDTO>()); }
             set
             {
                 patientsDTO = value;
@@ -32,7 +32,7 @@ namespace EHRIntegracao.Domain.Services
             }
         }
 
-        public IList<IPatientDTO> GetAllPatients(IPatientDTO Patient,DbEnum source) 
+        public IList<PatientDTO> GetAllPatients(IPatientDTO Patient,DbEnum source) 
         {
             try
             {
