@@ -14,7 +14,7 @@ namespace EHRIntegracao.Domain.Repository
 {
     public class PatientsDbFor
     {
-        public virtual void inserirPacientes(IList<PatientDTO> patients)
+        public virtual void inserirPacientes(IList<IPatientDTO> patients)
         {
             using (IObjectContainer db = Db4oEmbedded.OpenFile("PatientsHospital"))
             {
@@ -39,7 +39,7 @@ namespace EHRIntegracao.Domain.Repository
         public virtual IList<IPatientDTO> Todos()
         {
             IList<IPatientDTO> patients = new List<IPatientDTO>();
-            using (IObjectContainer db = Db4oEmbedded.OpenFile("E://Projects//EHR//PatientsHospital"))
+            using (IObjectContainer db = Db4oEmbedded.OpenFile("PatientsHospital"))
             {
                 var Iobject = db.QueryByExample(typeof(IPatientDTO));
                 patients = Iobject.Cast<IPatientDTO>().ToList();

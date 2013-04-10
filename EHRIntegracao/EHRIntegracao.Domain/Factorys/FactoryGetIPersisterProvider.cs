@@ -13,21 +13,24 @@ namespace EHRIntegracao.Domain.Factorys
         {
             switch (conexaoEnum)
             {
+                case DbEnum.BarraDor:
+                    return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
+                  .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
+                  );
+
                 case DbEnum.QuintaDor:
                     return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
                     .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
                     );
 
-                case DbEnum.CopaDor:
-                    return OracleClientConfiguration.Oracle10.ConnectionString(c => c
-                .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
-                );
-
                 case DbEnum.sumario:
                     return MsSqlConfiguration.MsSql2008.ConnectionString(c => c
                 .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
                 );
-
+                case DbEnum.QuintaDorProd:
+                    return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
+                   .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
+                   );
                 default:
                     return MsSqlConfiguration.MsSql2008.ShowSql().ConnectionString(c => c
              .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))

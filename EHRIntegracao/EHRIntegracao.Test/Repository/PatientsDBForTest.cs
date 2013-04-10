@@ -20,7 +20,7 @@ namespace EHRIntegracao.Test.Repository
         public void obter_todos_paciente_teste()
         {
             PatientsDbFor repository = new PatientsDbFor();
-            IList<IPatientDTO> patients = repository.Todos(new PatientDTO() { }, DbEnum.QuintaDorWorkker);
+            IList<IPatientDTO> patients = repository.Todos(new PatientDTO() { }, DbEnum.QuintaDor);
 
             Assert.NotNull(patients);
         }
@@ -36,10 +36,11 @@ namespace EHRIntegracao.Test.Repository
             Assert.NotNull(patients);
         }
         [Test]
-        [Ignore]
+       // [Ignore]
         public void inserir_patients_mockados()
         {
-            IList<PatientDTO> patients = new List<PatientDTO>();
+            var a = DbEnum.BarraDor.ToString();
+            IList<IPatientDTO> patients = new List<IPatientDTO>();
             patients.Add(new PatientDTO() { Name = "temboel" });
             PatientsDbFor repository = new PatientsDbFor();
 
@@ -48,17 +49,17 @@ namespace EHRIntegracao.Test.Repository
             Assert.NotNull(patients);
         }
         [Test]
-  //      [Ignore]
+     //  [Ignore]
         public void inserir_patients()
         {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDorProd));
 
 
             var resultados = pacientes.All<Patient>();
 
 
 
-            IList<PatientDTO> patients = new List<PatientDTO>();
+            IList<IPatientDTO> patients = new List<IPatientDTO>();
             foreach (var paciente in resultados)
             {
                 patients.Add(new PatientDTO()
@@ -66,9 +67,9 @@ namespace EHRIntegracao.Test.Repository
                     CPF = paciente.Cpf,
                     DateBirthday = paciente.DateBirthday.ToShortDateString(),
                     Identity = paciente.Identity,
-                    Id = paciente.Id,
+                    Id =DbEnum.BarraDor.ToString() + paciente.Id,
                     Name = paciente.Name,
-                    Hospital = DbEnum.QuintaDorWorkker
+                    Hospital = DbEnum.QuintaDor
                 });
             }
             pacientes.Dispose();
@@ -77,6 +78,7 @@ namespace EHRIntegracao.Test.Repository
             PatientsDbFor repository = new PatientsDbFor();
 
             repository.inserirPacientes(patients);
+
         }
     }
 }

@@ -37,7 +37,7 @@ namespace EHRIntegracao.Test.Integration
             }
             pacientes.Dispose();
             resultados = null;
-            var patietsRepositrory = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDorWorkker));
+            var patietsRepositrory = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
             patietsRepositrory.SalvarLista(patients);
         }
 
@@ -45,7 +45,7 @@ namespace EHRIntegracao.Test.Integration
         [Ignore]
         public void SalvarEdeletarPaciente()
         {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDorWorkker));
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
             var paciente = new Patient(){Id = "JK",DateBirthday =DateTime.Now,Identity="sas",Name = "javet", Cpf = "234"};
 
             pacientes.Save<string>(paciente);

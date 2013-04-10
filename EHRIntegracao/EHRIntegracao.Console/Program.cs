@@ -14,13 +14,15 @@ namespace EHRIntegracao.Console
     {
         static void Main(string[] args)
         {
+           // FillPatientsDbForService service = new FillPatientsDbForService();
+           // service.Fill();
 
-           // var serviceSave = new SavePatientsCacheService();
-            //serviceSave.Save(DbEnum.QuintaDorWorkker);
+            var serviceSave = new SavePatientsCacheService();
+            serviceSave.Save(DbEnum.QuintaDor);
 
-            var service = new GetPatientsLuceneService();
-           // var patientsSimple = service.GetPatients("LEA");
-           var patients =  service.GetPatientsAdvancedSearch(new PatientDTO() {Name = "LEA", DateBirthday = ""},new List<string>());
+            //var service = new GetPatientsLuceneService();
+            //var patientsSimple = service.GetPatients("LEA");
+           //var patients =  service.GetPatientsAdvancedSearch(new PatientDTO() {Name = "LEA", DateBirthday = ""},new List<string>());
 
 
            // var service = new GetPatientRedisService();

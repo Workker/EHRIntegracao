@@ -12,14 +12,14 @@ namespace EHRIntegracao.Domain.Factorys
     [ProtoContract(SkipConstructor = true)]
     public enum DbEnum : short
     {
-        [ProtoEnum(Name = "QuintaDor", Value = 1)]
-        QuintaDor = 1,
-        [ProtoEnum(Name = "CopaDor", Value = 2)]
-        CopaDor = 2,
-        [ProtoEnum(Name = "sumario", Value = 3)]
+        [ProtoEnum(Name = "BarraDor", Value = 1)]
+        BarraDor = 1,
+        [ProtoEnum(Name = "Sumario", Value = 2)]
         sumario,
-        [ProtoEnum(Name = "QuintaDorWorkker", Value = 4)]
-        QuintaDorWorkker
+        [ProtoEnum(Name = "QuintaDor", Value = 3)]
+        QuintaDor,
+        [ProtoEnum(Name = "QuintaDor", Value = 4)]
+        QuintaDorProd
 
     }
 
@@ -30,14 +30,14 @@ namespace EHRIntegracao.Domain.Factorys
 
             switch (key)
             {
-                case DbEnum.QuintaDor:
-                    return "QuintaDor";
-                case DbEnum.CopaDor:
-                    return "CopaDor";
+                case DbEnum.BarraDor:
+                    return "BarraDor";
                 case DbEnum.sumario:
                     return "Sumario";
-                case DbEnum.QuintaDorWorkker:
-                    return "QuintaDorWorkker";
+                case DbEnum.QuintaDor:
+                    return "QuintaDor";
+                case DbEnum.QuintaDorProd:
+                    return "QuintaDorProd";
                 default:
                     throw new Exception("Nenhuma chave corresponde ao valor informado");
             }

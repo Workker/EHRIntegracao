@@ -111,6 +111,7 @@
     <Compile Include="Repository\PatientsDbFor.cs" />
     <Compile Include="Services\DTO\IPatientDTO.cs" />
     <Compile Include="Services\DTO\PatientDTO.cs" />
+    <Compile Include="Services\FillPatientsDbForService.cs" />
     <Compile Include="Services\GetPatientsLuceneService.cs" />
     <Compile Include="Services\GetPatientsService.cs" />
     <Compile Include="Services\PatientIntegrationService.cs" />

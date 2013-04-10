@@ -49,7 +49,7 @@ namespace EHRIntegracao.Domain.Services
         {
             ClearPatient();
 
-            PatientRepository = new PatientRepository(FactorryNhibernate.GetSession(db));
+            PatientRepository = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.sumario));
 
             var patients = PatientRepository.GetPatientsBy(patient);
             PatientConverter(patients,db);
@@ -81,7 +81,7 @@ namespace EHRIntegracao.Domain.Services
 
             var service = new EHRCache.Service.GetPatientService();
             var factory = new FactoryPatientSpecificationQuery();
-            var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDorWorkker));
+            var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDor));
 
             return patients;
         }
@@ -92,7 +92,7 @@ namespace EHRIntegracao.Domain.Services
 
             var service = new EHRCache.Service.GetPatientRedisService();
             var factory = new FactoryPatientSpecificationQuery();
-            var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDorWorkker));
+            var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDor));
 
             return patients.Take(30).ToList();
         }
