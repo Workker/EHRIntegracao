@@ -56,6 +56,10 @@
     <Reference Include="EHRCache">
       <HintPath>..\..\..\EHR\Lib\EHRCache.dll</HintPath>
     </Reference>
+    <Reference Include="EHRLucene.Domain, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EHR\Lib\EHRLucene.Domain.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -107,9 +111,11 @@
     <Compile Include="Repository\PatientsDbFor.cs" />
     <Compile Include="Services\DTO\IPatientDTO.cs" />
     <Compile Include="Services\DTO\PatientDTO.cs" />
+    <Compile Include="Services\GetPatientsLuceneService.cs" />
     <Compile Include="Services\GetPatientsService.cs" />
     <Compile Include="Services\PatientIntegrationService.cs" />
     <Compile Include="Services\SavePatientsCacheService.cs" />
+    <Compile Include="Services\SavePatientsLuceneService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

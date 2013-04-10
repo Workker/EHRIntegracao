@@ -22,10 +22,13 @@ namespace EHRIntegracao.Domain.Services
         public virtual void Save(DbEnum db)
         {
             var service = new GetPatientsService();
+            var serviceLucene = new SavePatientsLuceneService();
 
             var patients = service.GetPatientsDbFor();
 
-            SavePatientService.SavePatient(db, patients.ToList());
+          //SavePatientService.SavePatient(db, patients.ToList());
+            serviceLucene.SavePatientsLucene(patients.ToList());
+
         }
     }
 }

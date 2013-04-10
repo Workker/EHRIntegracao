@@ -25,7 +25,7 @@ namespace EHRIntegracao.Domain.Repository
         public virtual IList<IPatientDTO> Todos(IPatientDTO patient, DbEnum dbEnum)
         {
             IList<IPatientDTO> patients = new List<IPatientDTO>();
-            using (IObjectServer server = Db4oClientServer.OpenServer("d://Projetos//EHR//PatientsHospital", 0))
+            using (IObjectServer server = Db4oClientServer.OpenServer("E://Projetos//EHR//PatientsHospital", 0))
             {
                 using (IObjectContainer db = server.OpenClient())
                 {
@@ -39,9 +39,8 @@ namespace EHRIntegracao.Domain.Repository
         public virtual IList<IPatientDTO> Todos()
         {
             IList<IPatientDTO> patients = new List<IPatientDTO>();
-            using (IObjectContainer db = Db4oEmbedded.OpenFile("d://Projetos//EHR//PatientsHospital"))
+            using (IObjectContainer db = Db4oEmbedded.OpenFile("E://Projects//EHR//PatientsHospital"))
             {
-
                 var Iobject = db.QueryByExample(typeof(IPatientDTO));
                 patients = Iobject.Cast<IPatientDTO>().ToList();
             }

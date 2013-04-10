@@ -45,5 +45,6 @@ namespace EHRIntegracao.Domain.Services
 
             return patientsDTO;
         }
+
     }
 }
