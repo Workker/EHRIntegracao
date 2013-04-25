@@ -100,6 +100,8 @@
     <Compile Include="Domain\PatientSpecificationCriteria\IPatientSpecification.cs" />
     <Compile Include="Domain\PatientSpecificationCriteria\PatientSpecification.cs" />
     <Compile Include="Domain\PatientSpecificationQuery\FactoryPatientSpecificationQuery.cs" />
+    <Compile Include="Domain\Treatment.cs" />
+    <Compile Include="Domain\ValidadorCPF.cs" />
     <Compile Include="Factorys\FacotoryAppKeys.cs" />
     <Compile Include="Factorys\FactorryNhibernate.cs" />
     <Compile Include="Factorys\FactoryGetIPersisterProvider.cs" />
@@ -110,13 +112,16 @@
     <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\PatientsDbFor.cs" />
     <Compile Include="Services\DTO\IPatientDTO.cs" />
+    <Compile Include="Services\DTO\ITreatment.cs" />
     <Compile Include="Services\DTO\PatientDTO.cs" />
-    <Compile Include="Services\FillPatientsDbForService.cs" />
-    <Compile Include="Services\GetPatientsLuceneService.cs" />
-    <Compile Include="Services\GetPatientsService.cs" />
-    <Compile Include="Services\PatientIntegrationService.cs" />
-    <Compile Include="Services\SavePatientsCacheService.cs" />
-    <Compile Include="Services\SavePatientsLuceneService.cs" />
+    <Compile Include="Services\Integration\FillPatientsDbForService.cs" />
+    <Compile Include="Services\Integration\GetPatientsLuceneService.cs" />
+    <Compile Include="Services\Integration\GetPatientsService.cs" />
+    <Compile Include="Services\InitialCharge\InitialChargeByHospitalFillPatientService.cs" />
+    <Compile Include="Services\InitialCharge\InitialChargeByHospitalService.cs" />
+    <Compile Include="Services\Integration\PatientIntegrationService.cs" />
+    <Compile Include="Services\Integration\SavePatientsCacheService.cs" />
+    <Compile Include="Services\Integration\SavePatientsLuceneService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -18,8 +18,7 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria.PatientSpecif
 
         public override bool IsSatisfiedBy(IPatientDTO candidate)
         {
-            return true;
-           // return candidate.DateBirthday != null && candidate.DateBirthday > DateTime.MinValue;
+            return candidate.DateBirthday != null && candidate.DateBirthday > DateTime.MinValue;
         }
     }
 }

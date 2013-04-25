@@ -14,6 +14,7 @@ namespace EHRIntegracao.Test.Integration
     public class IntegrationTest
     {
         [Test]
+        [Ignore]
         public void IntegrarPacientesRedeDor() 
         {
             PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));

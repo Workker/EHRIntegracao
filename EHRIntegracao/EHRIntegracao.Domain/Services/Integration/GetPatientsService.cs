@@ -49,7 +49,7 @@ namespace EHRIntegracao.Domain.Services
         {
             ClearPatient();
 
-            PatientRepository = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.sumario));
+            PatientRepository = new PatientRepository(FactorryNhibernate.GetSession(db));
 
             var patients = PatientRepository.GetPatientsBy(patient);
             PatientConverter(patients,db);
@@ -108,16 +108,16 @@ namespace EHRIntegracao.Domain.Services
             {
                 var patientDto = new PatientDTO()
                 {
+                    Id = patient.Id,
                     CPF = patient.Cpf,
-                    DateBirthday = patient.DateBirthday.ToShortDateString(),
+                    DateBirthday = patient.DateBirthday,
                     Identity = patient.Identity,
                     Name = patient.Name,
                     Hospital  = db
                 };
-
+                patientDto.Records = new List<string>();
                 PatientsDTO.Add(patientDto);
             }
-
         }
     }
 }

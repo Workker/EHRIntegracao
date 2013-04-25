@@ -17,6 +17,7 @@ namespace EHRIntegracao.Test.Repository
     public class PatientsDBForTest
     {
         [Test]
+        [Ignore]
         public void obter_todos_paciente_teste()
         {
             PatientsDbFor repository = new PatientsDbFor();
@@ -36,7 +37,7 @@ namespace EHRIntegracao.Test.Repository
             Assert.NotNull(patients);
         }
         [Test]
-       // [Ignore]
+        [Ignore]
         public void inserir_patients_mockados()
         {
             var a = DbEnum.BarraDor.ToString();
@@ -49,7 +50,7 @@ namespace EHRIntegracao.Test.Repository
             Assert.NotNull(patients);
         }
         [Test]
-     //  [Ignore]
+        [Ignore]
         public void inserir_patients()
         {
             PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDorProd));
@@ -65,9 +66,9 @@ namespace EHRIntegracao.Test.Repository
                 patients.Add(new PatientDTO()
                 {
                     CPF = paciente.Cpf,
-                    DateBirthday = paciente.DateBirthday.ToShortDateString(),
+                    DateBirthday = paciente.DateBirthday,
                     Identity = paciente.Identity,
-                    Id =DbEnum.BarraDor.ToString() + paciente.Id,
+                    Id = DbEnum.BarraDor.ToString() + paciente.Id,
                     Name = paciente.Name,
                     Hospital = DbEnum.QuintaDor
                 });
