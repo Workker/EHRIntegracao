@@ -7,14 +7,17 @@ using ProtoBuf;
 
 namespace EHRIntegracao.Domain.Services.DTO
 {
+    [Serializable]
     [ProtoContract(SkipConstructor = true)]
-    public interface ITreatmentDTO
+    public class TreatmentDTO : ITreatmentDTO
     {
         [ProtoMember(1)]
-        string Id { get; set; }
+        public string Id { get; set; }
+
         [ProtoMember(2)]
-        DateTime EntryDate { get; set; }
+        public DateTime EntryDate { get; set; }
+
         [ProtoMember(3)]
-        DateTime CheckOutDate { get; set; }
+        public DateTime CheckOutDate { get; set; }
     }
 }

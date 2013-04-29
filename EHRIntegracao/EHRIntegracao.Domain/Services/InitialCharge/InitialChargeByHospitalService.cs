@@ -7,11 +7,24 @@ using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.DTO;
+using EHRIntegracao.Domain.Services.InitialCharge;
+using EHRIntegracao.Domain.Services.Integration;
 
 namespace EHRIntegracao.Domain.Services
 {
     public class InitialChargeByHospitalService
     {
+        private GetTreatmentService getTreatmentService { get; set; }
+        public GetTreatmentService GetTreatmentService
+        {
+            get { return getTreatmentService ?? (getTreatmentService = new GetTreatmentService()); }
+            set
+            {
+                getTreatmentService = value;
+            }
+        }
+
+
         private PatientsDbFor patientRepositoryDbFor;
         public PatientsDbFor PatientRepositoryDbFor
         {
@@ -19,6 +32,16 @@ namespace EHRIntegracao.Domain.Services
             set
             {
                 patientRepositoryDbFor = value;
+            }
+        }
+
+        private TreatmensDbFor treatmensDbFor;
+        public TreatmensDbFor TreatmensDbFor
+        {
+            get { return treatmensDbFor ?? (treatmensDbFor = new TreatmensDbFor()); }
+            set
+            {
+                treatmensDbFor = value;
             }
         }
 
@@ -49,6 +72,16 @@ namespace EHRIntegracao.Domain.Services
             }
         }
 
+        private List<ITreatmentDTO> treatments;
+        public List<ITreatmentDTO> Treatments
+        {
+            get { return treatments ?? (treatments = new List<ITreatmentDTO>()); }
+            set
+            {
+                treatments = value;
+            }
+        }
+
         private List<IPatientDTO> patientsDb;
         public List<IPatientDTO> PatientsDb
         {
@@ -59,30 +92,67 @@ namespace EHRIntegracao.Domain.Services
             }
         }
 
+        private AssociatePatientsToTreatmentsService associatePatientsToTreatmentsService;
+        public AssociatePatientsToTreatmentsService AssociatePatientsToTreatmentsService
+        {
+            get { return associatePatientsToTreatmentsService ?? (associatePatientsToTreatmentsService = new AssociatePatientsToTreatmentsService()); }
+            set
+            {
+                associatePatientsToTreatmentsService = value;
+            }
+        }
+
+        private TreatmentsLuceneService treatmentsLuceneService;
+        public TreatmentsLuceneService TreatmentsLuceneService
+        {
+            get { return treatmentsLuceneService ?? (treatmentsLuceneService = new TreatmentsLuceneService()); }
+            set
+            {
+                treatmentsLuceneService = value;
+            }
+        }
+
         public virtual void DoSearch(IPatientDTO patientDTO)
         {
             //TODO: Criar essa Chamada Assincrona com TASK
+            //TODO: chamar coleção de hospitais
             for (int i = 0; i < 1; i++)
             {
-                DoSearchPatients(patientDTO);
-                //   DoSearchTreatment(patientDTO);
+                DoSearchPatients(patientDTO,DbEnum.QuintaDorProd);
+                DoSearchTreatments(DbEnum.QuintaDorProd);
             }
+ 
+            
+            SaveTreatments();
+            AssociatePatientsToTreatmentsService.Associate(Patients);
+            SavePatients();
+        }
 
+        private void SaveTreatments()
+        {
+            TreatmensDbFor.inserir(Treatments);
+            TreatmentsLuceneService.SaveTreatment(Treatments);
+        }
+
+        private void SavePatients()
+        {
             RemoveExistingPatients();
 
             PatientRepositoryDbFor.inserirPacientes(PatientsDb);
             SavePatientsLuceneService.SavePatientsLucene(PatientsDb.ToList());
         }
 
-        private void DoSearchTreatment(IPatientDTO patientDTO)
+
+        private void DoSearchTreatments(DbEnum db)
         {
-            throw new NotImplementedException();
+          var treatment = GetTreatmentService.GetTreatments(DbEnum.QuintaDorProd);
+          Treatments.AddRange(treatment);
         }
 
-        private void DoSearchPatients(IPatientDTO patientDTO)
+        private void DoSearchPatients(IPatientDTO patientDTO, DbEnum db)
         {
             InitialChargeByHospitalFillPatientService = new InitialChargeByHospitalFillPatientService();
-            InitialChargeByHospitalFillPatientService.DoSearch(DbEnum.QuintaDorProd, patientDTO);
+            InitialChargeByHospitalFillPatientService.DoSearch(db, patientDTO);
             Patients.AddRange(initialChargeByHospitalFillPatientService.Patients);
         }
 

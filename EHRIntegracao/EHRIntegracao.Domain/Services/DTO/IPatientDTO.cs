@@ -31,6 +31,8 @@ namespace EHRIntegracao.Domain.Services.DTO
 
         string GetCPF();
         void AddRecord(string record);
-        
+
+
+        void AddTreatments(IList<ITreatmentDTO> treatments);
     }
 }

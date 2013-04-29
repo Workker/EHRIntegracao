@@ -27,7 +27,9 @@ namespace EHRIntegracao.Domain.Services.DTO
         [ProtoMember(6)]
         public virtual DbEnum Hospital { get; set; }
         [ProtoMember(7)]
-        public List<string> Records { get; set; }
+        public virtual List<string> Records { get; set; }
+
+        public virtual List<ITreatmentDTO> Treatments { get; set; }
 
         public virtual string GetCPF()
         {
@@ -40,6 +42,15 @@ namespace EHRIntegracao.Domain.Services.DTO
                 Records = new List<string>();
 
             Records.Add(record);
+        }
+
+
+        public virtual void AddTreatments(IList<ITreatmentDTO> treatments)
+        {
+            if (Treatments == null)
+                Treatments = new List<ITreatmentDTO>();
+
+            Treatments.AddRange(treatments);
         }
     }
 

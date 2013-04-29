@@ -106,22 +106,29 @@
     <Compile Include="Factorys\FactorryNhibernate.cs" />
     <Compile Include="Factorys\FactoryGetIPersisterProvider.cs" />
     <Compile Include="Mapping\PatientMap.cs" />
+    <Compile Include="Mapping\TreatmentMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\BaseRepository.cs" />
     <Compile Include="Repository\IPatientRepository.cs" />
     <Compile Include="Repository\PatientRepository.cs" />
     <Compile Include="Repository\PatientsDbFor.cs" />
+    <Compile Include="Repository\TreatmensDbFor.cs" />
+    <Compile Include="Repository\TreatmentRepository.cs" />
     <Compile Include="Services\DTO\IPatientDTO.cs" />
     <Compile Include="Services\DTO\ITreatment.cs" />
     <Compile Include="Services\DTO\PatientDTO.cs" />
+    <Compile Include="Services\DTO\TreatmentDTO.cs" />
+    <Compile Include="Services\InitialCharge\AssociatePatientsToTreatmentsService.cs" />
     <Compile Include="Services\Integration\FillPatientsDbForService.cs" />
     <Compile Include="Services\Integration\GetPatientsLuceneService.cs" />
     <Compile Include="Services\Integration\GetPatientsService.cs" />
     <Compile Include="Services\InitialCharge\InitialChargeByHospitalFillPatientService.cs" />
     <Compile Include="Services\InitialCharge\InitialChargeByHospitalService.cs" />
+    <Compile Include="Services\Integration\GetTreatmentService.cs" />
     <Compile Include="Services\Integration\PatientIntegrationService.cs" />
     <Compile Include="Services\Integration\SavePatientsCacheService.cs" />
     <Compile Include="Services\Integration\SavePatientsLuceneService.cs" />
+    <Compile Include="Services\Integration\TreatmentsLuceneService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
