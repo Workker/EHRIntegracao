@@ -7,6 +7,7 @@ using EHRCache.Service;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Services;
 using EHRIntegracao.Domain.Services.DTO;
+using EHRIntegracao.Domain.Services.Integration;
 
 namespace EHRIntegracao.Console
 {
@@ -14,8 +15,11 @@ namespace EHRIntegracao.Console
     {
         static void Main(string[] args)
         {
+       //     //
+       //     TreatmentsLuceneService service = new TreatmentsLuceneService();
+       //     var tretments = service.GetTreatments(new PatientDTO() { Id = "000001707" });
             InitialChargeByHospitalService service = new InitialChargeByHospitalService();
-           service.DoSearch(new PatientDTO());
+            service.DoSearch(new PatientDTO());
 
            // FillPatientsDbForService service = new FillPatientsDbForService();
            // service.Fill();

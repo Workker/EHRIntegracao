@@ -1,0 +1,44 @@
+select * from (
+
+select *  from ADMWPD.FAPRTCAD  where nome_pac in (
+
+SELECT NOME_PAC
+FROM ADMWPD.FAPRTCAD
+GROUP BY NOME_PAC
+HAVING count(*) > 1 
+)
+)
+where cpf in (
+SELECT cpf
+FROM ADMWPD.FAPRTCAD
+GROUP BY cpf
+HAVING count(*) > 1)
+
+order by nome_pac;
+
+
+
+
+=======================================================
+
+
+select * from (
+  select *  from ADMWPD.FAPRTCAD  where nome_pac in (
+      SELECT NOME_PAC
+          FROM ADMWPD.FAPRTCAD
+        GROUP BY NOME_PAC
+        HAVING count(*) > 1 
+    )
+)  pacnome
+inner join (
+  select * from (
+      select *  from ADMWPD.FAPRTCAD  where nome_pac in (
+          SELECT cpf
+          FROM ADMWPD.FAPRTCAD
+          GROUP BY cpf
+          HAVING count(*) > 1 
+      )
+  ) 
+) paccpf
+on pacnome.cpf = paccpf.cpf
+order by pacnome.nome_pac;

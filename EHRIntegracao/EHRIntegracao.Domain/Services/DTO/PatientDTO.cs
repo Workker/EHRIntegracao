@@ -31,6 +31,12 @@ namespace EHRIntegracao.Domain.Services.DTO
 
         public virtual List<ITreatmentDTO> Treatments { get; set; }
 
+        public PatientDTO() 
+        {
+            Records = new List<string>();
+            Treatments = new List<ITreatmentDTO>();
+        }
+
         public virtual string GetCPF()
         {
             return Regex.Replace(CPF, "[^0-9]", string.Empty);

@@ -52,5 +52,5 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
     }
 
-   
+
 }

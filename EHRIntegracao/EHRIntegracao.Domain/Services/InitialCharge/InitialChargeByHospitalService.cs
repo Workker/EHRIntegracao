@@ -121,8 +121,8 @@ namespace EHRIntegracao.Domain.Services
                 DoSearchPatients(patientDTO,DbEnum.QuintaDorProd);
                 DoSearchTreatments(DbEnum.QuintaDorProd);
             }
- 
-            
+
+            RemoveExistingPatients();
             SaveTreatments();
             AssociatePatientsToTreatmentsService.Associate(Patients);
             SavePatients();
@@ -136,8 +136,6 @@ namespace EHRIntegracao.Domain.Services
 
         private void SavePatients()
         {
-            RemoveExistingPatients();
-
             PatientRepositoryDbFor.inserirPacientes(PatientsDb);
             SavePatientsLuceneService.SavePatientsLucene(PatientsDb.ToList());
         }
