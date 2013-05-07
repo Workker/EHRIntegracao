@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using EHRCache;
 using EHRIntegracao.Domain.Domain;
@@ -52,7 +53,7 @@ namespace EHRIntegracao.Domain.Services
             PatientRepository = new PatientRepository(FactorryNhibernate.GetSession(db));
 
             var patients = PatientRepository.GetPatientsBy(patient);
-            PatientConverter(patients,db);
+            PatientConverter(patients, db);
 
             return PatientsDTO;
         }
@@ -61,7 +62,7 @@ namespace EHRIntegracao.Domain.Services
         {
             ClearPatient();
 
-            PatientsDTO = PatientRepositoryDbFor.Todos(patient,db);
+            PatientsDTO = PatientRepositoryDbFor.Todos(patient, db);
 
             return PatientsDTO;
         }
@@ -102,18 +103,18 @@ namespace EHRIntegracao.Domain.Services
             patientsDTO = null;
         }
 
-        private void PatientConverter(IList<Patient> patients,DbEnum db)
+        private void PatientConverter(IList<Patient> patients, DbEnum db)
         {
             foreach (var patient in patients)
             {
                 var patientDto = new PatientDTO()
                 {
                     Id = patient.Id,
-                    CPF = patient.Cpf,
+                    CPF = patient.Cpf == null ? null : Regex.Replace(patient.Cpf, "[^0-9]", string.Empty),
                     DateBirthday = patient.DateBirthday,
                     Identity = patient.Identity,
                     Name = patient.Name,
-                    Hospital  = db
+                    Hospital = db
                 };
                 patientDto.Records = new List<string>();
                 PatientsDTO.Add(patientDto);

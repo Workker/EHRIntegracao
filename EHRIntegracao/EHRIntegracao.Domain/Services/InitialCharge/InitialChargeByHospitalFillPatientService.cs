@@ -37,10 +37,16 @@ namespace EHRIntegracao.Domain.Services
         public virtual void DoSearch(DbEnum db, IPatientDTO patientDTO)
         {
             Patients = GetPatientsService.GetPatients(db, patientDTO);
-            ValidatePatient();
+            ValidateCPFPatient();
+            ValidadeBirthday();
         }
 
-        private void ValidatePatient()
+        private void ValidadeBirthday()
+        {
+            Patients = Patients.Where(p => p.DateBirthday != null).ToList();
+        }
+
+        private void ValidateCPFPatient()
         {
             var validate = new ValidateCPF();
             Patients = Patients.Where(p => validate.isCPF(p.CPF)).ToList();
