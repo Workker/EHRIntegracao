@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EHRIntegracao.Domain.Services.DTO;
-using EHRLucene.Domain.EHRLucene.Domain;
+using EHRLucene.Domain;
 
 namespace EHRIntegracao.Domain.Services.Integration
 {

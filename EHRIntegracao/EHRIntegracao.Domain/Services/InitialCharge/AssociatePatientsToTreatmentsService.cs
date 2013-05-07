@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.DTO;
 using EHRIntegracao.Domain.Services.Integration;
-using EHRLucene.Domain.EHRLucene.Domain;
+using EHRLucene.Domain;
 
 namespace EHRIntegracao.Domain.Services.InitialCharge
 {
@@ -44,11 +44,11 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         public void Associate(List<IPatientDTO> patients)
         {
-            foreach (var patient in patients)
-            {
-                Treatments = GetTreatmentsLuceneService.GetTreatments(patient);
-                patient.AddTreatments(Treatments.ToList());
-            }
+            //foreach (var patient in patients)
+            //{
+            //    Treatments = GetTreatmentsLuceneService.GetTreatments(patient);
+            //    patient.AddTreatments(Treatments.ToList());
+            //}
         }
     }
 
