@@ -49,6 +49,10 @@ D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\protobuf-ne
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\protobuf-net.xml
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\BookSleeve.pdb
 D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\BookSleeve.xml
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRLucene.Domain.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Lucene.Net.dll
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRLucene.Domain.pdb
+D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Lucene.Net.xml
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRIntegracao.Test.dll.config
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRIntegracao.Test.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRIntegracao.Test.pdb
@@ -69,9 +73,9 @@ E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\NHibernate.
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\nunit.framework.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Rhino.Mocks.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRCache.dll
+E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRLucene.Domain.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\protobuf-net.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Db4objects.Db4o.CS.dll
-E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRLucene.Domain.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Enyim.Caching.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Redis.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\BookSleeve.dll
@@ -89,9 +93,9 @@ E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\NHibernate.
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\nunit.framework.xml
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Rhino.Mocks.xml
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRCache.pdb
+E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRLucene.Domain.pdb
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\protobuf-net.pdb
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\protobuf-net.xml
-E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRLucene.Domain.pdb
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Enyim.Caching.pdb
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Enyim.Caching.xml
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStack.Redis.xml
@@ -105,7 +109,3 @@ E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\ServiceStac
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.csprojResolveAssemblyReference.cache
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.dll
 E:\Projects\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\obj\Debug\EHRIntegracao.Test.pdb
-D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRLucene.Domain.dll
-D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Lucene.Net.dll
-D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\EHRLucene.Domain.pdb
-D:\Projetos\EHRIntegracao\EHRIntegracao\EHRIntegracao.Test\bin\Debug\Lucene.Net.xml

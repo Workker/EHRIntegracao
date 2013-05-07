@@ -10,10 +10,10 @@ namespace EHRIntegracao.Domain.Services
 {
     public class GetPatientsLuceneService
     {
-        public IPatientDTO GetPatientBy(string id)
+        public IPatientDTO GetPatientBy(string cpf)
         {
             var lucene = new LuceneClient("");
-            return lucene.SearchBy(id);
+            return lucene.SearchBy(cpf);
         }
 
         public List<IPatientDTO> GetPatients(string name)
