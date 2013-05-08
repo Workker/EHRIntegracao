@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EHRIntegracao.Domain.Services.DTO;
+using EHR.CoreShared;
 using EHRLucene.Domain;
 
 namespace EHRIntegracao.Domain.Services.Integration

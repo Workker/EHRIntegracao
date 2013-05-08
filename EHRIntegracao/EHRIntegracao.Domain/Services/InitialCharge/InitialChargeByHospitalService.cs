@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHR.CoreShared;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
-using EHRIntegracao.Domain.Services.DTO;
+
 using EHRIntegracao.Domain.Services.InitialCharge;
 using EHRIntegracao.Domain.Services.Integration;
 

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Db4objects.Db4o;
-using EHRIntegracao.Domain.Services.DTO;
+using EHR.CoreShared;
+
 
 namespace EHRIntegracao.Domain.Repository
 {

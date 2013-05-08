@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHR.CoreShared;
 using EHRIntegracao.Domain.Repository;
-using EHRIntegracao.Domain.Services.DTO;
+
 using EHRIntegracao.Domain.Services.Integration;
 using EHRLucene.Domain;
 

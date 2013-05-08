@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using EHR.CoreShared;
 using NHibernate;
 using System.Threading.Tasks;
-using EHRIntegracao.Domain.Services.DTO;
+
 
 namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria
 {

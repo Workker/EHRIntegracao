@@ -1,4 +1,4 @@
-﻿using EHRIntegracao.Domain.Services.DTO;
+﻿using EHR.CoreShared;
 using EHRLucene.Domain;
 using System;
 using System.Collections.Generic;

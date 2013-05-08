@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EHRIntegracao.Domain.Services.DTO;
+using EHR.CoreShared;
 using NHibernate.Criterion;
 
 namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria.PatientSpecification

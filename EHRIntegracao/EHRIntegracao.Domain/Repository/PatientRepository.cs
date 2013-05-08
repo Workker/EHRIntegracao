@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHR.CoreShared;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria;
-using EHRIntegracao.Domain.Services.DTO;
+
 using NHibernate;
 
 namespace EHRIntegracao.Domain.Repository

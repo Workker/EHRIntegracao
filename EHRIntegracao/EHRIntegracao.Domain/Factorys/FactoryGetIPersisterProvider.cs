@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHR.CoreShared;
 using FluentNHibernate.Cfg.Db;
 
 namespace EHRIntegracao.Domain.Factorys

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using EHR.CoreShared;
 using EHRCache;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Domain.PatientSpecificationQuery;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
-using EHRIntegracao.Domain.Services.DTO;
+
 
 namespace EHRIntegracao.Domain.Services
 {

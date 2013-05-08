@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using Db4objects.Db4o;
 using Db4objects.Db4o.CS;
 using Db4objects.Db4o.Query;
+using EHR.CoreShared;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
-using EHRIntegracao.Domain.Services.DTO;
+
 
 namespace EHRIntegracao.Domain.Repository
 {

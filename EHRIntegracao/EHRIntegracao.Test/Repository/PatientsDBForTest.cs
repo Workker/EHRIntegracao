@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EHR.CoreShared;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
-using EHRIntegracao.Domain.Services.DTO;
 using NUnit.Framework;
-using Db4objects.Db4o;
-using Db4objects.Db4o.Query;
+using System.Collections.Generic;
 
 namespace EHRIntegracao.Test.Repository
 {

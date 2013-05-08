@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHR.CoreShared;
 using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria.PatientSpecification;
-using EHRIntegracao.Domain.Services.DTO;
+
 using EHRIntegracao.Test.Mocks;
 using NUnit.Framework;
 
