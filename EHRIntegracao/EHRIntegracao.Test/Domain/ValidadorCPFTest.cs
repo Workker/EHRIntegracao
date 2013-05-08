@@ -32,7 +32,31 @@ namespace EHRIntegracao.Test.Domain
         {
             ValidateCPF verificador = new ValidateCPF();
 
-            Assert.IsTrue(verificador.isCPF("10041907755"));
+            Assert.IsFalse(verificador.isCPF("10041907755"));
+        }
+
+        [Test]
+        public void verificar_cpf_vazio_sem_sucesso()
+        {
+            ValidateCPF verificador = new ValidateCPF();
+
+            Assert.IsFalse(verificador.isCPF(""));
+        }
+
+        [Test]
+        public void verificar_cpf_nulo_sem_sucesso()
+        {
+            ValidateCPF verificador = new ValidateCPF();
+
+            Assert.IsFalse(verificador.isCPF(null));
+        }
+
+        [Test]
+        public void verificar_cpf_cheio_de_ponto_e_traco_nulo_sem_sucesso()
+        {
+            ValidateCPF verificador = new ValidateCPF();
+
+            Assert.IsFalse(verificador.isCPF("..-"));
         }
     }
 }
