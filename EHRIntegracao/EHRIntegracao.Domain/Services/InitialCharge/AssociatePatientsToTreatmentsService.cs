@@ -23,8 +23,8 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
-        private IList<ITreatmentDTO> treatments;
-        public IList<ITreatmentDTO> Treatments
+        private List<ITreatmentDTO> treatments;
+        public List<ITreatmentDTO> Treatments
         {
             get { return treatments ?? (treatments = new List<ITreatmentDTO>()); }
             set
@@ -45,11 +45,18 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         public void Associate(List<IPatientDTO> patients)
         {
-            //foreach (var patient in patients)
-            //{
-            //    Treatments = GetTreatmentsLuceneService.GetTreatments(patient);
-            //    patient.AddTreatments(Treatments.ToList());
-            //}
+            foreach (var patient in patients)
+            {
+                foreach (var recordsBysHospital in patient.Records.GroupBy(r=> r.Hospital).GroupBy(b=> b.Key))
+                {
+                    foreach (var item in recordsBysHospital.ToList())
+                    {
+                        Treatments.AddRange(GetTreatmentsLuceneService.GetTreatments(item.ToList()));
+                    }
+                }
+
+                patient.AddTreatments(Treatments.ToList());
+            }
         }
     }
 

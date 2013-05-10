@@ -41,7 +41,7 @@ namespace EHRIntegracao.Domain.Services.Integration
             TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(db));
 
             var treatment = TreatmentRepository.GetAll();
-            PatientConverter(treatment);
+            PatientConverter(treatment,db);
 
             return Treatments;
         }
@@ -51,7 +51,7 @@ namespace EHRIntegracao.Domain.Services.Integration
             Treatments = null;
         }
 
-        private void PatientConverter(IList<Treatment> treatment)
+        private void PatientConverter(IList<Treatment> treatment,DbEnum db)
         {
             foreach (var t in treatment)
             {
@@ -59,7 +59,8 @@ namespace EHRIntegracao.Domain.Services.Integration
                 {
                     Id = t.Id,
                     CheckOutDate = t.CheckOutDate,
-                    EntryDate = t.EntryDate
+                    EntryDate = t.EntryDate,
+                    Hospital = db
                 };
 
                 Treatments.Add(tratmentDto);

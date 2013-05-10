@@ -117,7 +117,7 @@ namespace EHRIntegracao.Domain.Services
                     Name = patient.Name,
                     Hospital = db
                 };
-                patientDto.Records = new List<string>();
+                patientDto.Records = new List<RecordDTO>();
                 PatientsDTO.Add(patientDto);
             }
         }

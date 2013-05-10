@@ -19,14 +19,9 @@ namespace EHRIntegracao.Domain.Services.Integration
                 luceneClientTreatment = value;
             }
         }
-        public virtual IList<ITreatmentDTO> GetTreatments(IPatientDTO patient)
+        public virtual IList<ITreatmentDTO> GetTreatments(List<RecordDTO> records)
         {
-            var medicalRecord = new List<string>();
-
-            medicalRecord.AddRange(patient.Records);
-            medicalRecord.Add(patient.Id);
-
-            return LuceneClientTreatment.AdvancedSearch(medicalRecord).ToList();
+            return LuceneClientTreatment.AdvancedSearch(records).ToList();
         }
 
         public virtual void SaveTreatment (List<ITreatmentDTO> treatments)

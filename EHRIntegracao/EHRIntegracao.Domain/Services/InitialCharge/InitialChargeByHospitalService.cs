@@ -119,13 +119,14 @@ namespace EHRIntegracao.Domain.Services
             //TODO: chamar coleção de hospitais
             for (int i = 0; i < 1; i++)
             {
-                DoSearchPatients(patientDTO,DbEnum.QuintaDorProd);
+                DoSearchPatients(patientDTO, DbEnum.QuintaDorProd);
                 DoSearchTreatments(DbEnum.QuintaDorProd);
             }
 
             RemoveExistingPatients();
             SaveTreatments();
-            AssociatePatientsToTreatmentsService.Associate(Patients);
+            //AssociatePatientsToTreatmentsService.Associate(Patients);
+            GroupTreatment();
             SavePatients();
         }
 
@@ -144,8 +145,8 @@ namespace EHRIntegracao.Domain.Services
 
         private void DoSearchTreatments(DbEnum db)
         {
-          var treatment = GetTreatmentService.GetTreatments(DbEnum.QuintaDorProd);
-          Treatments.AddRange(treatment);
+            var treatment = GetTreatmentService.GetTreatments(DbEnum.QuintaDorProd);
+            Treatments.AddRange(treatment);
         }
 
         private void DoSearchPatients(IPatientDTO patientDTO, DbEnum db)
@@ -168,12 +169,40 @@ namespace EHRIntegracao.Domain.Services
                         if (string.IsNullOrEmpty(patientUnique.Id))
                         {
                             patientUnique = patient;
+                            patient.AddRecord(new RecordDTO() { Code = patient.Id, Hospital = patient.Hospital });
                             PatientsDb.Add(patient);
                         }
                         else
                         {
-                            patientUnique.AddRecord(patient.Id);
+                            patientUnique.AddRecord(new RecordDTO() { Code = patient.Id, Hospital = patient.Hospital });
                         }
+                    }
+                }
+            }
+        }
+
+        private void GroupTreatment()
+        {
+            foreach (var patient in PatientsDb)
+            {
+                List<ITreatmentDTO> treatmentsCheck = new List<ITreatmentDTO>();
+                foreach (var recordsBysHospital in patient.Records.GroupBy(r => r.Hospital).GroupBy(b => b.Key))
+                {
+                    foreach (var records in recordsBysHospital.ToList())
+                    {
+
+                        foreach (var record in records.ToList())
+                        {
+                            treatmentsCheck = Treatments.Where(t => t.Hospital == record.Hospital && t.Id == record.Code).ToList();
+
+                        }
+
+                        patient.AddTreatments(treatmentsCheck);
+
+                        //treatments = (from t in Treatments
+                        //              where t.Hospital == item.FirstOrDefault().Hospital
+                        //              && item.Any(i => i.Code == t.Id)
+                        //              select t).ToList();
                     }
                 }
             }
