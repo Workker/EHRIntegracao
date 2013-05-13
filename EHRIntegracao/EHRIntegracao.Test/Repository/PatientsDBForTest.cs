@@ -47,7 +47,7 @@ namespace EHRIntegracao.Test.Repository
         [Ignore]
         public void inserir_patients()
         {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDorProd));
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
 
 
             var resultados = pacientes.All<Patient>();

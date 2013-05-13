@@ -119,8 +119,8 @@ namespace EHRIntegracao.Domain.Services
             //TODO: chamar coleção de hospitais
             for (int i = 0; i < 1; i++)
             {
-                DoSearchPatients(patientDTO, DbEnum.QuintaDorProd);
-                DoSearchTreatments(DbEnum.QuintaDorProd);
+                DoSearchPatients(patientDTO, DbEnum.QuintaDor);
+                DoSearchTreatments(DbEnum.QuintaDor);
             }
 
             RemoveExistingPatients();
@@ -145,7 +145,7 @@ namespace EHRIntegracao.Domain.Services
 
         private void DoSearchTreatments(DbEnum db)
         {
-            var treatment = GetTreatmentService.GetTreatments(DbEnum.QuintaDorProd);
+            var treatment = GetTreatmentService.GetTreatments(DbEnum.QuintaDor);
             Treatments.AddRange(treatment);
         }
 
@@ -183,28 +183,37 @@ namespace EHRIntegracao.Domain.Services
 
         private void GroupTreatment()
         {
+            int i = 0;
             foreach (var patient in PatientsDb)
             {
-                List<ITreatmentDTO> treatmentsCheck = new List<ITreatmentDTO>();
+                
                 foreach (var recordsBysHospital in patient.Records.GroupBy(r => r.Hospital).GroupBy(b => b.Key))
                 {
                     foreach (var records in recordsBysHospital.ToList())
                     {
-
+                        List<ITreatmentDTO> treatmentsCheck = new List<ITreatmentDTO>();
                         foreach (var record in records.ToList())
                         {
-                            treatmentsCheck = Treatments.Where(t => t.Hospital == record.Hospital && t.Id == record.Code).ToList();
+                            treatmentsCheck = (from t in Treatments
+                                               where t.Hospital == record.Hospital
+                                               && t.Id == record.Code
+                                               select t).ToList();
+                                
+                                //Treatments.Where(t => t.Hospital == record.Hospital && t.Id == record.Code).ToList();
 
                         }
 
                         patient.AddTreatments(treatmentsCheck);
-
+                       
                         //treatments = (from t in Treatments
                         //              where t.Hospital == item.FirstOrDefault().Hospital
                         //              && item.Any(i => i.Code == t.Id)
                         //              select t).ToList();
                     }
+                   
                 }
+                i++;
+                Console.WriteLine(i.ToString());
             }
         }
     }

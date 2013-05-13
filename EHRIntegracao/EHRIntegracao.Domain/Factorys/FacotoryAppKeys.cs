@@ -22,8 +22,6 @@ namespace EHRIntegracao.Domain.Factorys
                     return "Sumario";
                 case DbEnum.QuintaDor:
                     return "QuintaDor";
-                case DbEnum.QuintaDorProd:
-                    return "QuintaDorProd";
                 default:
                     throw new Exception("Nenhuma chave corresponde ao valor informado");
             }
