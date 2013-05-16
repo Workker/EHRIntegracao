@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EHR.CoreShared;
 using EHRLucene.Domain;
 
-namespace EHRIntegracao.Domain.Services.Integration
+namespace EHRIntegracao.Domain.Services
 {
     public class TreatmentsLuceneService
     {

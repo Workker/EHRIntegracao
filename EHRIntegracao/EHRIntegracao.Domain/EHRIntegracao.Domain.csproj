@@ -123,24 +123,27 @@
     <Compile Include="Repository\PatientsDbFor.cs" />
     <Compile Include="Repository\TreatmensDbFor.cs" />
     <Compile Include="Repository\TreatmentRepository.cs" />
+    <Compile Include="Services\GetEntities\GetCidFromLuceneService.cs" />
+    <Compile Include="Services\GetEntities\GetDefFromLuceneService.cs" />
+    <Compile Include="Services\GetEntities\GetTusFromLuceneService.cs" />
     <Compile Include="Services\InitialCharge\AssociatePatientsToTreatmentsService.cs" />
-    <Compile Include="Services\Integration\FillPatientsDbForService.cs" />
-    <Compile Include="Services\Integration\GetPatientsLuceneService.cs" />
-    <Compile Include="Services\Integration\GetPatientsService.cs" />
+    <Compile Include="Services\GetEntities\GetPatientsLuceneService.cs" />
+    <Compile Include="Services\GetEntities\GetPatientsService.cs" />
     <Compile Include="Services\InitialCharge\InitialChargeByHospitalFillPatientService.cs" />
     <Compile Include="Services\InitialCharge\InitialChargeByHospitalService.cs" />
-    <Compile Include="Services\Integration\GetTreatmentService.cs" />
-    <Compile Include="Services\Integration\PatientIntegrationService.cs" />
-    <Compile Include="Services\Integration\SavePatientsCacheService.cs" />
-    <Compile Include="Services\Integration\SavePatientsLuceneService.cs" />
-    <Compile Include="Services\Integration\TreatmentsLuceneService.cs" />
+    <Compile Include="Services\GetEntities\GetTreatmentService.cs" />
+    <Compile Include="Services\GetEntities\PatientIntegrationService.cs" />
+    <Compile Include="Services\SaveLucene\SaveCidInLuceneService.cs" />
+    <Compile Include="Services\SaveLucene\SaveDefInLuceneService.cs" />
+    <Compile Include="Services\SaveLucene\SavePatientsDbforToLuceneService.cs" />
+    <Compile Include="Services\SaveLucene\SavePatientsLuceneService.cs" />
+    <Compile Include="Services\SaveLucene\SaveTusInLuceneService.cs" />
+    <Compile Include="Services\SaveLucene\TreatmentsLuceneService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\DTO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

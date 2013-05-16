@@ -10,15 +10,9 @@ using EHRIntegracao.Domain.Factorys;
 
 namespace EHRIntegracao.Domain.Services
 {
-    public class SavePatientsCacheService
+    public class SavePatientsDbforToLuceneService
     {
         private SavePatientRedisService savePatientService;
-
-        public virtual SavePatientRedisService SavePatientService 
-        {
-            get { return savePatientService ?? (savePatientService = new SavePatientRedisService()); }
-            set { savePatientService = value; }
-        }
 
         public virtual void Save(DbEnum db)
         {
@@ -27,7 +21,6 @@ namespace EHRIntegracao.Domain.Services
 
             var patients = service.GetPatientsDbFor();
 
-          //SavePatientService.SavePatient(db, patients.ToList());
             serviceLucene.SavePatientsLucene(patients.ToList());
 
         }

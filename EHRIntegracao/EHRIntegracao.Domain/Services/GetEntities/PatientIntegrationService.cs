@@ -11,7 +11,7 @@ using EHRIntegracao.Domain.Repository;
 
 namespace EHRIntegracao.Domain.Services
 {
-    public class PatientIntegrationService
+    public class PatientIntegrationRedisService
     {
         private IList<PatientDTO> patientsDTO;
         public IList<PatientDTO> PatientsDTO

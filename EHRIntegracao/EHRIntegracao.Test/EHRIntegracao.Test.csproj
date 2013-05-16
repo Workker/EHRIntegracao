@@ -95,6 +95,9 @@
     <Compile Include="Domain\PatientSpecificationCriteria\PatientIdentityEqualsTest.cs" />
     <Compile Include="Domain\PatientSpecificationCriteria\PatientNameEqualsTest.cs" />
     <Compile Include="Domain\ValidadorCPFTest.cs" />
+    <Compile Include="FillLucene\FillCidLuceneTest.cs" />
+    <Compile Include="FillLucene\FillDefLuceneTest.cs" />
+    <Compile Include="FillLucene\FillTusLuceneTest.cs" />
     <Compile Include="InfraStructure\CreateDataBaseTest.cs" />
     <Compile Include="InfraStructure\LoadPatientsFromDBTest.cs" />
     <Compile Include="Integration\IntegrationTest.cs" />
