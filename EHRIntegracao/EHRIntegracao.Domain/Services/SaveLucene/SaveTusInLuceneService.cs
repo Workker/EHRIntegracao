@@ -10,7 +10,7 @@ namespace EHRIntegracao.Domain.Services.SaveLucene
 {
     public class SaveTusInLuceneService
     {
-        public void SavePatientsLucene(List<TusDTO> tus)
+        public void Save(List<TusDTO> tus)
         {
             var lucene = new LuceneClientTus("");
             lucene.AddUpdateLuceneIndex(tus);

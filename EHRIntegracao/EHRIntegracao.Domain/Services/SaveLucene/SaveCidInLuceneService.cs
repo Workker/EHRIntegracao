@@ -10,10 +10,10 @@ namespace EHRIntegracao.Domain.Services.SaveLucene
 {
     public class SaveCidInLuceneService
     {
-        public void SavePatientsLucene(List<CidDTO> patients)
+        public void Save(List<CidDTO> cids)
         {
             var lucene = new LuceneClientCid("");
-            lucene.AddUpdateLuceneIndex(patients);
+            lucene.AddUpdateLuceneIndex(cids);
         }
     }
 }
