@@ -20,7 +20,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-        public List<CidDTO> GetTus(string code)
+        public List<CidDTO> GetCid(string code)
         {
             return LuceneClientCid.SimpleSearch(code).ToList();
         }
