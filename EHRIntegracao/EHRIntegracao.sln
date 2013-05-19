@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8910C2
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "EHRIntegracao.Documentacao", "EHRIntegracao.Documentacao\EHRIntegracao.Documentacao.modelproj", "{B83F9976-7273-42FB-9411-4B8F1A5BC934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{78D841BA-F3E5-46C5-BDFF-C11539527FD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78D841BA-F3E5-46C5-BDFF-C11539527FD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78D841BA-F3E5-46C5-BDFF-C11539527FD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B83F9976-7273-42FB-9411-4B8F1A5BC934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B83F9976-7273-42FB-9411-4B8F1A5BC934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B83F9976-7273-42FB-9411-4B8F1A5BC934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B83F9976-7273-42FB-9411-4B8F1A5BC934}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

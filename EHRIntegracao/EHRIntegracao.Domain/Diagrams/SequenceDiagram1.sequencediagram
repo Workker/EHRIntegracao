@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SequenceDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" dslVersion="1.0.0.0" Id="fb40ae8e-81c2-4b6b-99f0-b0eac78d2258" name="SequenceDiagram1" mode="DotNet" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner">
+  <packagedElements>
+    <packageHasNamedElement>
+      <interaction Id="fc1c1cc8-b453-429a-bc58-670f5c2f0087" name="SequenceDiagram1" collapseFragmentsFlag="false" isActiveClass="false" isAbstract="false" isLeaf="false" isReentrant="false">
+        <fragments>
+          <behaviorExecutionSpecification Id="c196463c-f385-4a44-a583-c63478255f6e" name="BehaviorExecutionSpecification">
+            <coveredLifelines>
+              <lifelineMoniker Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" LastKnownName="InitialChargeByHospitalFillPatientService" />
+            </coveredLifelines>
+            <finish>
+              <executionOccurrenceSpecificationMoniker Id="660e0812-3230-415c-a4c5-da1140127eaa" LastKnownName="ExecutionOccurrenceSpecification" />
+            </finish>
+            <start>
+              <executionOccurrenceSpecificationMoniker Id="92da9664-7eff-4ed8-a055-47263d08402c" LastKnownName="ExecutionOccurrenceSpecification" />
+            </start>
+            <nestedOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="370aa5d0-9855-4001-b70c-da2398ef71e3" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="a0e549a7-f674-41e9-9b20-fcfd08885ad2" LastKnownName="MessageOccurrenceSpecification" />
+            </nestedOccurrences>
+          </behaviorExecutionSpecification>
+          <executionOccurrenceSpecification Id="92da9664-7eff-4ed8-a055-47263d08402c" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="dfbe4c2f-56e4-4717-937d-54ed37a86cc5" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" LastKnownName="InitialChargeByHospitalFillPatientService" />
+            </covered>
+          </executionOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="4415bcb6-ae36-47f3-a3d1-99edad813f84" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0aeccced-3221-42ad-be06-14958c61c60e" LastKnownName="InitialChargeByHospitalService" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="370aa5d0-9855-4001-b70c-da2398ef71e3" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" LastKnownName="InitialChargeByHospitalFillPatientService" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="a0e549a7-f674-41e9-9b20-fcfd08885ad2" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" LastKnownName="InitialChargeByHospitalFillPatientService" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <messageOccurrenceSpecification Id="685b9a8c-31f6-4d2d-a43c-1c31b9918bca" name="MessageOccurrenceSpecification">
+            <covered>
+              <lifelineMoniker Id="0aeccced-3221-42ad-be06-14958c61c60e" LastKnownName="InitialChargeByHospitalService" />
+            </covered>
+          </messageOccurrenceSpecification>
+          <executionOccurrenceSpecification Id="660e0812-3230-415c-a4c5-da1140127eaa" name="ExecutionOccurrenceSpecification">
+            <event>
+              <executionOccurrenceSpecificationReferencesEvent>
+                <executionEventMoniker Id="d025e49b-2914-4faf-87f1-ec6365972a16" LastKnownName="ExecutionEvent" />
+              </executionOccurrenceSpecificationReferencesEvent>
+            </event>
+            <covered>
+              <lifelineMoniker Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" LastKnownName="InitialChargeByHospitalFillPatientService" />
+            </covered>
+          </executionOccurrenceSpecification>
+        </fragments>
+        <lifelines>
+          <lifeline Id="0aeccced-3221-42ad-be06-14958c61c60e" name="InitialChargeByHospitalService" isActor="false" lifelineDisplayName="InitialChargeByHospitalService">
+            <topLevelOccurrences>
+              <messageOccurrenceSpecificationMoniker Id="4415bcb6-ae36-47f3-a3d1-99edad813f84" LastKnownName="MessageOccurrenceSpecification" />
+              <messageOccurrenceSpecificationMoniker Id="685b9a8c-31f6-4d2d-a43c-1c31b9918bca" LastKnownName="MessageOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+          <lifeline Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" name="InitialChargeByHospitalFillPatientService" isActor="false" lifelineDisplayName="InitialChargeByHospitalFillPatientService">
+            <topLevelOccurrences>
+              <executionOccurrenceSpecificationMoniker Id="92da9664-7eff-4ed8-a055-47263d08402c" LastKnownName="ExecutionOccurrenceSpecification" />
+              <executionOccurrenceSpecificationMoniker Id="660e0812-3230-415c-a4c5-da1140127eaa" LastKnownName="ExecutionOccurrenceSpecification" />
+            </topLevelOccurrences>
+          </lifeline>
+        </lifelines>
+        <messages>
+          <message Id="7898a191-e24b-41d4-ad1b-c0f581db8dc1" name="DoSearch()" messageKind="Complete" messageSort="SynchCall" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="4415bcb6-ae36-47f3-a3d1-99edad813f84" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="370aa5d0-9855-4001-b70c-da2398ef71e3" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+          <message Id="830211ce-0fef-42ed-8212-04e6540ae11e" name="&lt;&lt;return&gt;&gt;" messageKind="Complete" messageSort="Reply" createSelfMessage="false">
+            <sendEvent>
+              <messageOccurrenceSpecificationMoniker Id="a0e549a7-f674-41e9-9b20-fcfd08885ad2" LastKnownName="MessageOccurrenceSpecification" />
+            </sendEvent>
+            <receiveEvent>
+              <messageOccurrenceSpecificationMoniker Id="685b9a8c-31f6-4d2d-a43c-1c31b9918bca" LastKnownName="MessageOccurrenceSpecification" />
+            </receiveEvent>
+          </message>
+        </messages>
+      </interaction>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="dfbe4c2f-56e4-4717-937d-54ed37a86cc5" name="ExecutionEvent" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <executionEvent Id="d025e49b-2914-4faf-87f1-ec6365972a16" name="ExecutionEvent" />
+    </packageHasNamedElement>
+  </packagedElements>
+</SequenceDesignerModel>

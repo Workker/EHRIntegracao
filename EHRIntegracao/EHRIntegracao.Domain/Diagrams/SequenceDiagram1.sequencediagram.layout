@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sequenceDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="SequenceDiagram1">
+  <SequenceDesignerModelMoniker Id="fb40ae8e-81c2-4b6b-99f0-b0eac78d2258" />
+  <nestedChildShapes>
+    <lifelineShape Id="bfb595d2-fe32-4c1f-b947-f449ed5a0ad1" absoluteBounds="4.8958332538604745, 1, 0.15, 7" visible="true" visualStyleMode="Modified">
+      <lifelineMoniker Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" LastKnownName="InitialChargeByHospitalFillPatientService" />
+      <relativeChildShapes>
+        <dotNetLifelineHeadShape Id="84136a28-c83f-465b-9801-a1d9e4afe6dd" absoluteBounds="3.9708332538604747, 0.6, 2, 0.4" customColor="184, 204, 215" visualStyleMode="Modified">
+          <lifelineMoniker Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" LastKnownName="InitialChargeByHospitalFillPatientService" />
+          <relativeChildShapes />
+        </dotNetLifelineHeadShape>
+        <lifelineHoverShape Id="c281cc2a-6315-4656-9cb6-2111774b38df" absoluteBounds="4.8958332538604745, 1, 0, 7">
+          <lifelineMoniker Id="b2b5a8d5-e77e-41bd-bb37-0d82d56e1a65" LastKnownName="InitialChargeByHospitalFillPatientService" />
+        </lifelineHoverShape>
+        <dotNetExecutionSpecificationShape Id="ff77a4c4-0bfa-42e3-869f-3793f6ec5e03" absoluteBounds="4.8958332538604745, 1.8229166666666665, 0.125, 0.55" customColor="184, 204, 215" visualStyleMode="Modified">
+          <behaviorExecutionSpecificationMoniker Id="c196463c-f385-4a44-a583-c63478255f6e" LastKnownName="BehaviorExecutionSpecification" />
+        </dotNetExecutionSpecificationShape>
+      </relativeChildShapes>
+    </lifelineShape>
+    <lifelineShape Id="4c815b00-1231-4520-b5af-b570f0653f3a" absoluteBounds="2.1291666666666664, 1, 0.15, 7" visible="true" visualStyleMode="Modified">
+      <lifelineMoniker Id="0aeccced-3221-42ad-be06-14958c61c60e" LastKnownName="InitialChargeByHospitalService" />
+      <relativeChildShapes>
+        <dotNetLifelineHeadShape Id="7da693d7-e42c-45e6-a365-87e9aaca6c6d" absoluteBounds="1.2041666666666664, 0.6, 2, 0.4" customColor="184, 204, 215" visualStyleMode="Modified">
+          <lifelineMoniker Id="0aeccced-3221-42ad-be06-14958c61c60e" LastKnownName="InitialChargeByHospitalService" />
+          <relativeChildShapes />
+        </dotNetLifelineHeadShape>
+        <lifelineHoverShape Id="da38376d-381b-41bf-9899-0426ee6f9792" absoluteBounds="2.1291666666666664, 1, 0, 7">
+          <lifelineMoniker Id="0aeccced-3221-42ad-be06-14958c61c60e" LastKnownName="InitialChargeByHospitalService" />
+        </lifelineHoverShape>
+      </relativeChildShapes>
+    </lifelineShape>
+    <syncMessageConnector edgePoints="[(2.20416666666667 : 1.82291666666667); (4.89583325386047 : 1.82291666666667)]" fixedFrom="Caller" fixedTo="Caller" TargetRelationshipDomainClassId="e24617ce-6c7e-4c7d-802a-63014f02e313" customColor="Black" visible="true" visualStyleMode="Modified" messageId="00000000-0000-0000-0000-000000000000">
+      <relativeChildShapes />
+      <nodes>
+        <lifelineShapeMoniker Id="4c815b00-1231-4520-b5af-b570f0653f3a" />
+        <dotNetExecutionSpecificationShapeMoniker Id="ff77a4c4-0bfa-42e3-869f-3793f6ec5e03" />
+      </nodes>
+    </syncMessageConnector>
+    <returnMessageConnector edgePoints="[(4.89583325386047 : 2.37291666666667); (2.20416666666667 : 2.37291666666667)]" fixedFrom="Caller" fixedTo="Caller" TargetRelationshipDomainClassId="e24617ce-6c7e-4c7d-802a-63014f02e313" customColor="Black" visible="true" visualStyleMode="Modified" messageId="00000000-0000-0000-0000-000000000000">
+      <relativeChildShapes />
+      <nodes>
+        <dotNetExecutionSpecificationShapeMoniker Id="ff77a4c4-0bfa-42e3-869f-3793f6ec5e03" />
+        <lifelineShapeMoniker Id="4c815b00-1231-4520-b5af-b570f0653f3a" />
+      </nodes>
+    </returnMessageConnector>
+  </nestedChildShapes>
+</sequenceDesignerDiagram>

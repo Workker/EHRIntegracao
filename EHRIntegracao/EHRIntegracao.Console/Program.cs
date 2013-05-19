@@ -7,8 +7,7 @@ using EHR.CoreShared;
 using EHRCache.Service;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Services;
-
-using EHRIntegracao.Domain.Services.Integration;
+using EHRIntegracao.Domain.Services.InitialCharge;
 
 namespace EHRIntegracao.Console
 {

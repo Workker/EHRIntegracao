@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EHRIntegracao.Domain.Services
+namespace EHRIntegracao.Domain.Services.GetEntities
 {
     public class GetPatientsLuceneService
     {

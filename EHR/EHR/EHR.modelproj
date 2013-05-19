@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5ff6af63-7772-4b91-a9b5-d94144be1954}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>EHR</Name>
+    <RootNamespace>EHR</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="Graph1.dgml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UMLComponentDiagram1.componentdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="UMLComponentDiagram1.componentdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>UMLComponentDiagram1.componentdiagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\EHR.uml">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Validate Include="DiagramaDePacote.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="DiagramaDePacote.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>DiagramaDePacote.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="DiagramaDePacote.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>DiagramaDePacote.layerdiagram</DependentUpon>
+    </Validate>
+  </ItemGroup>
+</Project>

@@ -9,7 +9,7 @@ using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 
 
-namespace EHRIntegracao.Domain.Services.Integration
+namespace EHRIntegracao.Domain.Services.GetEntities
 {
     public class GetTreatmentService
     {

@@ -7,11 +7,10 @@ using EHR.CoreShared;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
-
+using EHRIntegracao.Domain.Services.GetEntities;
 using EHRIntegracao.Domain.Services.InitialCharge;
-using EHRIntegracao.Domain.Services.Integration;
 
-namespace EHRIntegracao.Domain.Services
+namespace EHRIntegracao.Domain.Services.InitialCharge
 {
     public class InitialChargeByHospitalService
     {

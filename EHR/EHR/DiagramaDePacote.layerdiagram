@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="1bec06ac-332c-4b82-8105-294e9cf33f06" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <comments>
+    <comment Id="bf372bc4-ce3a-492e-8944-d4bcfb7a3a53" name="Comment1">
+      <body>CoreShared:
+Todos os projetos dependem do Core, 
+ele é um centralizador de Objetos que precisam de integração ou migração.
+EX: paciente,atendimento,def,tus etc.</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="44d90573-fd12-4dc5-8db6-df4a1bc2a84d" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+    <comment Id="e2e0afcf-da7a-4ffa-ab65-54624e801125" name="Comment2">
+      <body>EHR:Site que comtempla 
+todas as telas e dominios referentes ao EHR, tais como sumario,médicos,procedimentos, exames etc.
+</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="f731e922-0613-4f55-ac3f-3085685b5c8c" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+    <comment Id="b825cd83-6cb0-4711-81cd-8c0af266b032" name="Comment3">
+      <body>Integração:
+Projeto de integração é um centralizador de serviços.Ele tambem serve como interface para os projetos de indexação, cache e futuros projetos aonde outras tecnologias serão utilizadas.
+Exemplo de serviços disponibilizados pelo integração:Busca de pacientes em todos os hospitais, Indexar pacientes, Cachear telas etc.
+O projeto de integração poderá ser utilizado pela RedeDor como um centralizador de informaçõs de hospitais, fornecendo interfaces de serviços para consumo.</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="2375498a-e7e7-40d8-96de-e06184c976a3" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+    <comment Id="2298c201-c3d8-4df1-a29f-93439354b7cb" name="Comment4">
+      <body>Cache:
+Tem a responsabilidade de cachear, objetos, arquivos,telas etc.
+ele só tem dependencia para o CoreShared.
+</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="0ba19a28-ffc1-4c2b-a454-4f70dc150682" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+    <comment Id="6fc18340-b0b4-4465-abaa-e33da135f6ab" name="Comment5">
+      <body>Lucene:
+Tem a responsabilidade de indexar objetos e arquivos, para dar mais escalabilidade na busca de uma massa de dados grande, tais como os pacientes da rede.ele só tem a dependencia para o CoreShared.</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="df1af952-c200-4394-bd91-8de58f2b7828" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+  </comments>
+  <layers>
+    <layer Id="f731e922-0613-4f55-ac3f-3085685b5c8c" name="EHR&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="ac315bb3-83b3-4567-a203-a8a9021b731e" direction="Forward">
+          <layerMoniker Id="2375498a-e7e7-40d8-96de-e06184c976a3" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="4ba0cabb-d7ca-4b43-b622-1ed6bc047cb9" direction="Forward">
+          <layerMoniker Id="44d90573-fd12-4dc5-8db6-df4a1bc2a84d" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+    </layer>
+    <layer Id="2375498a-e7e7-40d8-96de-e06184c976a3" name="Integracao&#xD;&#xA;">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="53449eab-1471-4702-9286-961ab5a6f35d" direction="Forward">
+          <layerMoniker Id="0ba19a28-ffc1-4c2b-a454-4f70dc150682" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="b4dc93f8-8167-428c-bfec-33f3e618789f" direction="Forward">
+          <layerMoniker Id="df1af952-c200-4394-bd91-8de58f2b7828" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="67ab7edf-f2e3-485f-8fec-fa097f88e780" direction="Forward">
+          <layerMoniker Id="44d90573-fd12-4dc5-8db6-df4a1bc2a84d" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+    </layer>
+    <layer Id="df1af952-c200-4394-bd91-8de58f2b7828" name="Lucene&#xD;&#xA;" />
+    <layer Id="0ba19a28-ffc1-4c2b-a454-4f70dc150682" name="Cache&#xD;&#xA;" />
+    <layer Id="44d90573-fd12-4dc5-8db6-df4a1bc2a84d" name="CoreShared&#xD;&#xA;" />
+  </layers>
+</layerModel>

@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using EHR.CoreShared;
 using EHRIntegracao.Domain.Repository;
-
-using EHRIntegracao.Domain.Services.Integration;
 using EHRLucene.Domain;
 
 namespace EHRIntegracao.Domain.Services.InitialCharge

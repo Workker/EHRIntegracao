@@ -12,7 +12,7 @@ using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 
 
-namespace EHRIntegracao.Domain.Services
+namespace EHRIntegracao.Domain.Services.GetEntities
 {
     public class GetPatientsService
     {

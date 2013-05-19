@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EHR.CoreShared;
 using EHRCache.Service;
 using EHRIntegracao.Domain.Factorys;
+using EHRIntegracao.Domain.Services.GetEntities;
 
 
 namespace EHRIntegracao.Domain.Services
