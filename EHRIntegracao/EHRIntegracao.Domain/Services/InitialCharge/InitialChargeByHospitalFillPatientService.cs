@@ -14,7 +14,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 {
     public class InitialChargeByHospitalFillPatientService
     {
-       
+
 
         private GetPatientsService getPatientsService;
         public GetPatientsService GetPatientsService
@@ -41,17 +41,24 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             Patients = GetPatientsService.GetPatients(db, patientDTO);
             ValidateCPFPatient();
             ValidadeBirthday();
+
         }
 
         private void ValidadeBirthday()
         {
             Patients = Patients.Where(p => p.DateBirthday != null).ToList();
+            Patients = Patients.Where(p => IsGreater(p.DateBirthday.Value)).ToList();
         }
 
         private void ValidateCPFPatient()
         {
             var validate = new ValidateCPF();
             Patients = Patients.Where(p => validate.isCPF(p.CPF)).ToList();
+        }
+
+        private bool IsGreater(DateTime birthday)
+        {
+            return (DateTime.Today.Year - birthday.Year) >= 18;
         }
     }
 }
