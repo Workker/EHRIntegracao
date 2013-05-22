@@ -29,7 +29,7 @@ namespace EHRIntegracao.Domain.Factorys
                 .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
                 );
                 default:
-                    return MsSqlConfiguration.MsSql2008.ShowSql().ConnectionString(c => c
+                    return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
              .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
              );
 

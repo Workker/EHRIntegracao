@@ -14,7 +14,7 @@ using System.Configuration;
 
 namespace EHRIntegracao.Domain.Repository
 {
-    public abstract class BaseRepository
+    public abstract class BaseRepository : IDisposable
     {
         public const string NHibernateSessionKey = "nhibernate.session.key";
         public static ISessionFactory Factory = CreateSessionFactory();

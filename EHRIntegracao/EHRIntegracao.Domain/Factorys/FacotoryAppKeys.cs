@@ -13,7 +13,6 @@ namespace EHRIntegracao.Domain.Factorys
     {
         public static string GetValue(DbEnum key)
         {
-
             switch (key)
             {
                 case DbEnum.BarraDor:
@@ -22,6 +21,20 @@ namespace EHRIntegracao.Domain.Factorys
                     return "Sumario";
                 case DbEnum.QuintaDor:
                     return "QuintaDor";
+                case DbEnum.Bangu:
+                    return "Bangu";
+                case DbEnum.Copa:
+                    return "Copa";
+                case DbEnum.Esperanca:
+                    return "Esperanca";
+                case DbEnum.Norte:
+                    return "Norte";
+                case DbEnum.Pronto:
+                    return "Pronto";
+                case DbEnum.Rios:
+                    return "Rios";
+                case DbEnum.SM:
+                    return "SM";
                 default:
                     throw new Exception("Nenhuma chave corresponde ao valor informado");
             }

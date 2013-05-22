@@ -17,9 +17,26 @@ namespace EHRIntegracao.Domain.Repository
     {
         public virtual void inserirPacientes(IList<IPatientDTO> patients)
         {
+            IList<IPatientDTO> patientsLote1 = new List<IPatientDTO>();
+            IList<IPatientDTO> patientsLote2 = new List<IPatientDTO>();
+
+            for (int i = 0; i < patients.Count / 2; i++)
+            {
+                patientsLote1.Add(patients[i]);
+            }
+            for (int i = (patients.Count / 2); i < (patients.Count); i++)
+            {
+                patientsLote2.Add(patients[i]);
+            }
+
             using (IObjectContainer db = Db4oEmbedded.OpenFile("PatientsHospital"))
             {
-                db.Store(patients);
+                db.Store(patientsLote1);
+            }
+
+            using (IObjectContainer db = Db4oEmbedded.OpenFile("PatientsHospital"))
+            {
+                db.Store(patientsLote2);
             }
         }
 
@@ -30,7 +47,7 @@ namespace EHRIntegracao.Domain.Repository
             {
                 using (IObjectContainer db = server.OpenClient())
                 {
-                    var iobject = db.Query<IPatientDTO>(p =>  p.Name.Contains(patient.Name) && p.Hospital == dbEnum);
+                    var iobject = db.Query<IPatientDTO>(p => p.Name.Contains(patient.Name) && p.Hospital == dbEnum);
                     patients = iobject.Cast<IPatientDTO>().ToList();
                 }
             }

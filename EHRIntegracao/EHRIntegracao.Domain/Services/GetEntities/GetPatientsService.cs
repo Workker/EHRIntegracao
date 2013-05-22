@@ -27,7 +27,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         }
 
         private PatientRepository patientRepository;
-        public PatientRepository PatientRepository
+        public PatientRepository PatientRepositoryObj
         {
             get { return patientRepository ?? (patientRepository = new PatientRepository()); }
             set
@@ -51,12 +51,20 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         {
             ClearPatient();
 
-            PatientRepository = new PatientRepository(FactorryNhibernate.GetSession(db));
-
-            var patients = PatientRepository.GetPatientsBy(patient);
-            PatientConverter(patients, db);
+            using (var repository = new PatientRepository(FactorryNhibernate.GetSession(db)))
+            {
+                var patients = repository.GetPatientsBy(patient);
+                PatientConverter(patients, db);
+            }
 
             return PatientsDTO;
+        }
+
+        private void ClearRepository()
+        {
+            if (PatientRepository.Session != null)
+                PatientRepositoryObj.Dispose();
+
         }
 
         public IList<IPatientDTO> GetPatientsDbFor(DbEnum db, IPatientDTO patient)

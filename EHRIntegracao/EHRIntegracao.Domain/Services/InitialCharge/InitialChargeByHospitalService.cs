@@ -7,13 +7,16 @@ using EHR.CoreShared;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
+using EHRIntegracao.Domain.Services.Domain;
 using EHRIntegracao.Domain.Services.GetEntities;
 using EHRIntegracao.Domain.Services.InitialCharge;
+using Workker.Framework.Domain;
 
 namespace EHRIntegracao.Domain.Services.InitialCharge
 {
     public class InitialChargeByHospitalService
     {
+        #region Property
         private GetTreatmentService getTreatmentService { get; set; }
         public GetTreatmentService GetTreatmentService
         {
@@ -23,7 +26,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 getTreatmentService = value;
             }
         }
-
 
         private PatientsDbFor patientRepositoryDbFor;
         public PatientsDbFor PatientRepositoryDbFor
@@ -112,20 +114,37 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
+        private RemoveDuplicatePatientService removeDuplicatePatientService;
+        public RemoveDuplicatePatientService RemoveDuplicatePatientService
+        {
+            get { return removeDuplicatePatientService ?? (removeDuplicatePatientService = new RemoveDuplicatePatientService()); }
+            set
+            {
+                removeDuplicatePatientService = value;
+            }
+        }
+
+        #endregion
+
         public virtual void DoSearch(IPatientDTO patientDTO)
         {
-            //TODO: Criar essa Chamada Assincrona com TASK
-            //TODO: chamar coleção de hospitais
-            for (int i = 0; i < 1; i++)
+            Assertion.NotNull(patientDTO, "Paciente não informado.").Validate();
+
+            var dbs = Enum.GetValues(typeof(DbEnum));
+            foreach (var db in dbs)
             {
-                DoSearchPatients(patientDTO, DbEnum.QuintaDor);
-                DoSearchTreatments(DbEnum.QuintaDor);
+                DbEnum banco = (DbEnum)db;
+
+                if (banco == DbEnum.sumario)
+                    continue;
+                DoSearchPatients(patientDTO, banco);
+            //    DoSearchTreatments(banco);
             }
 
             RemoveExistingPatients();
-            SaveTreatments();
+          //  SaveTreatments();
             //AssociatePatientsToTreatmentsService.Associate(Patients);
-            GroupTreatment();
+        //    GroupTreatment();
             SavePatients();
         }
 
@@ -141,7 +160,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             SavePatientsLuceneService.SavePatientsLucene(PatientsDb.ToList());
         }
 
-
         private void DoSearchTreatments(DbEnum db)
         {
             var treatment = GetTreatmentService.GetTreatments(DbEnum.QuintaDor);
@@ -150,34 +168,13 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         private void DoSearchPatients(IPatientDTO patientDTO, DbEnum db)
         {
-            InitialChargeByHospitalFillPatientService = new InitialChargeByHospitalFillPatientService();
             InitialChargeByHospitalFillPatientService.DoSearch(db, patientDTO);
             Patients.AddRange(initialChargeByHospitalFillPatientService.Patients);
         }
 
         private void RemoveExistingPatients()
         {
-            foreach (var patientGroup in Patients.GroupBy(p => p.GetCPF()).GroupBy(e => e.Key))
-            {
-                foreach (var patientValue in patientGroup)
-                {
-                    IPatientDTO patientUnique = new PatientDTO();
-
-                    foreach (var patient in patientValue)
-                    {
-                        if (string.IsNullOrEmpty(patientUnique.Id))
-                        {
-                            patientUnique = patient;
-                            patient.AddRecord(new RecordDTO() { Code = patient.Id, Hospital = patient.Hospital });
-                            PatientsDb.Add(patient);
-                        }
-                        else
-                        {
-                            patientUnique.AddRecord(new RecordDTO() { Code = patient.Id, Hospital = patient.Hospital });
-                        }
-                    }
-                }
-            }
+            PatientsDb = RemoveDuplicatePatientService.RemoveExistingPatients(Patients);
         }
 
         private void GroupTreatment()
@@ -185,7 +182,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             int i = 0;
             foreach (var patient in PatientsDb)
             {
-                
+
                 foreach (var recordsBysHospital in patient.Records.GroupBy(r => r.Hospital).GroupBy(b => b.Key))
                 {
                     foreach (var records in recordsBysHospital.ToList())
@@ -197,19 +194,19 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                                                where t.Hospital == record.Hospital
                                                && t.Id == record.Code
                                                select t).ToList();
-                                
-                                //Treatments.Where(t => t.Hospital == record.Hospital && t.Id == record.Code).ToList();
+
+                            //Treatments.Where(t => t.Hospital == record.Hospital && t.Id == record.Code).ToList();
 
                         }
 
                         patient.AddTreatments(treatmentsCheck);
-                       
+
                         //treatments = (from t in Treatments
                         //              where t.Hospital == item.FirstOrDefault().Hospital
                         //              && item.Any(i => i.Code == t.Id)
                         //              select t).ToList();
                     }
-                   
+
                 }
                 i++;
                 Console.WriteLine(i.ToString());

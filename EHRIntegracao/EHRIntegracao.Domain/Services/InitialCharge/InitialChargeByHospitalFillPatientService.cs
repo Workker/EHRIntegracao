@@ -38,10 +38,16 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         public virtual void DoSearch(DbEnum db, IPatientDTO patientDTO)
         {
+            ClearPatient();
             Patients = GetPatientsService.GetPatients(db, patientDTO);
             ValidateCPFPatient();
             ValidadeBirthday();
 
+        }
+
+        private void ClearPatient()
+        {
+            Patients = null;
         }
 
         private void ValidadeBirthday()
