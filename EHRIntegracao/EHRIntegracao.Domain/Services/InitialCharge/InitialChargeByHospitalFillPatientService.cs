@@ -14,10 +14,8 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 {
     public class InitialChargeByHospitalFillPatientService
     {
-
-
         private GetPatientsService getPatientsService;
-        public GetPatientsService GetPatientsService
+        public virtual GetPatientsService GetPatientsService
         {
             get { return getPatientsService ?? (getPatientsService = new GetPatientsService()); }
             set
@@ -27,7 +25,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private IList<IPatientDTO> patients;
-        public IList<IPatientDTO> Patients
+        public virtual IList<IPatientDTO> Patients
         {
             get { return patients ?? (patients = new List<IPatientDTO>()); }
             set
@@ -42,7 +40,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             Patients = GetPatientsService.GetPatients(db, patientDTO);
             ValidateCPFPatient();
             ValidadeBirthday();
-
         }
 
         private void ClearPatient()

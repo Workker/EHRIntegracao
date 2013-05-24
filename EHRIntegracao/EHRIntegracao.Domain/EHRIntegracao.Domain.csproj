@@ -127,6 +127,7 @@
     <Compile Include="Services\GetEntities\GetCidFromLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetDefFromLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetTusFromLuceneService.cs" />
+    <Compile Include="Services\GetEntities\GetValuesDbEnumService.cs" />
     <Compile Include="Services\InitialCharge\AssociatePatientsToTreatmentsService.cs" />
     <Compile Include="Services\GetEntities\GetPatientsLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetPatientsService.cs" />

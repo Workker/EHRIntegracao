@@ -18,7 +18,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
     {
         #region Property
         private GetTreatmentService getTreatmentService { get; set; }
-        public GetTreatmentService GetTreatmentService
+        public virtual GetTreatmentService GetTreatmentService
         {
             get { return getTreatmentService ?? (getTreatmentService = new GetTreatmentService()); }
             set
@@ -28,7 +28,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private PatientsDbFor patientRepositoryDbFor;
-        public PatientsDbFor PatientRepositoryDbFor
+        public virtual PatientsDbFor PatientRepositoryDbFor
         {
             get { return patientRepositoryDbFor ?? (patientRepositoryDbFor = new PatientsDbFor()); }
             set
@@ -38,7 +38,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private TreatmensDbFor treatmensDbFor;
-        public TreatmensDbFor TreatmensDbFor
+        public virtual TreatmensDbFor TreatmensDbFor
         {
             get { return treatmensDbFor ?? (treatmensDbFor = new TreatmensDbFor()); }
             set
@@ -55,7 +55,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private InitialChargeByHospitalFillPatientService initialChargeByHospitalFillPatientService;
-        public InitialChargeByHospitalFillPatientService InitialChargeByHospitalFillPatientService
+        public virtual InitialChargeByHospitalFillPatientService InitialChargeByHospitalFillPatientService
         {
             get { return initialChargeByHospitalFillPatientService ?? (initialChargeByHospitalFillPatientService = new InitialChargeByHospitalFillPatientService()); }
             set
@@ -65,7 +65,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private List<IPatientDTO> patients;
-        public List<IPatientDTO> Patients
+        public virtual List<IPatientDTO> Patients
         {
             get { return patients ?? (patients = new List<IPatientDTO>()); }
             set
@@ -75,7 +75,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private List<ITreatmentDTO> treatments;
-        public List<ITreatmentDTO> Treatments
+        public virtual List<ITreatmentDTO> Treatments
         {
             get { return treatments ?? (treatments = new List<ITreatmentDTO>()); }
             set
@@ -85,7 +85,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private List<IPatientDTO> patientsDb;
-        public List<IPatientDTO> PatientsDb
+        public virtual List<IPatientDTO> PatientsDb
         {
             get { return patientsDb ?? (patientsDb = new List<IPatientDTO>()); }
             set
@@ -95,7 +95,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private AssociatePatientsToTreatmentsService associatePatientsToTreatmentsService;
-        public AssociatePatientsToTreatmentsService AssociatePatientsToTreatmentsService
+        public virtual AssociatePatientsToTreatmentsService AssociatePatientsToTreatmentsService
         {
             get { return associatePatientsToTreatmentsService ?? (associatePatientsToTreatmentsService = new AssociatePatientsToTreatmentsService()); }
             set
@@ -105,7 +105,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private TreatmentsLuceneService treatmentsLuceneService;
-        public TreatmentsLuceneService TreatmentsLuceneService
+        public virtual TreatmentsLuceneService TreatmentsLuceneService
         {
             get { return treatmentsLuceneService ?? (treatmentsLuceneService = new TreatmentsLuceneService()); }
             set
@@ -115,7 +115,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private RemoveDuplicatePatientService removeDuplicatePatientService;
-        public RemoveDuplicatePatientService RemoveDuplicatePatientService
+        public virtual RemoveDuplicatePatientService RemoveDuplicatePatientService
         {
             get { return removeDuplicatePatientService ?? (removeDuplicatePatientService = new RemoveDuplicatePatientService()); }
             set
@@ -124,28 +124,43 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
+        private GetValuesDbEnumService getValuesDbEnumService;
+        public virtual GetValuesDbEnumService GetValuesDbEnumService
+        {
+            get { return getValuesDbEnumService ?? (getValuesDbEnumService = new GetValuesDbEnumService()); }
+            set
+            {
+                getValuesDbEnumService = value;
+            }
+        }
+
+
         #endregion
 
         public virtual void DoSearch(IPatientDTO patientDTO)
         {
             Assertion.NotNull(patientDTO, "Paciente não informado.").Validate();
 
-            var dbs = Enum.GetValues(typeof(DbEnum));
+            var dbs = GetValues();
             foreach (var db in dbs)
             {
-                DbEnum banco = (DbEnum)db;
-
-                if (banco == DbEnum.sumario)
+                if (db == DbEnum.sumario)
                     continue;
-                DoSearchPatients(patientDTO, banco);
-            //    DoSearchTreatments(banco);
+
+                DoSearchPatients(patientDTO, db);
+                DoSearchTreatments(db);
             }
 
             RemoveExistingPatients();
-          //  SaveTreatments();
+            SaveTreatments();
             //AssociatePatientsToTreatmentsService.Associate(Patients);
-        //    GroupTreatment();
+            GroupTreatment();
             SavePatients();
+        }
+
+        private List<DbEnum> GetValues()
+        {
+            return GetValuesDbEnumService.GetValues();
         }
 
         private void SaveTreatments()
@@ -182,7 +197,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             int i = 0;
             foreach (var patient in PatientsDb)
             {
-
                 foreach (var recordsBysHospital in patient.Records.GroupBy(r => r.Hospital).GroupBy(b => b.Key))
                 {
                     foreach (var records in recordsBysHospital.ToList())
@@ -190,23 +204,13 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                         List<ITreatmentDTO> treatmentsCheck = new List<ITreatmentDTO>();
                         foreach (var record in records.ToList())
                         {
-                            treatmentsCheck = (from t in Treatments
-                                               where t.Hospital == record.Hospital
-                                               && t.Id == record.Code
-                                               select t).ToList();
-
-                            //Treatments.Where(t => t.Hospital == record.Hospital && t.Id == record.Code).ToList();
-
+                            treatmentsCheck.AddRange((from t in Treatments
+                                                      where t.Hospital == record.Hospital
+                                                      && t.Id == record.Code
+                                                      select t).ToList());
                         }
-
                         patient.AddTreatments(treatmentsCheck);
-
-                        //treatments = (from t in Treatments
-                        //              where t.Hospital == item.FirstOrDefault().Hospital
-                        //              && item.Any(i => i.Code == t.Id)
-                        //              select t).ToList();
                     }
-
                 }
                 i++;
                 Console.WriteLine(i.ToString());

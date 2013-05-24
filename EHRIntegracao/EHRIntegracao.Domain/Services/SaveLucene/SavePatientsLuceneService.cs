@@ -11,7 +11,7 @@ namespace EHRIntegracao.Domain.Services
 {
     public class SavePatientsLuceneService
     {
-        public  void SavePatientsLucene(List<IPatientDTO> patients)
+        public virtual void SavePatientsLucene(List<IPatientDTO> patients)
         {
             var lucene = new LuceneClient("");
             lucene.AddUpdateLuceneIndex(patients);

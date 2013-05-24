@@ -14,7 +14,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
     public class GetTreatmentService
     {
         private IList<ITreatmentDTO> treatments;
-        public IList<ITreatmentDTO> Treatments
+        public virtual IList<ITreatmentDTO> Treatments
         {
             get { return treatments ?? (treatments = new List<ITreatmentDTO>()); }
             set
@@ -25,7 +25,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
 
 
         private TreatmentRepository treatmentRepository;
-        public TreatmentRepository TreatmentRepository
+        public virtual TreatmentRepository TreatmentRepository
         {
             get { return treatmentRepository ?? (treatmentRepository = new TreatmentRepository()); }
             set
@@ -34,7 +34,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-        public IList<ITreatmentDTO> GetTreatments(DbEnum db)
+        public virtual IList<ITreatmentDTO> GetTreatments(DbEnum db)
         {
             ClearPatient();
 

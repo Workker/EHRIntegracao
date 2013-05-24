@@ -17,7 +17,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
     public class GetPatientsService
     {
         private IList<IPatientDTO> patientsDTO;
-        public IList<IPatientDTO> PatientsDTO
+        public virtual IList<IPatientDTO> PatientsDTO
         {
             get { return patientsDTO ?? (patientsDTO = new List<IPatientDTO>()); }
             set
@@ -27,7 +27,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         }
 
         private PatientRepository patientRepository;
-        public PatientRepository PatientRepositoryObj
+        public virtual PatientRepository PatientRepositoryObj
         {
             get { return patientRepository ?? (patientRepository = new PatientRepository()); }
             set
@@ -47,7 +47,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         }
 
 
-        public IList<IPatientDTO> GetPatients(DbEnum db, IPatientDTO patient)
+        public virtual IList<IPatientDTO> GetPatients(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();
 
@@ -67,7 +67,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
 
         }
 
-        public IList<IPatientDTO> GetPatientsDbFor(DbEnum db, IPatientDTO patient)
+        public virtual IList<IPatientDTO> GetPatientsDbFor(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();
 
@@ -76,7 +76,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             return PatientsDTO;
         }
 
-        public IList<IPatientDTO> GetPatientsDbFor()
+        public virtual IList<IPatientDTO> GetPatientsDbFor()
         {
             ClearPatient();
 
@@ -85,7 +85,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             return PatientsDTO;
         }
 
-        public IList<PatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)
+        public virtual IList<PatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();
 
@@ -96,7 +96,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             return patients;
         }
 
-        public IList<PatientDTO> GetPatientsRedis(DbEnum db, IPatientDTO patient)
+        public virtual IList<PatientDTO> GetPatientsRedis(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();
 
