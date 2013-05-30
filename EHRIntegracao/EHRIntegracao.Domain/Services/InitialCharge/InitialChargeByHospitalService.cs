@@ -197,7 +197,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             int i = 0;
             foreach (var patient in PatientsDb)
             {
-                foreach (var recordsBysHospital in patient.Records.GroupBy(r => r.Hospital).GroupBy(b => b.Key))
+                foreach (var recordsBysHospital in patient.Records.Distinct().GroupBy(r => r.Hospital).GroupBy(b => b.Key))
                 {
                     foreach (var records in recordsBysHospital.ToList())
                     {

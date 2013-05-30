@@ -21,7 +21,7 @@ namespace EHRIntegracao.Test.Performace
         [Test]
         public void get_patient_by_criteria()
         {
-            var pacientes = Builder<Paciente>.CreateListOfSize(10000000)
+            var pacientes = Builder<Paciente>.CreateListOfSize(10)
                                    .TheFirst(2)
                                    .With(x => x.Nome = "temboel")
                                    .TheNext(4)

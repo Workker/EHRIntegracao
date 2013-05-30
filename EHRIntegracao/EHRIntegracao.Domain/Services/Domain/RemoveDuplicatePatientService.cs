@@ -37,6 +37,16 @@ namespace EHRIntegracao.Domain.Services.Domain
                         }
                         else
                         {
+                            if (patientUnique.Records != null)
+                            {
+                                var record = patientUnique.Records.Find(r => r.Code == patient.Id);
+
+                                if (record != null)
+                                    continue;
+                            }
+
+
+
                             patientUnique.AddRecord(new RecordDTO() { Code = patient.Id, Hospital = patient.Hospital.Value });
                         }
                     }
