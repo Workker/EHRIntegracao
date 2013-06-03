@@ -14,10 +14,10 @@ namespace EHRIntegracao.Domain.Factorys
         {
             switch (conexaoEnum)
             {
-                case DbEnum.BarraDor:
-                    return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
-                  .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
-                  );
+                //case DbEnum.BarraDor:
+                //    return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
+                //  .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
+                //  );
 
                 case DbEnum.QuintaDor:
                     return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c

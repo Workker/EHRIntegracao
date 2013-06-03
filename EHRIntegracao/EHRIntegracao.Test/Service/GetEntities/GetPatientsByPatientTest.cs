@@ -21,7 +21,7 @@ namespace EHRIntegracao.Test.Service
             GetPatientsByPatient service = new GetPatientsByPatient();
             service.GetPatientsService = MockRepository.GenerateMock<GetPatientsService>();
             service.GetPatientsService.Expect(s => s.GetPatients(DbEnum.Bangu, new PatientDTO())).IgnoreArguments().Return(new List<IPatientDTO>());
-            var patients = service.GetAll(new PatientDTO() { Name = "Marcelo",Hospital = DbEnum.BarraDor});
+            var patients = service.GetAll(new PatientDTO() { Name = "Marcelo",Hospital = DbEnum.Bangu});
 
             Assert.NotNull(patients);
         }

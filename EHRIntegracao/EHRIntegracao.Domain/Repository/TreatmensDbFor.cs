@@ -13,9 +13,26 @@ namespace EHRIntegracao.Domain.Repository
     {
        public virtual void inserir(IList<ITreatmentDTO> treatments)
        {
+           IList<ITreatmentDTO> treatmentsLote1 = new List<ITreatmentDTO>();
+           IList<ITreatmentDTO> treatmentsLote2 = new List<ITreatmentDTO>();
+
+           for (int i = 0; i < treatments.Count / 2; i++)
+           {
+               treatmentsLote1.Add(treatments[i]);
+           }
+           for (int i = (treatments.Count / 2); i < (treatments.Count); i++)
+           {
+               treatmentsLote2.Add(treatments[i]);
+           }
+
            using (IObjectContainer db = Db4oEmbedded.OpenFile("TreatmentsHospital"))
            {
-               db.Store(treatments);
+               db.Store(treatmentsLote1);
+           }
+
+           using (IObjectContainer db = Db4oEmbedded.OpenFile("TreatmentsHospital"))
+           {
+               db.Store(treatmentsLote2);
            }
        }
 

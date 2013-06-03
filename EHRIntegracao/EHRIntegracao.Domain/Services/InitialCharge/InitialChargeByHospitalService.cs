@@ -152,9 +152,8 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
 
             RemoveExistingPatients();
-            SaveTreatments();
-            //AssociatePatientsToTreatmentsService.Associate(Patients);
             GroupTreatment();
+            SaveTreatments();
             SavePatients();
         }
 
@@ -177,7 +176,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         private void DoSearchTreatments(DbEnum db)
         {
-            var treatment = GetTreatmentService.GetTreatments(DbEnum.QuintaDor);
+            var treatment = GetTreatmentService.GetTreatments(db);
             Treatments.AddRange(treatment);
         }
 
@@ -214,6 +213,8 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 }
                 i++;
                 Console.WriteLine(i.ToString());
+
+                patient.SetLastTreatment();
             }
         }
     }

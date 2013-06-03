@@ -30,50 +30,6 @@ namespace EHRIntegracao.Test.Repository
 
             Assert.NotNull(patients);
         }
-        [Test]
-        [Ignore]
-        public void inserir_patients_mockados()
-        {
-            var a = DbEnum.BarraDor.ToString();
-            IList<IPatientDTO> patients = new List<IPatientDTO>();
-            patients.Add(new PatientDTO() { Name = "temboel" });
-            PatientsDbFor repository = new PatientsDbFor();
-
-            repository.inserirPacientes(patients);
-
-            Assert.NotNull(patients);
-        }
-        [Test]
-        [Ignore]
-        public void inserir_patients()
-        {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
-
-
-            var resultados = pacientes.All<Patient>();
-
-
-
-            IList<IPatientDTO> patients = new List<IPatientDTO>();
-            foreach (var paciente in resultados)
-            {
-                patients.Add(new PatientDTO()
-                {
-                    CPF = paciente.Cpf,
-                    DateBirthday = paciente.DateBirthday,
-                    Identity = paciente.Identity,
-                    Id = DbEnum.BarraDor.ToString() + paciente.Id,
-                    Name = paciente.Name,
-                    Hospital = DbEnum.QuintaDor
-                });
-            }
-            pacientes.Dispose();
-            resultados = null;
-
-            PatientsDbFor repository = new PatientsDbFor();
-
-            repository.inserirPacientes(patients);
-
-        }
+      
     }
 }

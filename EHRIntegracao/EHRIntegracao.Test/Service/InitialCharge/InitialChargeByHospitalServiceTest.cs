@@ -30,8 +30,8 @@ namespace EHRIntegracao.Test.Service.InitialCharge
                 .Return(
                     new List<IPatientDTO>()
                         {
-                            new PatientDTO() {Hospital = DbEnum.BarraDor, Id = "123", CPF = "14041907756",DateBirthday = new DateTime(1989,06,27)},
-                            new PatientDTO() {Hospital = DbEnum.BarraDor, Id = "124", CPF = "14041907756",DateBirthday = new DateTime(1989,06,27)}
+                            new PatientDTO() {Hospital = DbEnum.Bangu, Id = "123", CPF = "14041907756",DateBirthday = new DateTime(1989,06,27)},
+                            new PatientDTO() {Hospital = DbEnum.Bangu, Id = "124", CPF = "14041907756",DateBirthday = new DateTime(1989,06,27)}
                         });
 
             initialCharge.GetTreatmentService = MockRepository.GenerateMock<GetTreatmentService>();
@@ -40,10 +40,10 @@ namespace EHRIntegracao.Test.Service.InitialCharge
                 .Return(
                     new List<ITreatmentDTO>()
                         {
-                            new TreatmentDTO(){Hospital = DbEnum.BarraDor,EntryDate =new DateTime(2012,06,27),CheckOutDate =new DateTime(2012,06,30),Id = "123"},
-                            new TreatmentDTO(){Hospital = DbEnum.BarraDor,EntryDate =new DateTime(2011,06,27),CheckOutDate =new DateTime(2011,06,30),Id  = "123"},
-                            new TreatmentDTO(){Hospital = DbEnum.BarraDor,EntryDate =new DateTime(2012,06,27),CheckOutDate =new DateTime(2010,06,30),Id  = "124"},
-                            new TreatmentDTO(){Hospital = DbEnum.BarraDor,EntryDate =new DateTime(2011,06,27),CheckOutDate =new DateTime(2009,06,30),Id  = "124"}
+                            new TreatmentDTO(){Hospital = DbEnum.Bangu,EntryDate =new DateTime(2012,06,27),CheckOutDate =new DateTime(2012,06,30),Id = "123"},
+                            new TreatmentDTO(){Hospital = DbEnum.Bangu,EntryDate =new DateTime(2011,06,27),CheckOutDate =new DateTime(2011,06,30),Id  = "123"},
+                            new TreatmentDTO(){Hospital = DbEnum.Bangu,EntryDate =new DateTime(2012,06,27),CheckOutDate =new DateTime(2010,06,30),Id  = "124"},
+                            new TreatmentDTO(){Hospital = DbEnum.Bangu,EntryDate =new DateTime(2011,06,27),CheckOutDate =new DateTime(2009,06,30),Id  = "124"}
                         }
                     );
 
@@ -64,7 +64,7 @@ namespace EHRIntegracao.Test.Service.InitialCharge
 
             initialCharge.GetValuesDbEnumService = MockRepository.GenerateMock<GetValuesDbEnumService>();
             initialCharge.GetValuesDbEnumService.Expect(g => g.GetValues()).IgnoreArguments().Return(
-                new List<DbEnum>() { DbEnum.BarraDor });
+                new List<DbEnum>() { DbEnum.Bangu });
 
             initialCharge.DoSearch(new PatientDTO());
 
@@ -84,7 +84,7 @@ namespace EHRIntegracao.Test.Service.InitialCharge
                                    .With(x => x.CPF = "14041907756")
                                    .With(x => x.Id = "123")
                                    .And(x => x.DateBirthday = new DateTime(1989, 06, 27))
-                                   .And(x => x.Hospital = DbEnum.BarraDor)
+                                   .And(x => x.Hospital = DbEnum.Bangu)
                                    .TheNext(89993)
                                    .With(x => x.CPF = "41123764808")
                                    .And(x => x.DateBirthday = new DateTime(1990, 06, 27))
@@ -94,12 +94,12 @@ namespace EHRIntegracao.Test.Service.InitialCharge
             var treatments = Builder<TreatmentDTO>.CreateListOfSize(90000)
                 .TheFirst(1)
                 .And(x => x.Id = "123")
-                .And(x => x.Hospital = DbEnum.BarraDor)
+                .And(x => x.Hospital = DbEnum.Bangu)
                 .And(x => x.CheckOutDate = new DateTime(2012, 06, 30))
                 .And(x => x.EntryDate = new DateTime(2012, 06, 27))
                 .TheNext(1)
                 .And(x => x.Id = "123")
-                .And(x => x.Hospital = DbEnum.BarraDor)
+                .And(x => x.Hospital = DbEnum.Bangu)
                 .And(x => x.CheckOutDate = new DateTime(2012, 05, 05))
                 .And(x => x.EntryDate = new DateTime(2012, 05, 01))
                 .TheNext(89998)
@@ -137,7 +137,7 @@ namespace EHRIntegracao.Test.Service.InitialCharge
 
             initialCharge.GetValuesDbEnumService = MockRepository.GenerateMock<GetValuesDbEnumService>();
             initialCharge.GetValuesDbEnumService.Expect(g => g.GetValues()).IgnoreArguments().Return(
-                new List<DbEnum>() { DbEnum.BarraDor });
+                new List<DbEnum>() { DbEnum.Bangu });
 
             initialCharge.DoSearch(new PatientDTO());
 

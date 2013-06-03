@@ -15,8 +15,8 @@ namespace EHRIntegracao.Domain.Factorys
         {
             switch (key)
             {
-                case DbEnum.BarraDor:
-                    return "BarraDor";
+                //case DbEnum.BarraDor:
+                //    return "BarraDor";
                 case DbEnum.sumario:
                     return "Sumario";
                 case DbEnum.QuintaDor:
