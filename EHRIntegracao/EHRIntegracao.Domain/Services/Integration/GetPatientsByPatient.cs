@@ -49,6 +49,7 @@ namespace EHRIntegracao.Domain.Services.Integration
                 if (banco == DbEnum.sumario)
                     continue;
 
+                //TODO Acessar query com filtro de 6 dias de Range.
                 var patients = GetPatientsService.GetPatients(banco, patient);
 
                 if (patients != null)

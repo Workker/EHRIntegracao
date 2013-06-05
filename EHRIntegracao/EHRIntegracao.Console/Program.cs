@@ -18,7 +18,16 @@ namespace EHRIntegracao.Console
        //     //
        //     TreatmentsLuceneService service = new TreatmentsLuceneService();
        //     var tretments = service.GetTreatments(new PatientDTO() { Id = "000001707" });
+            //InitialChargeTreatmentByHospitalService service = new InitialChargeTreatmentByHospitalService();
+            //service.DoSearch();
+
             InitialChargeByHospitalService service = new InitialChargeByHospitalService();
+
+            //service.Patients = new List<IPatientDTO>();
+            //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa ,Records = new List<RecordDTO>(){new RecordDTO(){Hospital = DbEnum.Copa,Code ="123"}}});
+            //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa, Records = new List<RecordDTO>() { new RecordDTO() { Hospital = DbEnum.Copa, Code = "124" } } });
+            //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa, Records = new List<RecordDTO>() { new RecordDTO() { Hospital = DbEnum.Copa, Code = "125" } } });
+
             service.DoSearch(new PatientDTO());
 
            // FillPatientsDbForService service = new FillPatientsDbForService();

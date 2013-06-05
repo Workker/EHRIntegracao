@@ -21,16 +21,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
-        private List<ITreatmentDTO> treatments;
-        public List<ITreatmentDTO> Treatments
-        {
-            get { return treatments ?? (treatments = new List<ITreatmentDTO>()); }
-            set
-            {
-                treatments = value;
-            }
-        }
-
         private TreatmensDbFor treatmensDbFor;
         public TreatmensDbFor TreatmensDbFor
         {
@@ -43,18 +33,33 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         public void Associate(List<IPatientDTO> patients)
         {
-            foreach (var patient in patients)
+            try
             {
-                foreach (var recordsBysHospital in patient.Records.GroupBy(r=> r.Hospital).GroupBy(b=> b.Key))
+                foreach (var patient in patients)
                 {
-                    foreach (var item in recordsBysHospital.ToList())
-                    {
-                        Treatments.AddRange(GetTreatmentsLuceneService.GetTreatments(item.ToList()));
-                    }
-                }
+                    var treatments = new List<ITreatmentDTO>();
 
-                patient.AddTreatments(Treatments.ToList());
+                    foreach (var recordsBysHospital in patient.Records.GroupBy(r => r.Hospital).GroupBy(b => b.Key))
+                    {
+                        var treatmentsCheck = new List<ITreatmentDTO>();
+
+                        foreach (var record in recordsBysHospital.ToList())
+                        {
+                            treatments.AddRange(GetTreatmentsLuceneService.GetTreatments(record.ToList()));
+                        }
+
+                        patient.AddTreatments(treatments.ToList());
+                    }
+
+                    patient.SetLastTreatment();
+                }
+                Console.WriteLine("Lote");
             }
+            catch (Exception ex)
+            {
+                    
+                throw ex;
+            }     
         }
     }
 

@@ -21,9 +21,17 @@ namespace EHRIntegracao.Domain.Services
         }
         public virtual IList<ITreatmentDTO> GetTreatments(List<RecordDTO> records)
         {
-            return LuceneClientTreatment.AdvancedSearch(records).ToList();
+            try
+            {
+                return LuceneClientTreatment.AdvancedSearch(records).ToList();
+            }
+            catch (Exception ex)
+            {
+                    
+                throw ex;
+            }
+           
         }
-
         public virtual void SaveTreatment (List<ITreatmentDTO> treatments)
         {
             LuceneClientTreatment.AddUpdateLuceneIndex(treatments);

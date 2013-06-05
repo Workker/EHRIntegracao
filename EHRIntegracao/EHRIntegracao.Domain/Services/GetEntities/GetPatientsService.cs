@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using EHR.CoreShared;
 using EHRCache;
 using EHRIntegracao.Domain.Domain;
-using EHRIntegracao.Domain.Domain.PatientSpecificationQuery;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 
@@ -62,7 +61,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
 
         private void ClearRepository()
         {
-            if (PatientRepository.Session != null)
+            if (BaseRepository.Session != null)
                 PatientRepositoryObj.Dispose();
 
         }
@@ -83,28 +82,6 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             PatientsDTO = PatientRepositoryDbFor.Todos();
 
             return PatientsDTO;
-        }
-
-        public virtual IList<PatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)
-        {
-            ClearPatient();
-
-            var service = new EHRCache.Service.GetPatientService();
-            var factory = new FactoryPatientSpecificationQuery();
-            var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDor));
-
-            return patients;
-        }
-
-        public virtual IList<PatientDTO> GetPatientsRedis(DbEnum db, IPatientDTO patient)
-        {
-            ClearPatient();
-
-            var service = new EHRCache.Service.GetPatientRedisService();
-            var factory = new FactoryPatientSpecificationQuery();
-            var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDor));
-
-            return patients.Take(30).ToList();
         }
 
         private void ClearPatient()
@@ -131,3 +108,26 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         }
     }
 }
+
+
+//public virtual IList<PatientDTO> GetPatientsMemCache(DbEnum db, IPatientDTO patient)
+//      {
+//          ClearPatient();
+
+//          var service = new EHRCache.Service.GetPatientService();
+//          var factory = new FactoryPatientSpecificationQuery();
+//          var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDor));
+
+//          return patients;
+//      }
+
+//      public virtual IList<PatientDTO> GetPatientsRedis(DbEnum db, IPatientDTO patient)
+//      {
+//          ClearPatient();
+
+//          var service = new EHRCache.Service.GetPatientRedisService();
+//          var factory = new FactoryPatientSpecificationQuery();
+//          var patients = factory.GetPatientsByQuery(patient, service.GetPatientByKey(DbEnum.QuintaDor));
+
+//          return patients.Take(30).ToList();
+//      }

@@ -23,7 +23,6 @@ namespace EHRIntegracao.Domain.Services
             var patients = service.GetPatientsDbFor();
 
             serviceLucene.SavePatientsLucene(patients.ToList());
-
         }
     }
 }

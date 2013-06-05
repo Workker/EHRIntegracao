@@ -107,6 +107,7 @@
     <Compile Include="Repository\PatientsDBForTest.cs" />
     <Compile Include="Repository\PatientsTest.cs" />
     <Compile Include="Service\GetEntities\GetPatientsByPatientTest.cs" />
+    <Compile Include="Service\InitialCharge\InitialChargeByHospitalFillPatientServiceTest.cs" />
     <Compile Include="Service\InitialCharge\InitialChargeByHospitalServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>

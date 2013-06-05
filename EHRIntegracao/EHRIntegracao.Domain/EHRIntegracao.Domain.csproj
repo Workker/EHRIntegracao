@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -108,7 +109,10 @@
     <Compile Include="Domain\PatientSpecificationCriteria\AndPatientSpecification.cs" />
     <Compile Include="Domain\PatientSpecificationCriteria\IPatientSpecification.cs" />
     <Compile Include="Domain\PatientSpecificationCriteria\PatientSpecification.cs" />
-    <Compile Include="Domain\PatientSpecificationQuery\FactoryPatientSpecificationQuery.cs" />
+    <Compile Include="Domain\PatientSpecificationIntegration\AndPatientSpecification.cs" />
+    <Compile Include="Domain\PatientSpecificationIntegration\IPatientSpecificationIntegration.cs" />
+    <Compile Include="Domain\PatientSpecificationIntegration\PatientSpecificationIntegration.cs" />
+    <Compile Include="Domain\PatientSpecificationIntegration\PatientSpecificationIsGreater.cs" />
     <Compile Include="Domain\Treatment.cs" />
     <Compile Include="Domain\ValidadorCPF.cs" />
     <Compile Include="Factorys\FacotoryAppKeys.cs" />
@@ -128,13 +132,16 @@
     <Compile Include="Services\GetEntities\GetDefFromLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetTusFromLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetValuesDbEnumService.cs" />
-    <Compile Include="Services\InitialCharge\AssociatePatientsToTreatmentsService.cs" />
     <Compile Include="Services\GetEntities\GetPatientsLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetPatientsService.cs" />
+    <Compile Include="Services\InitialCharge\AssociatePatientsAsyncService.cs" />
+    <Compile Include="Services\InitialCharge\AssociatePatientsToTreatmentsService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Services\InitialCharge\InitialChargeByHospitalFillPatientService.cs" />
     <Compile Include="Services\InitialCharge\InitialChargeByHospitalService.cs" />
     <Compile Include="Services\GetEntities\GetTreatmentService.cs" />
-    <Compile Include="Services\GetEntities\PatientIntegrationService.cs" />
+    <Compile Include="Services\InitialCharge\InitialChargeTreatmentByHospitalService.cs" />
     <Compile Include="Services\Integration\GetPatientsByPatient.cs" />
     <Compile Include="Services\SaveLucene\SaveCidInLuceneService.cs" />
     <Compile Include="Services\SaveLucene\SaveDefInLuceneService.cs" />
@@ -155,6 +162,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="..\packages\PostSharp.3.0.27\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.3.0.27\tools\PostSharp.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

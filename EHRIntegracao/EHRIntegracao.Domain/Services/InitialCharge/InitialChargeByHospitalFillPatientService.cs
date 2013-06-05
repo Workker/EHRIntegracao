@@ -5,9 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using EHR.CoreShared;
 using EHRIntegracao.Domain.Domain;
+using EHRIntegracao.Domain.Domain.PatientSpecificationIntegration;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.GetEntities;
+using Workker.Framework.Domain;
 
 
 namespace EHRIntegracao.Domain.Services.InitialCharge
@@ -36,6 +38,9 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         public virtual void DoSearch(DbEnum db, IPatientDTO patientDTO)
         {
+            Assertion.NotNull(db, "Banco não informado.").Validate();
+            Assertion.NotNull(patientDTO, "Paciente não informado.").Validate();
+
             ClearPatient();
             Patients = GetPatientsService.GetPatients(db, patientDTO);
             ValidateCPFPatient();
@@ -45,12 +50,13 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         private void ClearPatient()
         {
             Patients = null;
+
+            Assertion.Equals(Patients.Count(), 0, "Lista de pacientes não foi zerada").Validate();
         }
 
         private void ValidadeBirthday()
         {
-            Patients = Patients.Where(p => p.DateBirthday != null).ToList();
-            Patients = Patients.Where(p => IsGreater(p.DateBirthday.Value)).ToList();
+            Patients = Patients.Where(IsGreater).ToList();
         }
 
         private void ValidateCPFPatient()
@@ -59,9 +65,10 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             Patients = Patients.Where(p => validate.isCPF(p.CPF)).ToList();
         }
 
-        private bool IsGreater(DateTime birthday)
+        private bool IsGreater(IPatientDTO patient)
         {
-            return (DateTime.Today.Year - birthday.Year) >= 18;
+            var specification = new PatientSpecificationIsGreater();
+            return specification.IsSatisfiedBy(patient);
         }
     }
 }
