@@ -32,13 +32,13 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         {
             Console.WriteLine("Inicio do Processo");
 
-            Stopwatch relogio = new Stopwatch();
+            var relogio = new Stopwatch();
 
             relogio.Start();
 
             var service = new AssociatePatientsToTreatmentsService();
 
-            AssociateTreatments servicoObterTratamentos = new AssociateTreatments(service.Associate);
+            var servicoObterTratamentos = new AssociateTreatments(service.Associate);
 
             totalDePacientesProcessados = 0;
 
@@ -56,7 +56,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 SegurarProcessador();
 
                 // TODO: ObterPacientes -- Paginando
-                //  pacientes.Todas(totalDePacientesProcessados, totalDePacientesProcessados + fatia);
                 var pacientes = patients.Skip(totalDePacientesProcessados).Take(fatia).ToList();
 
                 servicoObterTratamentos.BeginInvoke(pacientes, MetodoQueSeraExecutadoAposOMetodoDoDelegate, servicoObterTratamentos);
@@ -66,7 +65,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         private void FatiarPacientes()
         {
-            // Lógica de FATIA
             int totalDePacientes = totalDePacientesExistentes - totalDePacientesProcessados;
 
             if (totalDePacientes < fatia)
@@ -84,7 +82,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 totalDeThreadsEmAndamento -= 1;
             }
             
-            AssociateTreatments func = (AssociateTreatments)iar.AsyncState;
+            var func = (AssociateTreatments)iar.AsyncState;
             func.EndInvoke(iar);
 
             if (totalDePacientesProcessados >= totalDePacientesExistentes)
@@ -111,7 +109,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
             while (totalDeThreadsEmAndamento == totaldeThreadsPossiveis)
             {
-                //Mantém o processador ocupado aaaaaaaaaaaaaa otário
+                //Mantém o processador 
             }
         }
     }

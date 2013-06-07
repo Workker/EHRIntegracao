@@ -97,8 +97,10 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
                 Console.WriteLine("Removendo Pacientes");
                 RemoveExistingPatients();
+
                 Console.WriteLine("Agrupando Tratamentos");
                 GroupTreatment();
+
                 Console.WriteLine("Salvando Pacientes");
                 SavePatients();
             }
