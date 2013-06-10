@@ -21,6 +21,12 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             var lucene = new LuceneClient("");
             return lucene.SimpleSearch(name).Take(10).ToList();
         }
+        //Todo: Mock
+        public List<IPatientDTO> MockPatients(string name)
+        {
+            var lucene = new LuceneClient("E:\\Projects\\EHR\\EHR.Solution\\EHR.UI\\lucene_index");
+            return lucene.SimpleSearch(name).Take(10).ToList();
+        }
 
         public List<IPatientDTO> GetPatientsAdvancedSearch(IPatientDTO patient, List<string> hospitals)
         {
