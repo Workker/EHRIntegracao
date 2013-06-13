@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using EHR.CoreShared;
 using EHRCache.Service;
 using EHRIntegracao.Domain.Factorys;
+using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services;
 using EHRIntegracao.Domain.Services.InitialCharge;
+using EHRIntegracao.Domain.Services.Integration;
 
 namespace EHRIntegracao.Console
 {
@@ -21,14 +23,24 @@ namespace EHRIntegracao.Console
             //InitialChargeTreatmentByHospitalService service = new InitialChargeTreatmentByHospitalService();
             //service.DoSearch();
 
-            InitialChargeByHospitalService service = new InitialChargeByHospitalService();
+         //   InitialChargeByHospitalService service = new InitialChargeByHospitalService();
+   
+          //  service.DoSearch(new PatientDTO());
+
+            //PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.Copa));
+
+            //var resultados = pacientes.GetPatientsWithPeriod();
+
+
+            var integration = new IntregationPeriodicCharge();
+            integration.Do();
 
             //service.Patients = new List<IPatientDTO>();
             //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa ,Records = new List<RecordDTO>(){new RecordDTO(){Hospital = DbEnum.Copa,Code ="123"}}});
             //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa, Records = new List<RecordDTO>() { new RecordDTO() { Hospital = DbEnum.Copa, Code = "124" } } });
             //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa, Records = new List<RecordDTO>() { new RecordDTO() { Hospital = DbEnum.Copa, Code = "125" } } });
 
-            service.DoSearch(new PatientDTO());
+           
 
            // FillPatientsDbForService service = new FillPatientsDbForService();
            // service.Fill();
@@ -62,8 +74,7 @@ namespace EHRIntegracao.Console
             //var pacientesNovos = ObterPacientes(DbEnum.QuintaDorWorkker, new PatientDTO() { Name = "LEA" }).ContinueWith(Finalizer);
             //var pacientesNovos = ObterPacientes(DbEnum.QuintaDorWorkker, new PatientDTO() { Name = "LEA" }).ContinueWith(Finalizer);
 
-
-            System.Console.ReadLine();
+            System.Console.WriteLine("Acabou!");
         }
 
         //private static void Finalizer(Task<IList<IPatientDTO>> task)

@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EHR.CoreShared">
+      <HintPath>..\..\..\..\LibEHR\EHR.CoreShared.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
@@ -44,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PeriodicChargeByHospitalService.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -69,6 +73,12 @@
     <EmbeddedResource Include="Service1.resx">
       <DependentUpon>Service1.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EHRIntegracao.Domain\EHRIntegracao.Domain.csproj">
+      <Project>{8a76b66e-8929-4bf5-918e-51054ceac368}</Project>
+      <Name>EHRIntegracao.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

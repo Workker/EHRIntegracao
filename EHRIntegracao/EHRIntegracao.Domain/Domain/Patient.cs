@@ -9,6 +9,8 @@ namespace EHRIntegracao.Domain.Domain
 {
     public class Patient : IAggregateRoot<string>
     {
+        public virtual string ROWID { get; set; }
+
         public virtual string Id { get; set; }
 
         public virtual string Cpf { get; set; }

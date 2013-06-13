@@ -4,20 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EHR.CoreShared;
-using EHRIntegracao.Domain.Domain;
-using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.Domain;
 using EHRIntegracao.Domain.Services.GetEntities;
-using EHRIntegracao.Domain.Services.InitialCharge;
-using Workker.Framework.Domain;
 
 namespace EHRIntegracao.Domain.Services.InitialCharge
 {
-    public class InitialChargeByHospitalService
+    public class PeriodicChargeByHospitalService
     {
         #region Property
-  
+
         private PatientsDbFor patientRepositoryDbFor;
         public virtual PatientsDbFor PatientRepositoryDbFor
         {
@@ -55,8 +51,18 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
+        private List<IPatientDTO> patientsLucene;
+        public virtual List<IPatientDTO> PatientsLucene
+        {
+            get { return patientsLucene ?? (patientsLucene = new List<IPatientDTO>()); }
+            set
+            {
+                patientsLucene = value;
+            }
+        }
+
         private AssociateTreatmentsAsyncService associatePatientsToTreatmentsService;
-  
+
 
         private RemoveDuplicatePatientService removeDuplicatePatientService;
         public virtual RemoveDuplicatePatientService RemoveDuplicatePatientService
@@ -77,44 +83,42 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 getValuesDbEnumService = value;
             }
         }
+        private GetPatientsLuceneService getPatientsLuceneService;
+        public virtual GetPatientsLuceneService GetPatientsLuceneService
+        {
+            get { return getPatientsLuceneService ?? (getPatientsLuceneService = new GetPatientsLuceneService()); }
+            set
+            {
+                getPatientsLuceneService = value;
+            }
+        }
+
+
 
         #endregion
 
-        public virtual void DoSearch(IPatientDTO patientDTO)
+        public void DoSearch()
         {
-            Assertion.NotNull(patientDTO, "Paciente não informado.").Validate();
+            var dbs = GetValues();
             try
             {
-                var dbs = GetValues();
-
-                foreach (var db in dbs.Where(dv=> dv == DbEnum.QuintaDor))
+                foreach (var db in dbs)
                 {
                     if (db == DbEnum.sumario)
                         continue;
 
-                    DoSearchPatients(patientDTO, db);
+                    DoSearchPatients(db);
                 }
 
-                Console.WriteLine("Removendo Pacientes");
                 RemoveExistingPatients();
-
-                Console.WriteLine("Agrupando Tratamentos");
                 GroupTreatment();
-
-                Console.WriteLine("Salvando Pacientes");
                 SavePatients();
+                Console.WriteLine("Finalizei");
             }
             catch (Exception ex)
             {
-                    
-                throw ex;
-            }
-            
-        }
 
-        private List<DbEnum> GetValues()
-        {
-            return GetValuesDbEnumService.GetValues();
+            }
         }
 
         private void SavePatients()
@@ -123,15 +127,28 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             SavePatientsLuceneService.SavePatientsLucene(Patients.ToList());
         }
 
-        private void DoSearchPatients(IPatientDTO patientDTO, DbEnum db)
+        private List<DbEnum> GetValues()
         {
-            InitialChargeByHospitalFillPatientService.DoSearch(db, patientDTO);
+            return GetValuesDbEnumService.GetValues();
+        }
+
+        private void DoSearchPatients(DbEnum db)
+        {
+            InitialChargeByHospitalFillPatientService.DoSearchPeriodicCharge(db);
             Patients.AddRange(initialChargeByHospitalFillPatientService.Patients);
         }
 
         private void RemoveExistingPatients()
         {
             Patients = RemoveDuplicatePatientService.RemoveExistingPatients(Patients);
+            PatientsLucene = GetPatientsLuceneService.GetPatientPeriodic(Patients);
+
+            Patients = Patients.Where(RemoveExistinPatient).ToList();
+        }
+
+        private bool RemoveExistinPatient(IPatientDTO patient)
+        {
+            return !PatientsLucene.Any(p => p.GetCPF() == patient.GetCPF());
         }
 
         private void GroupTreatment()
@@ -139,5 +156,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             associatePatientsToTreatmentsService = new AssociateTreatmentsAsyncService(this.Patients);
             associatePatientsToTreatmentsService.Executar();
         }
+
     }
 }

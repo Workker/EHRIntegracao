@@ -11,7 +11,6 @@ using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.GetEntities;
 using Workker.Framework.Domain;
 
-
 namespace EHRIntegracao.Domain.Services.InitialCharge
 {
     public class InitialChargeByHospitalFillPatientService
@@ -43,6 +42,16 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
             ClearPatient();
             Patients = GetPatientsService.GetPatients(db, patientDTO);
+            ValidateCPFPatient();
+            ValidadeBirthday();
+        }
+
+        public virtual void DoSearchPeriodicCharge(DbEnum db)
+        {
+            Assertion.NotNull(db, "Banco não informado.").Validate();
+
+            ClearPatient();
+            Patients = GetPatientsService.GetPatientsPeriodicCharge(db);
             ValidateCPFPatient();
             ValidadeBirthday();
         }

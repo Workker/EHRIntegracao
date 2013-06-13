@@ -30,6 +30,18 @@ namespace EHRIntegracao.Test.Repository
         }
 
         [Test]
+        [Ignore]
+        public void AllPatientWithPeriod()
+        {
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.Copa));
+
+            var resultados = pacientes.GetPatientsWithPeriod();
+
+            Assert.NotNull(resultados);
+
+        }
+
+        [Test]
         public void AllPatientByCriterion()
         {
             PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));

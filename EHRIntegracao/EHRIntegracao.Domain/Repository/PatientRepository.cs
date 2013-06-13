@@ -8,12 +8,14 @@ using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria;
 
 using NHibernate;
+using NHibernate.Transform;
 
 namespace EHRIntegracao.Domain.Repository
 {
+
     public class PatientRepository : BaseRepository
     {
-        public PatientRepository() 
+        public PatientRepository()
         {
 
         }
@@ -21,7 +23,7 @@ namespace EHRIntegracao.Domain.Repository
         public PatientRepository(ISession session)
             : base(session)
         {
- 
+
         }
 
         public PatientRepository(ISessionFactory sessionFactory)
@@ -30,14 +32,12 @@ namespace EHRIntegracao.Domain.Repository
 
         }
 
-        
-
-        public virtual IList<Patient> GetAll() 
+        public virtual IList<Patient> GetAll()
         {
             return base.All<Patient>();
         }
 
-        public IList<Patient> GetPatientsBy(IPatientDTO patientDTO) 
+        public IList<Patient> GetPatientsBy(IPatientDTO patientDTO)
         {
             var patientCriteria = Session.CreateCriteria<Patient>("p");
 
@@ -45,6 +45,15 @@ namespace EHRIntegracao.Domain.Repository
 
             return patientCriteria.List<Patient>().ToList();
         }
+
+        public IList<Patient> GetPatientsWithPeriod()
+        {
+            return Session.CreateQuery(
+              "select p from Patient p, Treatment t where p.Id = t.Id and t.EntryDate  >= :data ")
+              .SetParameter("data", DateTime.Now.AddMonths(-3).AddDays(-2))
+              .List<Patient>();
+        }
+
 
         public virtual void SalvarLista(IList<Patient> roots)
         {
@@ -56,11 +65,11 @@ namespace EHRIntegracao.Domain.Repository
                 {
                     Save<string>(root);
                 }
-              //  transaction.Commit();
+                //  transaction.Commit();
             }
             catch (System.Exception ex)
             {
-            //    transaction.Rollback();
+                //    transaction.Rollback();
                 throw ex;
             }
         }

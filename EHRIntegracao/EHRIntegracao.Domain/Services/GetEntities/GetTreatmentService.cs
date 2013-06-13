@@ -46,6 +46,18 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             return Treatments;
         }
 
+        public virtual IList<ITreatmentDTO> GetPeriodicTreatments(DbEnum db)
+        {
+            ClearPatient();
+
+            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(db));
+
+            var treatment = TreatmentRepository.GetPeriodicTreatment();
+            TreatmentConverter(treatment, db);
+
+            return Treatments;
+        }
+
         private void ClearPatient()
         {
             Treatments = null;
@@ -55,6 +67,8 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         {
             foreach (var t in treatment)
             {
+                if(t == null)
+                    continue;
                 var tratmentDto = new TreatmentDTO()
                 {
                     Id = t.Id,
@@ -66,5 +80,23 @@ namespace EHRIntegracao.Domain.Services.GetEntities
                 Treatments.Add(tratmentDto);
             }
         }
+
+        //private void TreatmentConverter(IList<TreatmentResultSet> treatment, DbEnum db)
+        //{
+        //    foreach (var t in treatment)
+        //    {
+        //        if (t == null)
+        //            continue;
+        //        var tratmentDto = new TreatmentDTO()
+        //        {
+        //            Id = t.Id,
+        //            CheckOutDate = t.CheckOutDate,
+        //            EntryDate = t.EntryDate,
+        //            Hospital = db
+        //        };
+
+        //        Treatments.Add(tratmentDto);
+        //    }
+        //}
     }
 }

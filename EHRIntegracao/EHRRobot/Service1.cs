@@ -8,6 +8,9 @@ using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using EHR.CoreShared;
+using EHRIntegracao.Domain.Services.GetEntities;
+using EHRIntegracao.Domain.Services.InitialCharge;
 
 namespace EHRRobot
 {
@@ -33,6 +36,8 @@ namespace EHRRobot
 
         private static void timer1_Elapsed(object sender, EventArgs e)
         {
+            
+
             eventLog1.WriteEntry("Integrei");
         }
 

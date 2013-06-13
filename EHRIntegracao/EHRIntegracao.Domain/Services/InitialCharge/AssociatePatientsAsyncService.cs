@@ -77,11 +77,11 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         public void MetodoQueSeraExecutadoAposOMetodoDoDelegate(IAsyncResult iar)
         {
-            if(iar.IsCompleted)
+            if (iar.IsCompleted)
             {
                 totalDeThreadsEmAndamento -= 1;
             }
-            
+
             var func = (AssociateTreatments)iar.AsyncState;
             func.EndInvoke(iar);
 
@@ -92,15 +92,14 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
-        private static void Finalizar(Stopwatch relogio)
+        private void Finalizar(Stopwatch relogio)
         {
-            gerenciadorDeThreads.WaitOne();
+            if (patients.Count > 0)
+                gerenciadorDeThreads.WaitOne();
 
             relogio.Stop();
 
             Console.WriteLine(relogio.Elapsed.TotalSeconds);
-
-            Console.ReadKey();
         }
 
         private void SegurarProcessador()

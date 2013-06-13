@@ -13,9 +13,10 @@ namespace EHRIntegracao.Domain.Mapping
         public TreatmentMap()
         {
             Table("FAPACCAD");
-            Id(p => p.Id, "COD_PRT");
-            Map(p => p.EntryDate, "DATA_ENT");
-            Map(p => p.CheckOutDate, "DATA_ALTA");
+            Id(d=> d.ROWID, "ROWID");
+            Map(p => p.Id, "COD_PRT").Column("COD_PRT");
+            Map(p => p.EntryDate, "DATA_ENT").Column("DATA_ENT");
+            Map(p => p.CheckOutDate, "DATA_ALTA").Column("DATA_ALTA");
         }
     }
 }

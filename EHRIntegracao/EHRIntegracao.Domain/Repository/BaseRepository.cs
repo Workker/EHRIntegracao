@@ -39,7 +39,11 @@ namespace EHRIntegracao.Domain.Repository
 
         public BaseRepository(ISessionFactory sessionFactory)
         {
+            if (Factory != null)
+                Factory.Dispose();
+
             Factory = sessionFactory;
+            _session = Factory.OpenSession();
         }
 
         public void AlterFactory(DbEnum db)
@@ -48,7 +52,7 @@ namespace EHRIntegracao.Domain.Repository
             _session = null;
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
             _session.Disconnect();
             _session.Dispose();
@@ -113,8 +117,8 @@ namespace EHRIntegracao.Domain.Repository
             lock (SyncObj)
                 currentSession = Factory.OpenSession();
             return currentSession;
-            
-       
+
+
         }
 
 
@@ -124,7 +128,7 @@ namespace EHRIntegracao.Domain.Repository
                 return FactorryNhibernate.GetSession(DbEnum.sumario);
             else
                 return Factory;
-               
+
         }
 
         private static bool NotConsole()

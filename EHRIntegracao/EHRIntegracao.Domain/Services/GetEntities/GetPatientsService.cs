@@ -46,6 +46,21 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         }
 
 
+
+
+        public virtual IList<IPatientDTO> GetPatientsPeriodicCharge(DbEnum db)
+        {
+            ClearPatient();
+
+            using (var repository = new PatientRepository(FactorryNhibernate.GetSession(db)))
+            {
+                var patients = repository.GetPatientsWithPeriod();
+                PatientConverter(patients, db);
+            }
+
+            return PatientsDTO;
+        }
+
         public virtual IList<IPatientDTO> GetPatients(DbEnum db, IPatientDTO patient)
         {
             ClearPatient();

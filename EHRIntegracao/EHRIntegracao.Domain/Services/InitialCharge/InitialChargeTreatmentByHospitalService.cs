@@ -42,6 +42,16 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
+        private List<ITreatmentDTO> treatmentsLucene;
+        public virtual List<ITreatmentDTO> TreatmentsLucene
+        {
+            get { return treatmentsLucene ?? (treatmentsLucene = new List<ITreatmentDTO>()); }
+            set
+            {
+                treatmentsLucene = value;
+            }
+        }
+
         private TreatmentsLuceneService treatmentsLuceneService;
         public virtual TreatmentsLuceneService TreatmentsLuceneService
         {
@@ -52,10 +62,12 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
+
+
         public virtual void DoSearch()
         {
             var dbs = GetValues();
-            foreach (var db in dbs)
+            foreach (var db in dbs.Where(d=> d != DbEnum.Rios))
             {
                 if (db == DbEnum.sumario)
                     continue;
@@ -65,9 +77,37 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             SaveTreatments();
         }
 
+        public virtual void DoSearchPeriodic()
+        {
+            var dbs = GetValues();
+            foreach (var db in dbs)
+            {
+                if (db == DbEnum.sumario)
+                    continue;
+
+                DoSearchTreatmentsPeriodic(db);
+            }
+
+            RemoveTreatments();
+            SaveTreatments();
+        }
+
+        private void RemoveTreatments()
+        {
+            TreatmentsLucene = TreatmentsLuceneService.GetTreatmentsPeriodic(Treatments).ToList();
+
+            Treatments = Treatments.Where(NotExist).ToList();
+        }
+
         private void DoSearchTreatments(DbEnum db)
         {
             var treatment = GetTreatmentService.GetTreatments(db);
+            Treatments.AddRange(treatment);
+        }
+
+        private void DoSearchTreatmentsPeriodic(DbEnum db)
+        {
+            var treatment = GetTreatmentService.GetPeriodicTreatments(db);
             Treatments.AddRange(treatment);
         }
 
@@ -79,6 +119,14 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         private void SaveTreatments()
         {
             TreatmentsLuceneService.SaveTreatment(Treatments);
+        }
+
+        public bool NotExist(ITreatmentDTO treatment)
+        {
+            return !TreatmentsLucene.Any(
+                t =>
+                t.CheckOutDate == treatment.CheckOutDate && t.EntryDate == treatment.EntryDate &&
+                t.Hospital == treatment.Hospital);
         }
     }
 }

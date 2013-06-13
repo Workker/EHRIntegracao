@@ -142,7 +142,9 @@
     <Compile Include="Services\InitialCharge\InitialChargeByHospitalService.cs" />
     <Compile Include="Services\GetEntities\GetTreatmentService.cs" />
     <Compile Include="Services\InitialCharge\InitialChargeTreatmentByHospitalService.cs" />
+    <Compile Include="Services\InitialCharge\PeriodicChargeByHospitalService.cs" />
     <Compile Include="Services\Integration\GetPatientsByPatient.cs" />
+    <Compile Include="Services\Integration\IntregationPeriodicCharge.cs" />
     <Compile Include="Services\SaveLucene\SaveCidInLuceneService.cs" />
     <Compile Include="Services\SaveLucene\SaveDefInLuceneService.cs" />
     <Compile Include="Services\SaveLucene\SavePatientsDbforToLuceneService.cs" />
