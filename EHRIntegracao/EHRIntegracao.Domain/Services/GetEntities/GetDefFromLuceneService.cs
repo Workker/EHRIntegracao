@@ -20,7 +20,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-        public List<DefDTO> GetTus(string code)
+        public List<DefDTO> GetDef(string code)
         {
             return LuceneClientDef.SimpleSearch(code).ToList();
         }
