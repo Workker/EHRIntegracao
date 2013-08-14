@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared.Interfaces;
 
 namespace EHRIntegracao.Domain.Domain.PatientSpecificationIntegration
 {
     public interface IPatientSpecificationIntegration
     {
-        bool IsSatisfiedBy(IPatientDTO candidate);
+        bool IsSatisfiedBy(IPatient candidate);
         IPatientSpecificationIntegration And(IPatientSpecificationIntegration other);
     }
 }

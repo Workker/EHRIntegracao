@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared;
 using EHRLucene.Domain;
+using System.Collections.Generic;
 
 namespace EHRIntegracao.Domain.Services.SaveLucene
 {
     public class SaveCidInLuceneService
     {
-        public void Save(List<CidDTO> cids)
+        public void Save(List<CID> cids)
         {
             var lucene = new LuceneClientCid("");
             lucene.AddUpdateLuceneIndex(cids);

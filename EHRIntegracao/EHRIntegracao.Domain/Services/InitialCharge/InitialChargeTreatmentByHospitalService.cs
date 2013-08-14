@@ -1,12 +1,8 @@
-﻿using System;
+﻿using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Services.GetEntities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRIntegracao.Domain.Repository;
-using EHRIntegracao.Domain.Services.GetEntities;
-using Workker.Framework.Domain;
 
 namespace EHRIntegracao.Domain.Services.InitialCharge
 {
@@ -32,20 +28,20 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
-        private List<ITreatmentDTO> treatments;
-        public virtual List<ITreatmentDTO> Treatments
+        private List<ITreatment> treatments;
+        public virtual List<ITreatment> Treatments
         {
-            get { return treatments ?? (treatments = new List<ITreatmentDTO>()); }
+            get { return treatments ?? (treatments = new List<ITreatment>()); }
             set
             {
                 treatments = value;
             }
         }
 
-        private List<ITreatmentDTO> treatmentsLucene;
-        public virtual List<ITreatmentDTO> TreatmentsLucene
+        private List<ITreatment> treatmentsLucene;
+        public virtual List<ITreatment> TreatmentsLucene
         {
-            get { return treatmentsLucene ?? (treatmentsLucene = new List<ITreatmentDTO>()); }
+            get { return treatmentsLucene ?? (treatmentsLucene = new List<ITreatment>()); }
             set
             {
                 treatmentsLucene = value;
@@ -67,7 +63,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         public virtual void DoSearch()
         {
             var dbs = GetValues();
-            foreach (var db in dbs.Where(d=> d != DbEnum.Rios))
+            foreach (var db in dbs.Where(d => d != DbEnum.Rios))
             {
                 if (db == DbEnum.sumario)
                     continue;
@@ -121,7 +117,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             TreatmentsLuceneService.SaveTreatment(Treatments);
         }
 
-        public bool NotExist(ITreatmentDTO treatment)
+        public bool NotExist(ITreatment treatment)
         {
             return !TreatmentsLucene.Any(
                 t =>

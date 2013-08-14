@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRIntegracao.Domain.Domain;
+﻿using EHR.CoreShared;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
 
 namespace EHRIntegracao.Test.Integration
 {
@@ -16,19 +12,19 @@ namespace EHRIntegracao.Test.Integration
     {
         [Test]
         [Ignore]
-        public void IntegrarPacientesRedeDor() 
+        public void IntegrarPacientesRedeDor()
         {
             PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
-            
 
-            var resultados = pacientes.All<Patient>();
 
-            
+            var resultados = pacientes.All<EHRIntegracao.Domain.Domain.Patient>();
 
-            IList<Patient> patients = new List<Patient>();
-            foreach (var paciente  in resultados)
+
+
+            IList<EHRIntegracao.Domain.Domain.Patient> patients = new List<EHRIntegracao.Domain.Domain.Patient>();
+            foreach (var paciente in resultados)
             {
-                patients.Add(new Patient()
+                patients.Add(new EHRIntegracao.Domain.Domain.Patient()
                 {
                     Cpf = paciente.Cpf,
                     DateBirthday = paciente.DateBirthday,
@@ -48,7 +44,7 @@ namespace EHRIntegracao.Test.Integration
         public void SalvarEdeletarPaciente()
         {
             PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
-            var paciente = new Patient(){Id = "JK",DateBirthday =DateTime.Now,Identity="sas",Name = "javet", Cpf = "234"};
+            var paciente = new EHRIntegracao.Domain.Domain.Patient() { Id = "JK", DateBirthday = DateTime.Now, Identity = "sas", Name = "javet", Cpf = "234" };
 
             pacientes.Save<string>(paciente);
 

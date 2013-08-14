@@ -1,38 +1,36 @@
-﻿using System;
+﻿using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
 
 namespace EHRIntegracao.Domain.Services.Domain
 {
     public class RemoveDuplicatePatientService
     {
-        private List<IPatientDTO> patientsDb;
-        public List<IPatientDTO> PatientsDb
+        private List<IPatient> patientsDb;
+        public List<IPatient> PatientsDb
         {
-            get { return patientsDb ?? (patientsDb = new List<IPatientDTO>()); }
+            get { return patientsDb ?? (patientsDb = new List<IPatient>()); }
             set
             {
                 patientsDb = value;
             }
         }
 
-        public List<IPatientDTO> RemoveExistingPatients(List<IPatientDTO> patients)
+        public List<IPatient> RemoveExistingPatients(List<IPatient> patients)
         {
             foreach (var patientGroup in patients.GroupBy(p => p.GetCPF()).GroupBy(e => e.Key))
             {
                 foreach (var patientValue in patientGroup)
                 {
-                    IPatientDTO patientUnique = new PatientDTO();
+                    IPatient patientUnique = new Patient();
 
                     foreach (var patient in patientValue)
                     {
                         if (string.IsNullOrEmpty(patientUnique.Id))
                         {
                             patientUnique = patient;
-                            patient.AddRecord(new RecordDTO() { Code = patient.Id, Hospital = patient.Hospital.Value });
+                            patient.AddRecord(new Record() { Code = patient.Id, Hospital = patient.Hospital.Value });
                             PatientsDb.Add(patient);
                         }
                         else
@@ -47,7 +45,7 @@ namespace EHRIntegracao.Domain.Services.Domain
 
 
 
-                            patientUnique.AddRecord(new RecordDTO() { Code = patient.Id, Hospital = patient.Hospital.Value });
+                            patientUnique.AddRecord(new Record() { Code = patient.Id, Hospital = patient.Hospital.Value });
                         }
                     }
                 }

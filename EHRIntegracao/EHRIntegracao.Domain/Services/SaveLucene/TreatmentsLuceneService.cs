@@ -1,10 +1,9 @@
-﻿using System;
+﻿using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
+using EHRLucene.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRLucene.Domain;
 
 namespace EHRIntegracao.Domain.Services
 {
@@ -24,12 +23,12 @@ namespace EHRIntegracao.Domain.Services
                 luceneClientTreatment = value;
             }
         }
-        public virtual IList<ITreatmentDTO> GetTreatments(List<RecordDTO> records)
+        public virtual IList<ITreatment> GetTreatments(List<Record> records)
         {
             try
             {
                 Totalrecords = records.Count;
-                var treatments = new List<ITreatmentDTO>();
+                var treatments = new List<ITreatment>();
                 while (totalRecordsProcess < Totalrecords)
                 {
 
@@ -60,12 +59,12 @@ namespace EHRIntegracao.Domain.Services
 
         }
 
-        public virtual IList<ITreatmentDTO> GetTreatmentsPeriodic(List<ITreatmentDTO> treatmentDtos)
+        public virtual IList<ITreatment> GetTreatmentsPeriodic(List<ITreatment> treatmentDtos)
         {
             try
             {
                 Totalrecords = treatmentDtos.Count;
-                var treatments = new List<ITreatmentDTO>();
+                var treatments = new List<ITreatment>();
                 while (totalRecordsProcess < Totalrecords)
                 {
                     var treatmentDtosFatia = treatmentDtos.Skip(totalRecordsProcess).Take(fatia).ToList();
@@ -77,9 +76,9 @@ namespace EHRIntegracao.Domain.Services
                 }
 
                 if (treatmentDtos.Count == 0)
-                    return new List<ITreatmentDTO>();
+                    return new List<ITreatment>();
 
-                 return treatments;
+                return treatments;
             }
             catch (Exception ex)
             {
@@ -88,7 +87,7 @@ namespace EHRIntegracao.Domain.Services
             }
 
         }
-        public virtual void SaveTreatment(List<ITreatmentDTO> treatments)
+        public virtual void SaveTreatment(List<ITreatment> treatments)
         {
             LuceneClientTreatment.AddUpdateLuceneIndex(treatments);
         }

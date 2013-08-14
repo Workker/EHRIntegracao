@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared;
 using EHRLucene.Domain;
+using System.Collections.Generic;
 
 namespace EHRIntegracao.Domain.Services.SaveLucene
 {
     public class SaveDefInLuceneService
     {
-        public void Save(List<DefDTO> defs)
+        public void Save(List<DEF> defs)
         {
             var lucene = new LuceneClientDef("");
             lucene.AddUpdateLuceneIndex(defs);

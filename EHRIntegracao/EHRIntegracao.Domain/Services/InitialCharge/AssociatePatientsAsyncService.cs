@@ -1,11 +1,9 @@
-﻿using System;
+﻿using EHR.CoreShared.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using EHR.CoreShared;
 
 namespace EHRIntegracao.Domain.Services.InitialCharge
 {
@@ -17,13 +15,13 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         public int totalDePacientesProcessados = 0;
         public int totalDeThreadsEmAndamento = 0;
         public const int totaldeThreadsPossiveis = 10;
-        public delegate void AssociateTreatments(List<IPatientDTO> pacientes);
+        public delegate void AssociateTreatments(List<IPatient> pacientes);
         public List<string> resultadoTotal;
         public static AutoResetEvent gerenciadorDeThreads = new AutoResetEvent(false);
         public int totalTerminadas = 0;
-        public List<IPatientDTO> patients;
+        public List<IPatient> patients;
 
-        public AssociateTreatmentsAsyncService(List<IPatientDTO> patients)
+        public AssociateTreatmentsAsyncService(List<IPatient> patients)
         {
             this.patients = patients;
         }

@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EHR.CoreShared;
+﻿using EHR.CoreShared.Interfaces;
 using NHibernate;
-using System.Threading.Tasks;
 
 
 namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria
 {
     public interface IPatientSpecificationCriteria
     {
-        void AddCriteria(IPatientDTO candidate, ICriteria criteria);
-        bool IsSatisfiedBy(IPatientDTO candidate);
+        void AddCriteria(IPatient candidate, ICriteria criteria);
+        bool IsSatisfiedBy(IPatient candidate);
         IPatientSpecificationCriteria And(IPatientSpecificationCriteria other);
     }
 }

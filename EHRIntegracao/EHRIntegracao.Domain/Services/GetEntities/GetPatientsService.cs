@@ -5,8 +5,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
 using EHRCache;
-using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 
@@ -15,10 +15,10 @@ namespace EHRIntegracao.Domain.Services.GetEntities
 {
     public class GetPatientsService
     {
-        private IList<IPatientDTO> patientsDTO;
-        public virtual IList<IPatientDTO> PatientsDTO
+        private IList<IPatient> patientsDTO;
+        public virtual IList<IPatient> PatientsDTO
         {
-            get { return patientsDTO ?? (patientsDTO = new List<IPatientDTO>()); }
+            get { return patientsDTO ?? (patientsDTO = new List<IPatient>()); }
             set
             {
                 patientsDTO = value;
@@ -45,10 +45,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-
-
-
-        public virtual IList<IPatientDTO> GetPatientsPeriodicCharge(DbEnum db)
+        public virtual IList<IPatient> GetPatientsPeriodicCharge(DbEnum db)
         {
             ClearPatient();
 
@@ -61,7 +58,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             return PatientsDTO;
         }
 
-        public virtual IList<IPatientDTO> GetPatients(DbEnum db, IPatientDTO patient)
+        public virtual IList<IPatient> GetPatients(DbEnum db, IPatient patient)
         {
             ClearPatient();
 
@@ -81,7 +78,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
 
         }
 
-        public virtual IList<IPatientDTO> GetPatientsDbFor(DbEnum db, IPatientDTO patient)
+        public virtual IList<IPatient> GetPatientsDbFor(DbEnum db, IPatient patient)
         {
             ClearPatient();
 
@@ -90,7 +87,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             return PatientsDTO;
         }
 
-        public virtual IList<IPatientDTO> GetPatientsDbFor()
+        public virtual IList<IPatient> GetPatientsDbFor()
         {
             ClearPatient();
 
@@ -104,11 +101,11 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             patientsDTO = null;
         }
 
-        private void PatientConverter(IList<Patient> patients, DbEnum db)
+        private void PatientConverter(IList<EHRIntegracao.Domain.Domain.Patient> patients, DbEnum db)
         {
             foreach (var patient in patients)
             {
-                var patientDto = new PatientDTO()
+                var patientDto = new Patient()
                 {
                     Id = patient.Id,
                     CPF = patient.Cpf == null ? null : Regex.Replace(patient.Cpf, "[^0-9]", string.Empty),
@@ -117,7 +114,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
                     Name = patient.Name,
                     Hospital = db
                 };
-                patientDto.Records = new List<RecordDTO>();
+                patientDto.Records = new List<Record>();
                 PatientsDTO.Add(patientDto);
             }
         }

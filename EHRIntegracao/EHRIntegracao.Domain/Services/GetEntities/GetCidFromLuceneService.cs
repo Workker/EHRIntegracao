@@ -1,10 +1,7 @@
-﻿using System;
+﻿using EHR.CoreShared;
+using EHRLucene.Domain;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRLucene.Domain;
 
 namespace EHRIntegracao.Domain.Services.GetEntities
 {
@@ -20,7 +17,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-        public List<CidDTO> GetCid(string code)
+        public List<CID> GetCid(string code)
         {
             return LuceneClientCid.SimpleSearch(code).ToList();
         }

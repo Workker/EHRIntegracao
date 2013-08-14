@@ -1,14 +1,10 @@
-﻿using System;
+﻿using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria;
+using NHibernate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRIntegracao.Domain.Domain;
-using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria;
-
-using NHibernate;
-using NHibernate.Transform;
 
 namespace EHRIntegracao.Domain.Repository
 {
@@ -37,25 +33,25 @@ namespace EHRIntegracao.Domain.Repository
             return base.All<Patient>();
         }
 
-        public IList<Patient> GetPatientsBy(IPatientDTO patientDTO)
+        public IList<Domain.Patient> GetPatientsBy(IPatient patient)
         {
             var patientCriteria = Session.CreateCriteria<Patient>("p");
 
-            FactoryPatientSpecification.CreateCriteria(patientDTO, patientCriteria);
+            FactoryPatientSpecification.CreateCriteria(patient, patientCriteria);
 
-            return patientCriteria.List<Patient>().ToList();
+            return patientCriteria.List<Domain.Patient>().ToList();
         }
 
-        public IList<Patient> GetPatientsWithPeriod()
+        public IList<EHRIntegracao.Domain.Domain.Patient> GetPatientsWithPeriod()
         {
             return Session.CreateQuery(
               "select p from Patient p, Treatment t where p.Id = t.Id and t.EntryDate  >= :data ")
               .SetParameter("data", DateTime.Now.AddMonths(-3).AddDays(-2))
-              .List<Patient>();
+              .List<EHRIntegracao.Domain.Domain.Patient>();
         }
 
 
-        public virtual void SalvarLista(IList<Patient> roots)
+        public virtual void SalvarLista(IList<EHRIntegracao.Domain.Domain.Patient> roots)
         {
             //var transaction = Session.BeginTransaction();
 

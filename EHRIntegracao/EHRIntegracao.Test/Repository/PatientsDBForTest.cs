@@ -1,5 +1,5 @@
 ﻿using EHR.CoreShared;
-using EHRIntegracao.Domain.Domain;
+using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 using NUnit.Framework;
@@ -15,7 +15,7 @@ namespace EHRIntegracao.Test.Repository
         public void obter_todos_paciente_teste()
         {
             PatientsDbFor repository = new PatientsDbFor();
-            IList<IPatientDTO> patients = repository.Todos(new PatientDTO() { }, DbEnum.QuintaDor);
+            IList<IPatient> patients = repository.Todos(new Patient() { }, DbEnum.QuintaDor);
 
             Assert.NotNull(patients);
         }
@@ -25,11 +25,11 @@ namespace EHRIntegracao.Test.Repository
         public void obter_paciente_teste()
         {
             PatientsDbFor repository = new PatientsDbFor();
-            IList<IPatientDTO> patients = repository.Todos();
+            IList<IPatient> patients = repository.Todos();
             var count = patients.Count;
 
             Assert.NotNull(patients);
         }
-      
+
     }
 }

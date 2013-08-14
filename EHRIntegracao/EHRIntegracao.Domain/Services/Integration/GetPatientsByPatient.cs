@@ -1,10 +1,9 @@
-﻿using System;
+﻿using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Services.GetEntities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRIntegracao.Domain.Services.GetEntities;
 using Workker.Framework.Domain;
 
 namespace EHRIntegracao.Domain.Services.Integration
@@ -22,17 +21,17 @@ namespace EHRIntegracao.Domain.Services.Integration
             }
         }
 
-        private IList<IPatientDTO> patients;
-        public virtual IList<IPatientDTO> Patients
+        private IList<IPatient> patients;
+        public virtual IList<IPatient> Patients
         {
-            get { return patients ?? (patients = new List<IPatientDTO>()); }
+            get { return patients ?? (patients = new List<IPatient>()); }
             set
             {
                 patients = value;
             }
         }
 
-        public IList<IPatientDTO> GetAll(IPatientDTO patient)
+        public IList<IPatient> GetAll(IPatient patient)
         {
             Assertion.NotNull(patient, "Paticiente não informado.").Validate();
 

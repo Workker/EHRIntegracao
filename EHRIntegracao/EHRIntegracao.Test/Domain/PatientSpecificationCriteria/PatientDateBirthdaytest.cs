@@ -22,7 +22,7 @@ namespace EHRIntegracao.Test.Domain.PatientSpecificationCriteria
         {
             var criterion = new Criterion();
             var dateBirthdaySpecificarion = new PatientDateBirthdayEqualsSpecification();
-            dateBirthdaySpecificarion.AddCriteria(new PatientDTO() { DateBirthday = DateTime.Now },criterion);
+            dateBirthdaySpecificarion.AddCriteria(new Patient() { DateBirthday = DateTime.Now },criterion);
 
             Assert.AreEqual(criterion.criterions.Count(), 1);
         }

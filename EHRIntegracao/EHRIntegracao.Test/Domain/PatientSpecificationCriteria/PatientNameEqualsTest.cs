@@ -19,7 +19,7 @@ namespace EHRIntegracao.Test.Domain.PatientSpecificationCriteria
         {
             var criterion = new Criterion();
             var nameEqualsSpecification = new PatientNameEqualsSpecification();
-            nameEqualsSpecification.AddCriteria(new PatientDTO() { Name = "test" }, criterion);
+            nameEqualsSpecification.AddCriteria(new Patient() { Name = "test" }, criterion);
 
             Assert.AreEqual(criterion.criterions.Count(), 1);
         }

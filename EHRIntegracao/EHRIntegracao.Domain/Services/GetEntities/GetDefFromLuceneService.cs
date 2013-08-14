@@ -1,16 +1,13 @@
-﻿using System;
+﻿using EHR.CoreShared;
+using EHRLucene.Domain;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRLucene.Domain;
 
 namespace EHRIntegracao.Domain.Services.GetEntities
 {
-   public   class GetDefFromLuceneService
+    public class GetDefFromLuceneService
     {
-       private LuceneClientDef luceneClientDef;
+        private LuceneClientDef luceneClientDef;
         public virtual LuceneClientDef LuceneClientDef
         {
             get { return luceneClientDef ?? (luceneClientDef = new LuceneClientDef("")); }
@@ -20,7 +17,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-        public List<DefDTO> GetDef(string code)
+        public List<DEF> GetDef(string code)
         {
             return LuceneClientDef.SimpleSearch(code).ToList();
         }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared.Interfaces;
 
 namespace EHRIntegracao.Domain.Domain.PatientSpecificationIntegration
 {
@@ -18,7 +13,7 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationIntegration
             Other = patientB;
         }
 
-        public override bool IsSatisfiedBy(IPatientDTO candidate)
+        public override bool IsSatisfiedBy(IPatient candidate)
         {
             return One.IsSatisfiedBy(candidate) && Other.IsSatisfiedBy(candidate);
         }

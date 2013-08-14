@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRIntegracao.Domain.Domain;
+﻿using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
+using System.Collections.Generic;
 
 
 namespace EHRIntegracao.Domain.Services.GetEntities
 {
     public class GetTreatmentService
     {
-        private IList<ITreatmentDTO> treatments;
-        public virtual IList<ITreatmentDTO> Treatments
+        private IList<ITreatment> treatments;
+        public virtual IList<ITreatment> Treatments
         {
-            get { return treatments ?? (treatments = new List<ITreatmentDTO>()); }
+            get { return treatments ?? (treatments = new List<ITreatment>()); }
             set
             {
                 treatments = value;
@@ -34,7 +30,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-        public virtual IList<ITreatmentDTO> GetTreatments(DbEnum db)
+        public virtual IList<ITreatment> GetTreatments(DbEnum db)
         {
             ClearPatient();
 
@@ -46,7 +42,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             return Treatments;
         }
 
-        public virtual IList<ITreatmentDTO> GetPeriodicTreatments(DbEnum db)
+        public virtual IList<ITreatment> GetPeriodicTreatments(DbEnum db)
         {
             ClearPatient();
 
@@ -63,13 +59,13 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             Treatments = null;
         }
 
-        private void TreatmentConverter(IList<Treatment> treatment,DbEnum db)
+        private void TreatmentConverter(IList<EHRIntegracao.Domain.Domain.Treatment> treatment, DbEnum db)
         {
             foreach (var t in treatment)
             {
-                if(t == null)
+                if (t == null)
                     continue;
-                var tratmentDto = new TreatmentDTO()
+                var tratmentDto = new Treatment()
                 {
                     Id = t.Id,
                     CheckOutDate = t.CheckOutDate,

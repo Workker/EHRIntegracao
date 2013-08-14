@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria.PatientSpecification;
 
 using NHibernate;
@@ -12,7 +7,7 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria
 {
     public class FactoryPatientSpecification
     {
-        public static void CreateCriteria(IPatientDTO patient, ICriteria criteria) 
+        public static void CreateCriteria(IPatient patient, ICriteria criteria)
         {
             var nameEqualsSpecification = new PatientNameEqualsSpecification();
             var dateBirthayEqualsSpecification = new PatientDateBirthdayEqualsSpecification();

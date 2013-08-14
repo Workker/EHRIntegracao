@@ -1,10 +1,8 @@
-﻿using EHR.CoreShared;
+﻿using EHR.CoreShared.Interfaces;
 using EHRLucene.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EHRIntegracao.Domain.Services.GetEntities
 {
@@ -15,38 +13,38 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         public int TotalDePacientesEmProcessamento = 0;
         public int totalRecordsProcess = 0;
 
-        public IPatientDTO GetPatientBy(string cpf)
+        public IPatient GetPatientBy(string cpf)
         {
             var lucene = new LuceneClient("");
             return lucene.SearchBy(cpf);
         }
 
-        public List<IPatientDTO> GetPatients(string name)
+        public List<IPatient> GetPatients(string name)
         {
             var lucene = new LuceneClient("");
             return lucene.SimpleSearch(name).Take(10).ToList();
         }
         //Todo: Mock
-        public List<IPatientDTO> MockPatients(string name)
+        public List<IPatient> MockPatients(string name)
         {
             var lucene = new LuceneClient("E:\\Projects\\EHR\\EHR.Solution\\EHR.UI\\lucene_index");
             return lucene.SimpleSearch(name).Take(10).ToList();
         }
 
-        public List<IPatientDTO> GetPatientsAdvancedSearch(IPatientDTO patient, List<string> hospitals)
+        public List<IPatient> GetPatientsAdvancedSearch(IPatient patient, List<string> hospitals)
         {
             var lucene = new LuceneClient("");
             return lucene.AdvancedSearch(patient, hospitals).ToList();
         }
 
-        public List<IPatientDTO> GetPatientPeriodic(List<IPatientDTO> patients)
+        public List<IPatient> GetPatientPeriodic(List<IPatient> patients)
         {
 
             try
             {
                 var lucene = new LuceneClient("");
                 Totalrecords = patients.Count;
-                var patientsLucene = new List<IPatientDTO>();
+                var patientsLucene = new List<IPatient>();
                 while (totalRecordsProcess < Totalrecords)
                 {
                     var records = patients.Skip(totalRecordsProcess).Take(fatia).ToList();

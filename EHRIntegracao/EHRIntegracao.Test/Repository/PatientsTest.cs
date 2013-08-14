@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EHR.CoreShared;
-using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 
@@ -46,7 +45,7 @@ namespace EHRIntegracao.Test.Repository
         {
             PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
 
-            var resultados = pacientes.GetPatientsBy(new PatientDTO() { Identity = "198000" });
+            var resultados = pacientes.GetPatientsBy(new Patient() { Identity = "198000" });
 
             Assert.AreEqual(resultados.Count ,1);
 

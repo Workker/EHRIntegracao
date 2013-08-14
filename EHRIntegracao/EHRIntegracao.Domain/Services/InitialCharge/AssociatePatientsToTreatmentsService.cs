@@ -1,11 +1,8 @@
-﻿using System;
+﻿using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRIntegracao.Domain.Repository;
-using EHRLucene.Domain;
 
 namespace EHRIntegracao.Domain.Services.InitialCharge
 {
@@ -31,17 +28,17 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
-        public void Associate(List<IPatientDTO> patients)
+        public void Associate(List<IPatient> patients)
         {
             try
             {
                 foreach (var patient in patients)
                 {
-                    var treatments = new List<ITreatmentDTO>();
+                    var treatments = new List<ITreatment>();
 
                     foreach (var recordsBysHospital in patient.Records.GroupBy(r => r.Hospital).GroupBy(b => b.Key))
                     {
-                        var treatmentsCheck = new List<ITreatmentDTO>();
+                        var treatmentsCheck = new List<ITreatment>();
 
                         foreach (var record in recordsBysHospital.ToList())
                         {
@@ -57,9 +54,9 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
             catch (Exception ex)
             {
-                    
+
                 throw ex;
-            }     
+            }
         }
     }
 

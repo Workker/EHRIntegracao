@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.Domain;
 using EHRIntegracao.Domain.Services.GetEntities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace EHRIntegracao.Domain.Services.InitialCharge
 {
@@ -41,20 +40,20 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
-        private List<IPatientDTO> patients;
-        public virtual List<IPatientDTO> Patients
+        private List<IPatient> patients;
+        public virtual List<IPatient> Patients
         {
-            get { return patients ?? (patients = new List<IPatientDTO>()); }
+            get { return patients ?? (patients = new List<IPatient>()); }
             set
             {
                 patients = value;
             }
         }
 
-        private List<IPatientDTO> patientsLucene;
-        public virtual List<IPatientDTO> PatientsLucene
+        private List<IPatient> patientsLucene;
+        public virtual List<IPatient> PatientsLucene
         {
-            get { return patientsLucene ?? (patientsLucene = new List<IPatientDTO>()); }
+            get { return patientsLucene ?? (patientsLucene = new List<IPatient>()); }
             set
             {
                 patientsLucene = value;
@@ -146,7 +145,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             Patients = Patients.Where(RemoveExistinPatient).ToList();
         }
 
-        private bool RemoveExistinPatient(IPatientDTO patient)
+        private bool RemoveExistinPatient(IPatient patient)
         {
             return !PatientsLucene.Any(p => p.GetCPF() == patient.GetCPF());
         }

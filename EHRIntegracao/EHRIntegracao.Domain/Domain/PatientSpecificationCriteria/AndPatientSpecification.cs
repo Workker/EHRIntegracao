@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared.Interfaces;
 using NHibernate;
 
 namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria
@@ -19,13 +14,13 @@ namespace EHRIntegracao.Domain.Domain.PatientSpecificationCriteria
             Other = patientB;
         }
 
-        public override void AddCriteria(IPatientDTO candidate, ICriteria criteria)
+        public override void AddCriteria(IPatient candidate, ICriteria criteria)
         {
             One.AddCriteria(candidate, criteria);
             Other.AddCriteria(candidate, criteria);
         }
 
-        public override bool IsSatisfiedBy(IPatientDTO candidate)
+        public override bool IsSatisfiedBy(IPatient candidate)
         {
             return true;
         }

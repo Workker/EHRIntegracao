@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Services.Integration;
 using NUnit.Framework;
 using Rhino;
@@ -20,8 +21,8 @@ namespace EHRIntegracao.Test.Service
         {
             GetPatientsByPatient service = new GetPatientsByPatient();
             service.GetPatientsService = MockRepository.GenerateMock<GetPatientsService>();
-            service.GetPatientsService.Expect(s => s.GetPatients(DbEnum.Bangu, new PatientDTO())).IgnoreArguments().Return(new List<IPatientDTO>());
-            var patients = service.GetAll(new PatientDTO() { Name = "Marcelo",Hospital = DbEnum.Bangu});
+            service.GetPatientsService.Expect(s => s.GetPatients(DbEnum.Bangu, new Patient())).IgnoreArguments().Return(new List<IPatient>());
+            var patients = service.GetAll(new Patient() { Name = "Marcelo",Hospital = DbEnum.Bangu});
 
             Assert.NotNull(patients);
         }
@@ -31,8 +32,8 @@ namespace EHRIntegracao.Test.Service
         {
             GetPatientsByPatient service = new GetPatientsByPatient();
             service.GetPatientsService = MockRepository.GenerateMock<GetPatientsService>();
-            service.GetPatientsService.Expect(s => s.GetPatients(DbEnum.Bangu, new PatientDTO())).IgnoreArguments().Return(new List<IPatientDTO>());
-            var patients = service.GetAll(new PatientDTO() { Name = "Marcelo" });
+            service.GetPatientsService.Expect(s => s.GetPatients(DbEnum.Bangu, new Patient())).IgnoreArguments().Return(new List<IPatient>());
+            var patients = service.GetAll(new Patient() { Name = "Marcelo" });
 
             Assert.NotNull(patients);
         }

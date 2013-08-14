@@ -1,24 +1,19 @@
-﻿using System;
+﻿using Db4objects.Db4o;
+using Db4objects.Db4o.CS;
+using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Db4objects.Db4o;
-using Db4objects.Db4o.CS;
-using Db4objects.Db4o.Query;
-using EHR.CoreShared;
-using EHRIntegracao.Domain.Domain;
-using EHRIntegracao.Domain.Factorys;
 
 
 namespace EHRIntegracao.Domain.Repository
 {
     public class PatientsDbFor
     {
-        public virtual void inserirPacientes(IList<IPatientDTO> patients)
+        public virtual void inserirPacientes(IList<IPatient> patients)
         {
-            IList<IPatientDTO> patientsLote1 = new List<IPatientDTO>();
-            IList<IPatientDTO> patientsLote2 = new List<IPatientDTO>();
+            IList<IPatient> patientsLote1 = new List<IPatient>();
+            IList<IPatient> patientsLote2 = new List<IPatient>();
 
             for (int i = 0; i < patients.Count / 2; i++)
             {
@@ -40,27 +35,27 @@ namespace EHRIntegracao.Domain.Repository
             }
         }
 
-        public virtual IList<IPatientDTO> Todos(IPatientDTO patient, DbEnum dbEnum)
+        public virtual IList<IPatient> Todos(IPatient patient, DbEnum dbEnum)
         {
-            IList<IPatientDTO> patients = new List<IPatientDTO>();
+            IList<IPatient> patients = new List<IPatient>();
             using (IObjectServer server = Db4oClientServer.OpenServer("E://Projetos//EHR//PatientsHospital", 0))
             {
                 using (IObjectContainer db = server.OpenClient())
                 {
-                    var iobject = db.Query<IPatientDTO>(p => p.Name.Contains(patient.Name) && p.Hospital == dbEnum);
-                    patients = iobject.Cast<IPatientDTO>().ToList();
+                    var iobject = db.Query<IPatient>(p => p.Name.Contains(patient.Name) && p.Hospital == dbEnum);
+                    patients = iobject.Cast<IPatient>().ToList();
                 }
             }
             return patients;
         }
 
-        public virtual IList<IPatientDTO> Todos()
+        public virtual IList<IPatient> Todos()
         {
-            IList<IPatientDTO> patients = new List<IPatientDTO>();
+            IList<IPatient> patients = new List<IPatient>();
             using (IObjectContainer db = Db4oEmbedded.OpenFile("PatientsHospital"))
             {
-                var Iobject = db.QueryByExample(typeof(IPatientDTO));
-                patients = Iobject.Cast<IPatientDTO>().ToList();
+                var Iobject = db.QueryByExample(typeof(IPatient));
+                patients = Iobject.Cast<IPatient>().ToList();
             }
 
             return patients;
