@@ -1,4 +1,5 @@
-﻿using EHRIntegracao.Domain.Common;
+﻿using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Common;
 using System;
 
 namespace EHRIntegracao.Domain.Domain

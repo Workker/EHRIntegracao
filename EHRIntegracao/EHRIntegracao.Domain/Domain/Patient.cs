@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Common;
 
 namespace EHRIntegracao.Domain.Domain

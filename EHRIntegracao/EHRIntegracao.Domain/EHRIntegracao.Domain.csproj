@@ -99,7 +99,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\IAggregateRoot.cs" />
     <Compile Include="Common\IRepositoryBase.cs" />
     <Compile Include="Domain\Patient.cs" />
     <Compile Include="Domain\PatientSpecificationCriteria\FactoryPatientSpecification.cs" />

@@ -1,5 +1,6 @@
 ﻿using System;
 using EHR.CoreShared;
+using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Factorys;
 using System.Collections.Generic;
 using System.Linq;
