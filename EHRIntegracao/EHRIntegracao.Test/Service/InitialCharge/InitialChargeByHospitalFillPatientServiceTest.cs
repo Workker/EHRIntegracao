@@ -22,10 +22,10 @@ namespace EHRIntegracao.Test.Service.InitialCharge
             var initialCharge = new InitialChargeByHospitalFillPatientService();
 
             initialCharge.GetPatientsService = MockRepository.GenerateMock<GetPatientsService>();
-            initialCharge.GetPatientsService.Expect(g => g.GetPatients(DbEnum.Copa, new Patient())).IgnoreArguments()
+            initialCharge.GetPatientsService.Expect(g => g.GetPatients(DbEnum.CopaDor, new Patient())).IgnoreArguments()
                 .Return(new List<IPatient>());
 
-            initialCharge.DoSearch(DbEnum.Copa, new Patient());
+            initialCharge.DoSearch(DbEnum.CopaDor, new Patient());
 
             Assert.NotNull(initialCharge.Patients);
         }
@@ -36,14 +36,14 @@ namespace EHRIntegracao.Test.Service.InitialCharge
             var initialCharge = new InitialChargeByHospitalFillPatientService();
 
             initialCharge.GetPatientsService = MockRepository.GenerateMock<GetPatientsService>();
-            initialCharge.GetPatientsService.Expect(g => g.GetPatients(DbEnum.Copa, new Patient())).IgnoreArguments()
+            initialCharge.GetPatientsService.Expect(g => g.GetPatients(DbEnum.CopaDor, new Patient())).IgnoreArguments()
                 .Return(new List<IPatient>()
                             {
                                 new Patient(){DateBirthday = new DateTime(1989,06,27),CPF = "14041907756"}
                             }
                 );
 
-            initialCharge.DoSearch(DbEnum.Copa, new Patient());
+            initialCharge.DoSearch(DbEnum.CopaDor, new Patient());
 
             Assert.IsTrue(initialCharge.Patients.Count == 1);
         }

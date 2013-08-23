@@ -63,7 +63,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         public virtual void DoSearch()
         {
             var dbs = GetValues();
-            foreach (var db in dbs.Where(d => d != DbEnum.Rios))
+            foreach (var db in dbs.Where(d => d != DbEnum.RiosDor))
             {
                 if (db == DbEnum.sumario)
                     continue;

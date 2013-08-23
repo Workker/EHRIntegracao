@@ -23,7 +23,7 @@ namespace EHRIntegracao.Domain.Factorys
                     return "QuintaDor";
                 case DbEnum.Bangu:
                     return "Bangu";
-                case DbEnum.Copa:
+                case DbEnum.CopaDor:
                     return "Copa";
                 case DbEnum.Esperanca:
                     return "Esperanca";
@@ -31,9 +31,9 @@ namespace EHRIntegracao.Domain.Factorys
                     return "Norte";
                 case DbEnum.Pronto:
                     return "Pronto";
-                case DbEnum.Rios:
+                case DbEnum.RiosDor:
                     return "Rios";
-                case DbEnum.SM:
+                case DbEnum.SaoMarcos:
                     return "SM";
                 default:
                     throw new Exception("Nenhuma chave corresponde ao valor informado");
