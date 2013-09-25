@@ -7,13 +7,13 @@ namespace EHRIntegracao.Domain.Services.GetEntities
 {
     public class GetCidFromLuceneService
     {
-        private LuceneClientCid luceneClientCid;
-        public virtual LuceneClientCid LuceneClientCid
+        private LuceneClientCID _luceneClientCid;
+        public virtual LuceneClientCID LuceneClientCid
         {
-            get { return luceneClientCid ?? (luceneClientCid = new LuceneClientCid("")); }
+            get { return _luceneClientCid ?? (_luceneClientCid = new LuceneClientCID("C:\\")); }
             set
             {
-                luceneClientCid = value;
+                _luceneClientCid = value;
             }
         }
 

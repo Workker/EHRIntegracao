@@ -8,8 +8,8 @@ namespace EHRIntegracao.Domain.Services.SaveLucene
     {
         public void Save(List<CID> cids)
         {
-            var lucene = new LuceneClientCid("");
-            lucene.AddUpdateLuceneIndex(cids);
+            var lucene = new LuceneClientCID("C:\\");
+            lucene.UpdateIndex(cids);
         }
     }
 }

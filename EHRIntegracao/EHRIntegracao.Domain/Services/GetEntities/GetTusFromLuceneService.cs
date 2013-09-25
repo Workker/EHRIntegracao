@@ -7,17 +7,17 @@ namespace EHRIntegracao.Domain.Services.GetEntities
 {
     public class GetTusFromLuceneService
     {
-        private LuceneClientTus luceneClientTus;
-        public virtual LuceneClientTus LuceneClientTus
+        private LuceneClientTUSS _luceneClientTus;
+        public virtual LuceneClientTUSS LuceneClientTus
         {
-            get { return luceneClientTus ?? (luceneClientTus = new LuceneClientTus("")); }
+            get { return _luceneClientTus ?? (_luceneClientTus = new LuceneClientTUSS("C:\\")); }
             set
             {
-                luceneClientTus = value;
+                _luceneClientTus = value;
             }
         }
 
-        public List<TUS> GetTus(string code)
+        public List<TUSS> GetTus(string code)
         {
             return LuceneClientTus.SimpleSearch(code).ToList();
         }

@@ -6,10 +6,10 @@ namespace EHRIntegracao.Domain.Services.SaveLucene
 {
     public class SaveTusInLuceneService
     {
-        public void Save(List<TUS> tus)
+        public void Save(List<TUSS> tuss)
         {
-            var lucene = new LuceneClientTus("");
-            lucene.AddUpdateLuceneIndex(tus);
+            var lucene = new LuceneClientTUSS("C:\\");
+            lucene.UpdateIndex(tuss);
         }
     }
 }
