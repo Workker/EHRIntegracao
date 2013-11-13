@@ -1,36 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using FluentNHibernate.Cfg.Db;
+﻿using FluentNHibernate.Cfg.Db;
 
 namespace EHRIntegracao.Domain.Factorys
 {
     public class FactoryIPersisterProvider
     {
-        public static IPersistenceConfigurer GetPersistence(DbEnum conexaoEnum)
+        public static IPersistenceConfigurer GetPersistence(string key)
         {
-            switch (conexaoEnum)
+            switch (key)
             {
-                //case DbEnum.BarraDor:
-                //    return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
-                //  .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
-                //  );
-
-                case DbEnum.QuintaDor:
+                case "QuintaDor":
                     return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
-                    .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
+                    .FromAppSetting(key)
                     );
 
-                case DbEnum.sumario:
+                case "Sumario":
                     return MsSqlConfiguration.MsSql2008.ConnectionString(c => c
-                .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
+                .FromAppSetting(key)
                 );
                 default:
                     return OracleClientConfiguration.Oracle10.ShowSql().ConnectionString(c => c
-             .FromAppSetting(FacotoryAppValues.GetValue(conexaoEnum))
+             .FromAppSetting(key)
              );
 
             }

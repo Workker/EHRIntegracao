@@ -1,4 +1,4 @@
-﻿using EHR.CoreShared;
+﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
@@ -30,26 +30,26 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-        public virtual IList<ITreatment> GetTreatments(DbEnum db)
+        public virtual IList<ITreatment> GetTreatments(Hospital hospital)
         {
             ClearPatient();
 
-            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(db));
+            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(hospital));
 
             var treatment = TreatmentRepository.GetAll();
-            TreatmentConverter(treatment, db);
+            TreatmentConverter(treatment, hospital);
 
             return Treatments;
         }
 
-        public virtual IList<ITreatment> GetPeriodicTreatments(DbEnum db)
+        public virtual IList<ITreatment> GetPeriodicTreatments(Hospital hospital)
         {
             ClearPatient();
 
-            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(db));
+            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(hospital));
 
             var treatment = TreatmentRepository.GetPeriodicTreatment();
-            TreatmentConverter(treatment, db);
+            TreatmentConverter(treatment, hospital);
 
             return Treatments;
         }
@@ -59,7 +59,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             Treatments = null;
         }
 
-        private void TreatmentConverter(IList<EHRIntegracao.Domain.Domain.Treatment> treatment, DbEnum db)
+        private void TreatmentConverter(IList<EHRIntegracao.Domain.Domain.Treatment> treatment, Hospital hospital)
         {
             foreach (var t in treatment)
             {
@@ -70,7 +70,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
                     Id = t.Id,
                     CheckOutDate = t.CheckOutDate,
                     EntryDate = t.EntryDate,
-                    Hospital = db
+                    Hospital = hospital
                 };
 
                 Treatments.Add(tratmentDto);

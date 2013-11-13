@@ -1,6 +1,6 @@
 ﻿using Db4objects.Db4o;
 using Db4objects.Db4o.CS;
-using EHR.CoreShared;
+using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,14 +35,14 @@ namespace EHRIntegracao.Domain.Repository
             }
         }
 
-        public virtual IList<IPatient> Todos(IPatient patient, DbEnum dbEnum)
+        public virtual IList<IPatient> Todos(IPatient patient, Hospital hospital)
         {
             IList<IPatient> patients = new List<IPatient>();
             using (IObjectServer server = Db4oClientServer.OpenServer("E://Projetos//EHR//PatientsHospital", 0))
             {
                 using (IObjectContainer db = server.OpenClient())
                 {
-                    var iobject = db.Query<IPatient>(p => p.Name.Contains(patient.Name) && p.Hospital == dbEnum);
+                    var iobject = db.Query<IPatient>(p => p.Name.Contains(patient.Name) && p.Hospital == hospital);
                     patients = iobject.Cast<IPatient>().ToList();
                 }
             }

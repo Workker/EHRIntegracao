@@ -1,25 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared.Entities;
 using EHRIntegracao.Domain.Mapping;
 using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
 using NHibernate;
 
 namespace EHRIntegracao.Domain.Factorys
 {
     public class FactorryNhibernate
     {
-        public static ISessionFactory GetSession(DbEnum conexao)
+        public static ISessionFactory GetSession(Hospital hospital)
         {
-
             return
                  Fluently.Configure()
             .ExposeConfiguration(c => c.SetProperty("current_session_context_class", "thread_static"))
-            .Database(FactoryIPersisterProvider.GetPersistence(conexao)).Mappings(m => m.FluentMappings.AddFromAssemblyOf<PatientMap>()).BuildSessionFactory();
+            .Database(FactoryIPersisterProvider.GetPersistence(hospital.Key)).Mappings(m => m.FluentMappings.AddFromAssemblyOf<PatientMap>()).BuildSessionFactory();
         }
 
     }

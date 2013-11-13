@@ -1,4 +1,5 @@
 ﻿using EHR.CoreShared;
+using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.Domain;
@@ -103,9 +104,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             {
                 foreach (var db in dbs)
                 {
-                    if (db == DbEnum.sumario)
-                        continue;
-
                     DoSearchPatients(db);
                 }
 
@@ -126,14 +124,14 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             SavePatientsLuceneService.SavePatientsLucene(Patients.ToList());
         }
 
-        private List<DbEnum> GetValues()
+        private IList<Hospital> GetValues()
         {
             return GetValuesDbEnumService.GetValues();
         }
 
-        private void DoSearchPatients(DbEnum db)
+        private void DoSearchPatients(Hospital hospital)
         {
-            InitialChargeByHospitalFillPatientService.DoSearchPeriodicCharge(db);
+            InitialChargeByHospitalFillPatientService.DoSearchPeriodicCharge(hospital);
             Patients.AddRange(initialChargeByHospitalFillPatientService.Patients);
         }
 
@@ -155,6 +153,5 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             associatePatientsToTreatmentsService = new AssociateTreatmentsAsyncService(this.Patients);
             associatePatientsToTreatmentsService.Executar();
         }
-
     }
 }

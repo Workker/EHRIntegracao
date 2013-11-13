@@ -1,5 +1,4 @@
-﻿using EHR.CoreShared;
-using EHRIntegracao.Domain.Factorys;
+﻿using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 using NUnit.Framework;
 using System;
@@ -14,7 +13,9 @@ namespace EHRIntegracao.Test.Integration
         [Ignore]
         public void IntegrarPacientesRedeDor()
         {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
+            var repository = new Hospitals();
+            var hospital = repository.GetBy("QuintaDor");
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
 
 
             var resultados = pacientes.All<EHRIntegracao.Domain.Domain.Patient>();
@@ -35,7 +36,7 @@ namespace EHRIntegracao.Test.Integration
             }
             pacientes.Dispose();
             resultados = null;
-            var patietsRepositrory = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
+            var patietsRepositrory = new PatientRepository(FactorryNhibernate.GetSession(hospital));
             patietsRepositrory.SalvarLista(patients);
         }
 
@@ -43,7 +44,9 @@ namespace EHRIntegracao.Test.Integration
         [Ignore]
         public void SalvarEdeletarPaciente()
         {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
+            var repository = new Hospitals();
+            var hospital = repository.GetBy("QuintaDor");
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
             var paciente = new EHRIntegracao.Domain.Domain.Patient() { Id = "JK", DateBirthday = DateTime.Now, Identity = "sas", Name = "javet", Cpf = "234" };
 
             pacientes.Save<string>(paciente);

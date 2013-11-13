@@ -1,4 +1,5 @@
 ﻿using EHR.CoreShared;
+using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,7 @@ namespace EHRIntegracao.Domain.Services.Domain
                         if (string.IsNullOrEmpty(patientUnique.Id))
                         {
                             patientUnique = patient;
-                            patient.AddRecord(new Record() { Code = patient.Id, Hospital = patient.Hospital.Value });
+                            patient.AddRecord(new Record() { Code = patient.Id/*, Hospital = patient.Hospital.Value todo: implementar */ });
                             PatientsDb.Add(patient);
                         }
                         else
@@ -43,9 +44,7 @@ namespace EHRIntegracao.Domain.Services.Domain
                                     continue;
                             }
 
-
-
-                            patientUnique.AddRecord(new Record() { Code = patient.Id, Hospital = patient.Hospital.Value });
+                            patientUnique.AddRecord(new Record() { Code = patient.Id, /*, Hospital = patient.Hospital.Value todo: implementar */  });
                         }
                     }
                 }

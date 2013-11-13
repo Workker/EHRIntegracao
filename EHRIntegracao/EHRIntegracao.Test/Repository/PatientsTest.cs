@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EHR.CoreShared;
+using EHR.CoreShared.Entities;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 
@@ -20,7 +21,9 @@ namespace EHRIntegracao.Test.Repository
         //Teste de massa grande não executar
         public void AllPatient()
         {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
+            var repositoryH = new Hospitals();
+            var hospital = repositoryH.GetBy("QuintaDor");
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
 
             var resultados = pacientes.All<Patient>();
 
@@ -32,7 +35,9 @@ namespace EHRIntegracao.Test.Repository
         [Ignore]
         public void AllPatientWithPeriod()
         {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.CopaDor));
+            var repositoryH = new Hospitals();
+            var hospital = repositoryH.GetBy("QuintaDor");
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
 
             var resultados = pacientes.GetPatientsWithPeriod();
 
@@ -43,7 +48,9 @@ namespace EHRIntegracao.Test.Repository
         [Test]
         public void AllPatientByCriterion()
         {
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.QuintaDor));
+            var repositoryH = new Hospitals();
+            var hospital = repositoryH.GetBy("QuintaDor");
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
 
             var resultados = pacientes.GetPatientsBy(new Patient() { Identity = "198000" });
 

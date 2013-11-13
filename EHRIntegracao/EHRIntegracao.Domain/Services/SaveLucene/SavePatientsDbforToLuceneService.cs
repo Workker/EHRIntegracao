@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
+﻿using EHR.CoreShared.Entities;
 using EHRIntegracao.Domain.Services.GetEntities;
-
+using System.Linq;
 
 namespace EHRIntegracao.Domain.Services
 {
     public class SavePatientsDbforToLuceneService
     {
-        public virtual void Save(DbEnum db)
+        public virtual void Save(Hospital hospital)
         {
             var service = new GetPatientsService();
             var serviceLucene = new SavePatientsLuceneService();

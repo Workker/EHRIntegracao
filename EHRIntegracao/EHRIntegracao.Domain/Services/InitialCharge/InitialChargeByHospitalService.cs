@@ -1,4 +1,4 @@
-﻿using EHR.CoreShared;
+﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.Domain;
@@ -53,7 +53,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         private AssociateTreatmentsAsyncService associatePatientsToTreatmentsService;
 
-
         private RemoveDuplicatePatientService removeDuplicatePatientService;
         public virtual RemoveDuplicatePatientService RemoveDuplicatePatientService
         {
@@ -78,26 +77,23 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         public virtual void DoSearch(IPatient patientDTO)
         {
-            Assertion.NotNull(patientDTO, "Paciente não informado.").Validate();
+            Assertion.NotNull(patientDTO, "Patient uninformed.").Validate();
             try
             {
                 var dbs = GetValues();
 
-                foreach (var db in dbs.Where(dv => dv == DbEnum.QuintaDor))
-                {
-                    if (db == DbEnum.sumario)
-                        continue;
+                //foreach (var db in dbs.Where(dv => dv == DbEnum.QuintaDor))
+                //{
+                //    DoSearchPatients(patientDTO, db);
+                //} todo: alterar
 
-                    DoSearchPatients(patientDTO, db);
-                }
-
-                Console.WriteLine("Removendo Pacientes");
+                Console.WriteLine("Removing Patients.");
                 RemoveExistingPatients();
 
-                Console.WriteLine("Agrupando Tratamentos");
+                Console.WriteLine("Grouping Treatments");
                 GroupTreatment();
 
-                Console.WriteLine("Salvando Pacientes");
+                Console.WriteLine("Saving Patients.");
                 SavePatients();
             }
             catch (Exception ex)
@@ -105,10 +101,9 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
                 throw ex;
             }
-
         }
 
-        private List<DbEnum> GetValues()
+        private IList<Hospital> GetValues()
         {
             return GetValuesDbEnumService.GetValues();
         }
@@ -119,9 +114,9 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             SavePatientsLuceneService.SavePatientsLucene(Patients.ToList());
         }
 
-        private void DoSearchPatients(IPatient patientDTO, DbEnum db)
+        private void DoSearchPatients(IPatient patientDTO, Hospital hospital)
         {
-            InitialChargeByHospitalFillPatientService.DoSearch(db, patientDTO);
+            InitialChargeByHospitalFillPatientService.DoSearch(hospital, patientDTO);
             Patients.AddRange(initialChargeByHospitalFillPatientService.Patients);
         }
 

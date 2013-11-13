@@ -1,7 +1,7 @@
-﻿using EHR.CoreShared;
+﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.GetEntities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Workker.Framework.Domain;
@@ -37,19 +37,21 @@ namespace EHRIntegracao.Domain.Services.Integration
 
             if (patient.Hospital != null)
             {
-                var patients = GetPatientsService.GetPatients(patient.Hospital.Value, patient);
+                var patients = GetPatientsService.GetPatients(patient.Hospital, patient);
                 return patients;
             }
 
-            var dbs = Enum.GetValues(typeof(DbEnum));
-            foreach (var db in dbs)
+            var repository = new Hospitals();
+            var hospitals = repository.All<Hospital>();
+            
+            foreach (var item in hospitals)
             {
-                var banco = (DbEnum)db;
-                if (banco == DbEnum.sumario)
+                var hospital = item;
+                if (item.Key.Equals("Sumario"))
                     continue;
 
                 //TODO Acessar query com filtro de 6 dias de Range.
-                var patients = GetPatientsService.GetPatients(banco, patient);
+                var patients = GetPatientsService.GetPatients(hospital, patient);
 
                 if (patients != null)
                     Patients.ToList().AddRange(patients);

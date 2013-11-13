@@ -1,4 +1,4 @@
-﻿using EHR.CoreShared;
+﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Domain.PatientSpecificationIntegration;
@@ -31,23 +31,23 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
-        public virtual void DoSearch(DbEnum db, IPatient patientDTO)
+        public virtual void DoSearch(Hospital hospital, IPatient patientDTO)
         {
-            Assertion.NotNull(db, "Banco não informado.").Validate();
+            Assertion.NotNull(hospital, "Banco não informado.").Validate();
             Assertion.NotNull(patientDTO, "Paciente não informado.").Validate();
 
             ClearPatient();
-            Patients = GetPatientsService.GetPatients(db, patientDTO);
+            Patients = GetPatientsService.GetPatients(hospital, patientDTO);
             ValidateCPFPatient();
             ValidadeBirthday();
         }
 
-        public virtual void DoSearchPeriodicCharge(DbEnum db)
+        public virtual void DoSearchPeriodicCharge(Hospital hospital)
         {
-            Assertion.NotNull(db, "Banco não informado.").Validate();
+            Assertion.NotNull(hospital, "Banco não informado.").Validate();
 
             ClearPatient();
-            Patients = GetPatientsService.GetPatientsPeriodicCharge(db);
+            Patients = GetPatientsService.GetPatientsPeriodicCharge(hospital);
             ValidateCPFPatient();
             ValidadeBirthday();
         }

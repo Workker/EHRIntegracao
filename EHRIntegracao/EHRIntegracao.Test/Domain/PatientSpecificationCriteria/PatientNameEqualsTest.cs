@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EHR.CoreShared;
+using EHR.CoreShared.Entities;
 using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria.PatientSpecification;
 
 using EHRIntegracao.Test.Mocks;

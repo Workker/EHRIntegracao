@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHRIntegracao.Domain.Domain;
+﻿using EHRIntegracao.Domain.Domain;
 using NHibernate;
-using NHibernate.Transform;
-using NHibernate.Criterion;
+using System;
+using System.Collections.Generic;
 
 namespace EHRIntegracao.Domain.Repository
 {
-    public class TreatmentRepository : BaseRepository
+    public class TreatmentRepository : IntegrationRepository
     {
         public TreatmentRepository()
         {

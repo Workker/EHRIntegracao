@@ -1,4 +1,5 @@
 ﻿using EHR.CoreShared;
+using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Services.GetEntities;
 using System.Collections.Generic;
@@ -58,18 +59,13 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
-
-
         public virtual void DoSearch()
         {
             var dbs = GetValues();
-            foreach (var db in dbs.Where(d => d != DbEnum.RiosDor))
-            {
-                if (db == DbEnum.sumario)
-                    continue;
-
-                DoSearchTreatments(db);
-            }
+            //foreach (var db in dbs.Where(d => d != DbEnum.RiosDor))
+            //{
+            //    DoSearchTreatments(db);
+            //} todo: alterar
             SaveTreatments();
         }
 
@@ -78,9 +74,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             var dbs = GetValues();
             foreach (var db in dbs)
             {
-                if (db == DbEnum.sumario)
-                    continue;
-
                 DoSearchTreatmentsPeriodic(db);
             }
 
@@ -95,19 +88,19 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             Treatments = Treatments.Where(NotExist).ToList();
         }
 
-        private void DoSearchTreatments(DbEnum db)
+        private void DoSearchTreatments(Hospital hospital)
         {
-            var treatment = GetTreatmentService.GetTreatments(db);
+            var treatment = GetTreatmentService.GetTreatments(hospital);
             Treatments.AddRange(treatment);
         }
 
-        private void DoSearchTreatmentsPeriodic(DbEnum db)
+        private void DoSearchTreatmentsPeriodic(Hospital hospital)
         {
-            var treatment = GetTreatmentService.GetPeriodicTreatments(db);
+            var treatment = GetTreatmentService.GetPeriodicTreatments(hospital);
             Treatments.AddRange(treatment);
         }
 
-        private List<DbEnum> GetValues()
+        private IList<Hospital> GetValues()
         {
             return GetValuesDbEnumService.GetValues();
         }

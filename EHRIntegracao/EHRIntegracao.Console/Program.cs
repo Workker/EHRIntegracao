@@ -31,8 +31,8 @@ namespace EHRIntegracao.Console
             //var resultados = pacientes.GetPatientsWithPeriod();
 
 
-            var integration = new IntregationPeriodicCharge();
-            integration.Do();
+            //var integration = new IntregationPeriodicCharge();
+            //integration.Do();
 
             //service.Patients = new List<IPatientDTO>();
             //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa ,Records = new List<RecordDTO>(){new RecordDTO(){Hospital = DbEnum.Copa,Code ="123"}}});

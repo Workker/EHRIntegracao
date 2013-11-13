@@ -1,4 +1,4 @@
-﻿using EHR.CoreShared;
+﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria;
 using NHibernate;
@@ -9,7 +9,7 @@ using System.Linq;
 namespace EHRIntegracao.Domain.Repository
 {
 
-    public class PatientRepository : BaseRepository
+    public class PatientRepository : IntegrationRepository
     {
         public PatientRepository()
         {

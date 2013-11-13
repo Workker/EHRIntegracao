@@ -1,4 +1,5 @@
 ﻿using EHR.CoreShared;
+using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
@@ -14,8 +15,10 @@ namespace EHRIntegracao.Test.Repository
         [Ignore]
         public void obter_todos_paciente_teste()
         {
+            var repositoryH = new Hospitals();
+            var hospital = repositoryH.GetBy("QuintaDor");
             PatientsDbFor repository = new PatientsDbFor();
-            IList<IPatient> patients = repository.Todos(new Patient() { }, DbEnum.QuintaDor);
+            IList<IPatient> patients = repository.Todos(new Patient() { }, hospital);
 
             Assert.NotNull(patients);
         }

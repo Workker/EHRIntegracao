@@ -1,4 +1,5 @@
 ﻿using EHR.CoreShared;
+using EHR.CoreShared.Entities;
 using EHRLucene.Domain;
 using System.Collections.Generic;
 using System.Linq;

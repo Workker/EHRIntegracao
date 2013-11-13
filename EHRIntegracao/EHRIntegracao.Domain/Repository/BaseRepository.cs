@@ -1,35 +1,26 @@
-﻿using System;
-using EHR.CoreShared;
-using EHR.CoreShared.Interfaces;
-using EHRIntegracao.Domain.Factorys;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHRIntegracao.Domain.Common;
-using EHRIntegracao.Domain.Mapping;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
+﻿using EHR.CoreShared.Interfaces;
 using NHibernate;
-using System.Configuration;
+using System.Collections.Generic;
 
 namespace EHRIntegracao.Domain.Repository
 {
-    public abstract class BaseRepository : IDisposable
+    public abstract class BaseRepository
     {
+        #region Properties
+
         public const string NHibernateSessionKey = "nhibernate.session.key";
-        public static ISessionFactory Factory = CreateSessionFactory();
-
-        private static ISession _session;
-        private static readonly object SyncObj = 1;
-
+        public static ISessionFactory Factory;
+        protected static ISession _session;
+        protected static readonly object SyncObj = 1;
         public static ISession Session
         {
             get { return _session ?? (_session = GetCurrentSession()); }
             set { _session = value; }
         }
 
-        #region Métodos Genericos para acesso ao BD
+        #endregion
+
+        #region Constructors
 
         public BaseRepository() { }
 
@@ -47,17 +38,13 @@ namespace EHRIntegracao.Domain.Repository
             _session = Factory.OpenSession();
         }
 
-        public void AlterFactory(DbEnum db)
-        {
-            Factory = FactorryNhibernate.GetSession(db);
-            _session = null;
-        }
+        #endregion
 
-        public void Dispose()
+        #region Methods Generics to acess Database
+
+        public virtual IList<T> All<T>()
         {
-            _session.Disconnect();
-            _session.Dispose();
-            _session = null;
+            return Session.CreateCriteria(typeof(T)).List<T>();
         }
 
         public virtual void Save<T>(IAggregateRoot<T> root)
@@ -74,38 +61,9 @@ namespace EHRIntegracao.Domain.Repository
             transaction.Commit();
         }
 
-        public virtual IList<T> All<T>()
-        {
-            return Session.CreateCriteria(typeof(T)).List<T>();
-        }
-
-        public virtual T Get<T>(int id)
-        {
-            return Session.Get<T>(id);
-        }
-
-        public virtual void SalvarLista(List<IAggregateRoot<int>> roots)
-        {
-            var transaction = Session.BeginTransaction();
-
-            try
-            {
-                foreach (var root in roots)
-                {
-                    Session.SaveOrUpdate(root);
-                }
-                transaction.Commit();
-            }
-            catch (System.Exception ex)
-            {
-                transaction.Rollback();
-                throw ex;
-            }
-        }
-
         #endregion
 
-        #region Métodos de Sessão e Transação
+        #region Methods of Session and Transaction
 
         public static void CloseTransaction(ITransaction transaction)
         {
@@ -122,20 +80,7 @@ namespace EHRIntegracao.Domain.Repository
 
         }
 
-
-        public static ISessionFactory CreateSessionFactory()
-        {
-            if (Factory == null && NotConsole())
-                return FactorryNhibernate.GetSession(DbEnum.sumario);
-            else
-                return Factory;
-
-        }
-
-        private static bool NotConsole()
-        {
-            return ConfigurationManager.AppSettings["Ambiente"].ToString() != "Console";
-        }
+        public abstract ISessionFactory CreateSessionFactory();
 
         #endregion
     }
