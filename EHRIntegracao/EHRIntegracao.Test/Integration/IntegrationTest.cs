@@ -15,7 +15,7 @@ namespace EHRIntegracao.Test.Integration
         {
             var repository = new Hospitals();
             var hospital = repository.GetBy("QuintaDor");
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
 
 
             var resultados = pacientes.All<EHRIntegracao.Domain.Domain.Patient>();
@@ -36,7 +36,7 @@ namespace EHRIntegracao.Test.Integration
             }
             pacientes.Dispose();
             resultados = null;
-            var patietsRepositrory = new PatientRepository(FactorryNhibernate.GetSession(hospital));
+            var patietsRepositrory = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
             patietsRepositrory.SalvarLista(patients);
         }
 
@@ -46,7 +46,7 @@ namespace EHRIntegracao.Test.Integration
         {
             var repository = new Hospitals();
             var hospital = repository.GetBy("QuintaDor");
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
             var paciente = new EHRIntegracao.Domain.Domain.Patient() { Id = "JK", DateBirthday = DateTime.Now, Identity = "sas", Name = "javet", Cpf = "234" };
 
             pacientes.Save<string>(paciente);

@@ -116,7 +116,7 @@
     <Compile Include="Domain\ValidadorCPF.cs" />
     <Compile Include="Factorys\FacotoryAppKeys.cs" />
     <Compile Include="Factorys\FactorryNhibernate.cs" />
-    <Compile Include="Factorys\FactoryGetIPersisterProvider.cs" />
+    <Compile Include="Mapping\DatabaseMap.cs" />
     <Compile Include="Mapping\HospitalMap.cs" />
     <Compile Include="Mapping\PatientMap.cs" />
     <Compile Include="Mapping\StateMap.cs" />

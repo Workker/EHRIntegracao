@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EHR.CoreShared;
-using EHRIntegracao.Domain.Factorys;
-using EHRIntegracao.Domain.Repository;
-using EHRIntegracao.Domain.Services;
-using EHRIntegracao.Domain.Services.InitialCharge;
-using EHRIntegracao.Domain.Services.Integration;
+﻿using EHRIntegracao.Domain.Services.InitialCharge;
 
 namespace EHRIntegracao.Console
 {
@@ -16,15 +6,16 @@ namespace EHRIntegracao.Console
     {
         static void Main(string[] args)
         {
-       //     //
-       //     TreatmentsLuceneService service = new TreatmentsLuceneService();
-       //     var tretments = service.GetTreatments(new PatientDTO() { Id = "000001707" });
-            //InitialChargeTreatmentByHospitalService service = new InitialChargeTreatmentByHospitalService();
-            //service.DoSearch();
 
-         //   InitialChargeByHospitalService service = new InitialChargeByHospitalService();
-   
-          //  service.DoSearch(new PatientDTO());
+            //TreatmentsLuceneService service = new TreatmentsLuceneService();
+            //var tretments = service.GetTreatments(new PatientDTO() { Id = "000001707" });
+
+            var service = new InitialChargeTreatmentByHospitalService();
+            service.DoSearch();
+
+            //InitialChargeByHospitalService service = new InitialChargeByHospitalService();
+
+            //  service.DoSearch(new PatientDTO());
 
             //PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.Copa));
 
@@ -39,22 +30,22 @@ namespace EHRIntegracao.Console
             //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa, Records = new List<RecordDTO>() { new RecordDTO() { Hospital = DbEnum.Copa, Code = "124" } } });
             //service.Patients.Add(new PatientDTO() { Hospital = DbEnum.Copa, Records = new List<RecordDTO>() { new RecordDTO() { Hospital = DbEnum.Copa, Code = "125" } } });
 
-           
 
-           // FillPatientsDbForService service = new FillPatientsDbForService();
-           // service.Fill();
+
+            // FillPatientsDbForService service = new FillPatientsDbForService();
+            // service.Fill();
 
             //var serviceSave = new SavePatientsCacheService();
             //serviceSave.Save(DbEnum.QuintaDor);
 
             //var service = new GetPatientsLuceneService();
             //var patientsSimple = service.GetPatients("LEA");
-           //var patients =  service.GetPatientsAdvancedSearch(new PatientDTO() {Name = "LEA", DateBirthday = ""},new List<string>());
+            //var patients =  service.GetPatientsAdvancedSearch(new PatientDTO() {Name = "LEA", DateBirthday = ""},new List<string>());
 
 
-           // var service = new GetPatientRedisService();
-          //  var result = service.GetPatientByKey(DbEnum.QuintaDorWorkker);
-          
+            // var service = new GetPatientRedisService();
+            //  var result = service.GetPatientByKey(DbEnum.QuintaDorWorkker);
+
 
             //  SavePatientsCacheService service = new SavePatientsCacheService();
 

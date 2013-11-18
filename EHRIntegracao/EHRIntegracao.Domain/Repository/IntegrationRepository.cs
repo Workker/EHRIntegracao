@@ -44,14 +44,14 @@ namespace EHRIntegracao.Domain.Repository
                 var hospitals = new Hospitals();
                 var hospital = hospitals.GetBy("Sumario");
 
-                return FactorryNhibernate.GetSession(hospital);
+                return FactorryNhibernate.GetSession(hospital.Database);
             }
             return Factory;
         }
 
         public void AlterFactory(Hospital hospital)
         {
-            Factory = FactorryNhibernate.GetSession(hospital);
+            Factory = FactorryNhibernate.GetSession(hospital.Database);
             _session = null;
         }
 

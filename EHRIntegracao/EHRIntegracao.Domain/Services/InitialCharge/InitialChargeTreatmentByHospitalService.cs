@@ -1,6 +1,6 @@
-﻿using EHR.CoreShared;
-using EHR.CoreShared.Entities;
+﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.GetEntities;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,8 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 {
     public class InitialChargeTreatmentByHospitalService
     {
+        #region Properties
+
         private GetValuesDbEnumService getValuesDbEnumService;
         public virtual GetValuesDbEnumService GetValuesDbEnumService
         {
@@ -18,7 +20,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 getValuesDbEnumService = value;
             }
         }
-
         private GetTreatmentService getTreatmentService { get; set; }
         public virtual GetTreatmentService GetTreatmentService
         {
@@ -28,7 +29,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 getTreatmentService = value;
             }
         }
-
         private List<ITreatment> treatments;
         public virtual List<ITreatment> Treatments
         {
@@ -38,7 +38,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 treatments = value;
             }
         }
-
         private List<ITreatment> treatmentsLucene;
         public virtual List<ITreatment> TreatmentsLucene
         {
@@ -48,7 +47,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 treatmentsLucene = value;
             }
         }
-
         private TreatmentsLuceneService treatmentsLuceneService;
         public virtual TreatmentsLuceneService TreatmentsLuceneService
         {
@@ -59,13 +57,21 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             }
         }
 
+        #endregion
+
         public virtual void DoSearch()
         {
-            var dbs = GetValues();
-            //foreach (var db in dbs.Where(d => d != DbEnum.RiosDor))
-            //{
-            //    DoSearchTreatments(db);
-            //} todo: alterar
+            var repository = new Hospitals();
+            var hospitals = repository.GetAllCached();
+
+            foreach (var hospital in hospitals)
+            {
+                if (hospital.Database != null)
+                {
+                    DoSearchTreatments(hospital);
+                }
+            }
+
             SaveTreatments();
         }
 
@@ -79,6 +85,14 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
             RemoveTreatments();
             SaveTreatments();
+        }
+
+        public bool NotExist(ITreatment treatment)
+        {
+            return !TreatmentsLucene.Any(
+                t =>
+                t.CheckOutDate == treatment.CheckOutDate && t.EntryDate == treatment.EntryDate &&
+                t.Hospital == treatment.Hospital);
         }
 
         private void RemoveTreatments()
@@ -108,14 +122,6 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         private void SaveTreatments()
         {
             TreatmentsLuceneService.SaveTreatment(Treatments);
-        }
-
-        public bool NotExist(ITreatment treatment)
-        {
-            return !TreatmentsLucene.Any(
-                t =>
-                t.CheckOutDate == treatment.CheckOutDate && t.EntryDate == treatment.EntryDate &&
-                t.Hospital == treatment.Hospital);
         }
     }
 }

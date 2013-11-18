@@ -44,7 +44,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         {
             ClearPatient();
 
-            using (var repository = new PatientRepository(FactorryNhibernate.GetSession(hospital)))
+            using (var repository = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database)))
             {
                 var patients = repository.GetPatientsWithPeriod();
                 PatientConverter(patients, hospital);
@@ -53,14 +53,14 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             return PatientsDTO;
         }
 
-        public virtual IList<IPatient> GetPatients(Hospital db, IPatient patient)
+        public virtual IList<IPatient> GetPatients(Hospital hospital, IPatient patient)
         {
             ClearPatient();
 
-            using (var repository = new PatientRepository(FactorryNhibernate.GetSession(db)))
+            using (var repository = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database)))
             {
                 var patients = repository.GetPatientsBy(patient);
-                PatientConverter(patients, db);
+                PatientConverter(patients, hospital);
             }
 
             return PatientsDTO;

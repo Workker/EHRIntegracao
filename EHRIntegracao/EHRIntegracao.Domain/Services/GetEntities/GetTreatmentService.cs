@@ -34,7 +34,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         {
             ClearPatient();
 
-            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(hospital));
+            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(hospital.Database));
 
             var treatment = TreatmentRepository.GetAll();
             TreatmentConverter(treatment, hospital);
@@ -46,7 +46,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         {
             ClearPatient();
 
-            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(hospital));
+            TreatmentRepository = new TreatmentRepository(FactorryNhibernate.GetSession(hospital.Database));
 
             var treatment = TreatmentRepository.GetPeriodicTreatment();
             TreatmentConverter(treatment, hospital);

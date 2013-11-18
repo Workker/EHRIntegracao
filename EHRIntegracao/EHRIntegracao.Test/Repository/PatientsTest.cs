@@ -23,7 +23,7 @@ namespace EHRIntegracao.Test.Repository
         {
             var repositoryH = new Hospitals();
             var hospital = repositoryH.GetBy("QuintaDor");
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
 
             var resultados = pacientes.All<Patient>();
 
@@ -37,7 +37,7 @@ namespace EHRIntegracao.Test.Repository
         {
             var repositoryH = new Hospitals();
             var hospital = repositoryH.GetBy("QuintaDor");
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
 
             var resultados = pacientes.GetPatientsWithPeriod();
 
@@ -50,7 +50,7 @@ namespace EHRIntegracao.Test.Repository
         {
             var repositoryH = new Hospitals();
             var hospital = repositoryH.GetBy("QuintaDor");
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital));
+            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
 
             var resultados = pacientes.GetPatientsBy(new Patient() { Identity = "198000" });
 
