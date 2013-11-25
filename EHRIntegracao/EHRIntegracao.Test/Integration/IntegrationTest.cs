@@ -15,17 +15,17 @@ namespace EHRIntegracao.Test.Integration
         {
             var repository = new Hospitals();
             var hospital = repository.GetBy("QuintaDor");
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
+            PatientDTORepository pacientes = new PatientDTORepository(FactorryNhibernate.GetSession(hospital.Database));
 
 
-            var resultados = pacientes.All<EHRIntegracao.Domain.Domain.Patient>();
+            var resultados = pacientes.All<EHRIntegracao.Domain.Domain.PatientDTO>();
 
 
 
-            IList<EHRIntegracao.Domain.Domain.Patient> patients = new List<EHRIntegracao.Domain.Domain.Patient>();
+            IList<EHRIntegracao.Domain.Domain.PatientDTO> patients = new List<EHRIntegracao.Domain.Domain.PatientDTO>();
             foreach (var paciente in resultados)
             {
-                patients.Add(new EHRIntegracao.Domain.Domain.Patient()
+                patients.Add(new EHRIntegracao.Domain.Domain.PatientDTO()
                 {
                     Cpf = paciente.Cpf,
                     DateBirthday = paciente.DateBirthday,
@@ -36,7 +36,7 @@ namespace EHRIntegracao.Test.Integration
             }
             pacientes.Dispose();
             resultados = null;
-            var patietsRepositrory = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
+            var patietsRepositrory = new PatientDTORepository(FactorryNhibernate.GetSession(hospital.Database));
             patietsRepositrory.SalvarLista(patients);
         }
 
@@ -46,8 +46,8 @@ namespace EHRIntegracao.Test.Integration
         {
             var repository = new Hospitals();
             var hospital = repository.GetBy("QuintaDor");
-            PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database));
-            var paciente = new EHRIntegracao.Domain.Domain.Patient() { Id = "JK", DateBirthday = DateTime.Now, Identity = "sas", Name = "javet", Cpf = "234" };
+            PatientDTORepository pacientes = new PatientDTORepository(FactorryNhibernate.GetSession(hospital.Database));
+            var paciente = new EHRIntegracao.Domain.Domain.PatientDTO() { Id = "JK", DateBirthday = DateTime.Now, Identity = "sas", Name = "javet", Cpf = "234" };
 
             pacientes.Save<string>(paciente);
 

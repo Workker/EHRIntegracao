@@ -100,7 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\IRepositoryBase.cs" />
-    <Compile Include="Domain\Patient.cs" />
+    <Compile Include="Domain\PatientDTO.cs" />
     <Compile Include="Domain\PatientSpecificationCriteria\FactoryPatientSpecification.cs" />
     <Compile Include="Domain\PatientSpecificationCriteria\PatientSpecification\PatientDateBirthdayEqualsSpecification.cs" />
     <Compile Include="Domain\PatientSpecificationCriteria\PatientSpecification\PatientIdentityEqualsSpecification.cs" />
@@ -118,7 +118,7 @@
     <Compile Include="Factorys\FactorryNhibernate.cs" />
     <Compile Include="Mapping\DatabaseMap.cs" />
     <Compile Include="Mapping\HospitalMap.cs" />
-    <Compile Include="Mapping\PatientMap.cs" />
+    <Compile Include="Mapping\PatientDTOMap.cs" />
     <Compile Include="Mapping\StateMap.cs" />
     <Compile Include="Mapping\TreatmentMap.cs" />
     <Compile Include="Mapping\ValueObjectMap.cs" />
@@ -128,7 +128,7 @@
     <Compile Include="Repository\Hospitals.cs" />
     <Compile Include="Repository\IntegrationRepository.cs" />
     <Compile Include="Repository\IPatientRepository.cs" />
-    <Compile Include="Repository\PatientRepository.cs" />
+    <Compile Include="Repository\PatientDTORepository.cs" />
     <Compile Include="Repository\PatientsDbFor.cs" />
     <Compile Include="Repository\TreatmensDbFor.cs" />
     <Compile Include="Repository\TreatmentRepository.cs" />

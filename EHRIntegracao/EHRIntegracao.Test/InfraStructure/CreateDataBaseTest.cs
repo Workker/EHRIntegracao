@@ -58,7 +58,7 @@ namespace EHRIntegracao.Test.InfraStructure
         {
             Fluently.Configure().Database(MsSqlConfiguration.MsSql2005.ConnectionString(c => c
            .FromAppSetting(conexao)
-            ).ShowSql()).Mappings(m => m.FluentMappings.AddFromAssemblyOf<PatientMap>()).Mappings(m => m.MergeMappings())
+            ).ShowSql()).Mappings(m => m.FluentMappings.AddFromAssemblyOf<PatientDTOMap>()).Mappings(m => m.MergeMappings())
             .ExposeConfiguration(BuildSchema).BuildSessionFactory();
         }
 

@@ -1,5 +1,5 @@
-﻿using EHR.CoreShared.Entities;
-using EHR.CoreShared.Interfaces;
+﻿using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Domain.PatientSpecificationCriteria;
 using NHibernate;
 using System;
@@ -9,49 +9,49 @@ using System.Linq;
 namespace EHRIntegracao.Domain.Repository
 {
 
-    public class PatientRepository : IntegrationRepository
+    public class PatientDTORepository : IntegrationRepository
     {
-        public PatientRepository()
+        public PatientDTORepository()
         {
 
         }
 
-        public PatientRepository(ISession session)
+        public PatientDTORepository(ISession session)
             : base(session)
         {
 
         }
 
-        public PatientRepository(ISessionFactory sessionFactory)
+        public PatientDTORepository(ISessionFactory sessionFactory)
             : base(sessionFactory)
         {
 
         }
 
-        public virtual IList<Patient> GetAll()
+        public virtual IList<PatientDTO> GetAll()
         {
-            return base.All<Patient>();
+            return base.All<PatientDTO>();
         }
 
-        public IList<Domain.Patient> GetPatientsBy(IPatient patient)
+        public IList<PatientDTO> GetPatientsBy(IPatient patient)
         {
-            var patientCriteria = Session.CreateCriteria<Patient>("p");
+            var patientCriteria = Session.CreateCriteria<PatientDTO>("p");
 
             FactoryPatientSpecification.CreateCriteria(patient, patientCriteria);
 
-            return patientCriteria.List<Domain.Patient>().ToList();
+            return patientCriteria.List<PatientDTO>().ToList();
         }
 
-        public IList<EHRIntegracao.Domain.Domain.Patient> GetPatientsWithPeriod()
+        public IList<PatientDTO> GetPatientsWithPeriod()
         {
             return Session.CreateQuery(
               "select p from Patient p, Treatment t where p.Id = t.Id and t.EntryDate  >= :data ")
               .SetParameter("data", DateTime.Now.AddMonths(-3).AddDays(-2))
-              .List<EHRIntegracao.Domain.Domain.Patient>();
+              .List<EHRIntegracao.Domain.Domain.PatientDTO>();
         }
 
 
-        public virtual void SalvarLista(IList<EHRIntegracao.Domain.Domain.Patient> roots)
+        public virtual void SalvarLista(IList<PatientDTO> roots)
         {
             //var transaction = Session.BeginTransaction();
 

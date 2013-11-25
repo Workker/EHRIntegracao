@@ -3,7 +3,7 @@ using System;
 
 namespace EHRIntegracao.Domain.Domain
 {
-    public class Patient : IAggregateRoot<string>
+    public class PatientDTO : IAggregateRoot<string>
     {
         public virtual string ROWID { get; set; }
 
@@ -16,5 +16,7 @@ namespace EHRIntegracao.Domain.Domain
         public virtual string Identity { get; set; }
 
         public virtual string Name { get; set; }
+
+        public virtual char Genre { get; set; }
     }
 }

@@ -3,9 +3,9 @@ using FluentNHibernate.Mapping;
 
 namespace EHRIntegracao.Domain.Mapping
 {
-    public class PatientMap : ClassMap<Patient>
+    public class PatientDTOMap : ClassMap<PatientDTO>
     {
-        public PatientMap()
+        public PatientDTOMap()
         {
             Table("faprtcad");
             Id(d => d.ROWID, "ROWID");
@@ -14,6 +14,7 @@ namespace EHRIntegracao.Domain.Mapping
             Map(p => p.DateBirthday, "NASCIMENTO");
             Map(p => p.Identity, "IDENTIDADE");
             Map(p => p.Name, "NOME_PAC");
+            //Map(p => p.Genre, "SEXO"); Todo: solicitar que seja incluido na view
         }
     }
 }

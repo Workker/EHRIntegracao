@@ -1,4 +1,5 @@
-﻿using EHRIntegracao.Domain.Services.InitialCharge;
+﻿using EHR.CoreShared.Entities;
+using EHRIntegracao.Domain.Services.InitialCharge;
 
 namespace EHRIntegracao.Console
 {
@@ -6,16 +7,14 @@ namespace EHRIntegracao.Console
     {
         static void Main(string[] args)
         {
-
             //TreatmentsLuceneService service = new TreatmentsLuceneService();
             //var tretments = service.GetTreatments(new PatientDTO() { Id = "000001707" });
 
-            var service = new InitialChargeTreatmentByHospitalService();
-            service.DoSearch();
+            //var serviceInitial = new InitialChargeTreatmentByHospitalService();
+            //serviceInitial.DoSearch();
 
-            //InitialChargeByHospitalService service = new InitialChargeByHospitalService();
-
-            //  service.DoSearch(new PatientDTO());
+            var service = new InitialChargeByHospitalService();
+            service.DoSearch(new Patient());
 
             //PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.Copa));
 
@@ -65,6 +64,7 @@ namespace EHRIntegracao.Console
             //var pacientesNovos = ObterPacientes(DbEnum.QuintaDorWorkker, new PatientDTO() { Name = "LEA" }).ContinueWith(Finalizer);
 
             System.Console.WriteLine("Acabou!");
+            System.Console.ReadKey();
         }
 
         //private static void Finalizer(Task<IList<IPatientDTO>> task)

@@ -64,7 +64,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         }
 
         private GetValuesDbEnumService getValuesDbEnumService;
-        public virtual GetValuesDbEnumService GetValuesDbEnumService
+        public virtual GetValuesDbEnumService GetHospitalsService
         {
             get { return getValuesDbEnumService ?? (getValuesDbEnumService = new GetValuesDbEnumService()); }
             set
@@ -80,12 +80,15 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             Assertion.NotNull(patientDTO, "Patient uninformed.").Validate();
             try
             {
-                var dbs = GetValues();
+                var hospitals = GetValues();
 
-                //foreach (var db in dbs.Where(dv => dv == DbEnum.QuintaDor))
-                //{
-                //    DoSearchPatients(patientDTO, db);
-                //} todo: alterar
+                foreach (var hospital in hospitals)
+                {
+                    if (hospital.Database != null)
+                    {
+                        DoSearchPatients(patientDTO, hospital);
+                    }
+                }
 
                 Console.WriteLine("Removing Patients.");
                 RemoveExistingPatients();
@@ -105,7 +108,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         private IList<Hospital> GetValues()
         {
-            return GetValuesDbEnumService.GetValues();
+            return GetHospitalsService.GetValues();
         }
 
         private void SavePatients()

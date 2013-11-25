@@ -1,5 +1,6 @@
 ﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
+using EHRIntegracao.Domain.Domain;
 using EHRIntegracao.Domain.Factorys;
 using EHRIntegracao.Domain.Repository;
 using System.Collections.Generic;
@@ -20,10 +21,10 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             }
         }
 
-        private PatientRepository patientRepository;
-        public virtual PatientRepository PatientRepositoryObj
+        private PatientDTORepository patientRepository;
+        public virtual PatientDTORepository PatientRepositoryObj
         {
-            get { return patientRepository ?? (patientRepository = new PatientRepository()); }
+            get { return patientRepository ?? (patientRepository = new PatientDTORepository()); }
             set
             {
                 patientRepository = value;
@@ -44,7 +45,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         {
             ClearPatient();
 
-            using (var repository = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database)))
+            using (var repository = new PatientDTORepository(FactorryNhibernate.GetSession(hospital.Database)))
             {
                 var patients = repository.GetPatientsWithPeriod();
                 PatientConverter(patients, hospital);
@@ -57,7 +58,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         {
             ClearPatient();
 
-            using (var repository = new PatientRepository(FactorryNhibernate.GetSession(hospital.Database)))
+            using (var repository = new PatientDTORepository(FactorryNhibernate.GetSession(hospital.Database)))
             {
                 var patients = repository.GetPatientsBy(patient);
                 PatientConverter(patients, hospital);
@@ -96,7 +97,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
             patientsDTO = null;
         }
 
-        private void PatientConverter(IList<EHRIntegracao.Domain.Domain.Patient> patients, Hospital hospital)
+        private void PatientConverter(IList<PatientDTO> patients, Hospital hospital)
         {
             foreach (var patient in patients)
             {
@@ -110,6 +111,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
                                          DateBirthday = patient.DateBirthday,
                                          Identity = patient.Identity,
                                          Name = patient.Name,
+                                         Genre = patient.Genre,
                                          Hospital = hospital,
                                          Records = new List<Record>()
                                      };

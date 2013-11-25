@@ -63,8 +63,8 @@ namespace EHRIntegracao.Test.Service.InitialCharge
         //    initialCharge.SavePatientsLuceneService.Expect(s => s.SavePatientsLucene(new List<IPatientDTO>())).
         //        IgnoreArguments();
 
-        //    initialCharge.GetValuesDbEnumService = MockRepository.GenerateMock<GetValuesDbEnumService>();
-        //    initialCharge.GetValuesDbEnumService.Expect(g => g.GetValues()).IgnoreArguments().Return(
+        //    initialCharge.GetHospitalsService = MockRepository.GenerateMock<GetHospitalsService>();
+        //    initialCharge.GetHospitalsService.Expect(g => g.GetValues()).IgnoreArguments().Return(
         //        new List<DbEnum>() { DbEnum.Bangu });
 
         //    initialCharge.DoSearch(new PatientDTO());
@@ -144,8 +144,8 @@ namespace EHRIntegracao.Test.Service.InitialCharge
         //    initialCharge.SavePatientsLuceneService.Expect(s => s.SavePatientsLucene(new List<IPatientDTO>())).
         //        IgnoreArguments();
 
-        //    initialCharge.GetValuesDbEnumService = MockRepository.GenerateMock<GetValuesDbEnumService>();
-        //    initialCharge.GetValuesDbEnumService.Expect(g => g.GetValues()).IgnoreArguments().Return(
+        //    initialCharge.GetHospitalsService = MockRepository.GenerateMock<GetHospitalsService>();
+        //    initialCharge.GetHospitalsService.Expect(g => g.GetValues()).IgnoreArguments().Return(
         //        new List<DbEnum>() { DbEnum.Bangu });
 
         //    initialCharge.DoSearch(new PatientDTO());
