@@ -3,6 +3,7 @@ using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.Domain;
 using EHRIntegracao.Domain.Services.GetEntities;
+using EHRIntegracao.Domain.Services.SaveLucene;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,13 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             {
                 patientRepositoryDbFor = value;
             }
+        }
+
+        private SaveRecordsLuceneService _saveRecordsLuceneService;
+        public virtual SaveRecordsLuceneService SaveRecordsLuceneService
+        {
+            get { return _saveRecordsLuceneService ?? (_saveRecordsLuceneService = new SaveRecordsLuceneService()); }
+            set { _saveRecordsLuceneService = value; }
         }
 
         private SavePatientsLuceneService savePatientsLuceneService;
@@ -80,6 +88,8 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             Assertion.NotNull(patientDTO, "Patient uninformed.").Validate();
             try
             {
+                Console.WriteLine("Start");
+
                 var hospitals = GetValues();
 
                 foreach (var hospital in hospitals)
@@ -93,15 +103,17 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                 Console.WriteLine("Removing Patients.");
                 RemoveExistingPatients();
 
-                Console.WriteLine("Grouping Treatments");
-                GroupTreatment();
+                Console.WriteLine("Save Records");
+                SaveRecords();
+
+                // Console.WriteLine("Grouping Treatments");
+                //    GroupTreatment();
 
                 Console.WriteLine("Saving Patients.");
                 SavePatients();
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -115,6 +127,11 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         {
             //PatientRepositoryDbFor.inserirPacientes(Patients);
             SavePatientsLuceneService.SavePatientsLucene(Patients.ToList());
+        }
+
+        private void SaveRecords()
+        {
+            SaveRecordsLuceneService.SavePatientsLucene(Patients);
         }
 
         private void DoSearchPatients(IPatient patientDTO, Hospital hospital)

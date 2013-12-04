@@ -1,5 +1,4 @@
-﻿using EHR.CoreShared;
-using EHR.CoreShared.Entities;
+﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRLucene.Domain;
 using System;
@@ -10,11 +9,12 @@ namespace EHRIntegracao.Domain.Services
 {
     public class TreatmentsLuceneService
     {
+        #region Properties
+
         public int fatia = 300;
         public int Totalrecords;
         public int TotalDePacientesEmProcessamento = 0;
         public int totalRecordsProcess = 0;
-
         private LuceneClientTreatment luceneClientTreatment;
         public virtual LuceneClientTreatment LuceneClientTreatment
         {
@@ -24,6 +24,11 @@ namespace EHRIntegracao.Domain.Services
                 luceneClientTreatment = value;
             }
         }
+
+        #endregion
+
+        #region Methods
+
         public virtual IList<ITreatment> GetTreatments(List<Record> records)
         {
             try
@@ -32,9 +37,9 @@ namespace EHRIntegracao.Domain.Services
                 var treatments = new List<ITreatment>();
                 while (totalRecordsProcess < Totalrecords)
                 {
-
                     var recordsFatia = records.Skip(totalRecordsProcess).Take(fatia).ToList();
-                    var treatmentsFatia = LuceneClientTreatment.AdvancedSearch(recordsFatia).ToList();
+                    var treatmentsFatia = LuceneClientTreatment.SearchBy(recordsFatia).ToList();
+
                     treatments.AddRange(treatmentsFatia);
                     Fatiar();
                 }
@@ -46,17 +51,6 @@ namespace EHRIntegracao.Domain.Services
 
                 throw ex;
             }
-
-        }
-
-        private void Fatiar()
-        {
-            int totalOffRecords = Totalrecords - totalRecordsProcess;
-
-            if (totalOffRecords < fatia)
-                totalRecordsProcess += totalOffRecords;
-            else
-                totalRecordsProcess += fatia;
 
         }
 
@@ -88,9 +82,23 @@ namespace EHRIntegracao.Domain.Services
             }
 
         }
+
         public virtual void SaveTreatment(List<ITreatment> treatments)
         {
             LuceneClientTreatment.AddUpdateLuceneIndex(treatments);
         }
+
+        private void Fatiar()
+        {
+            int totalOffRecords = Totalrecords - totalRecordsProcess;
+
+            if (totalOffRecords < fatia)
+                totalRecordsProcess += totalOffRecords;
+            else
+                totalRecordsProcess += fatia;
+
+        }
+
+        #endregion
     }
 }

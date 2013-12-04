@@ -1,4 +1,5 @@
-﻿using EHR.CoreShared.Entities;
+﻿using System.Diagnostics;
+using EHR.CoreShared.Entities;
 using EHRIntegracao.Domain.Services.InitialCharge;
 
 namespace EHRIntegracao.Console
@@ -10,11 +11,27 @@ namespace EHRIntegracao.Console
             //TreatmentsLuceneService service = new TreatmentsLuceneService();
             //var tretments = service.GetTreatments(new PatientDTO() { Id = "000001707" });
 
+            Stopwatch sw;
+
             //var serviceInitial = new InitialChargeTreatmentByHospitalService();
+
+            //sw = Stopwatch.StartNew();
+
             //serviceInitial.DoSearch();
 
+            //sw.Stop();
+
+            //System.Console.WriteLine("Treatments Time taken: {0}ms", sw.Elapsed.TotalMilliseconds);
+
             var service = new InitialChargeByHospitalService();
+
+            sw = Stopwatch.StartNew();
+
             service.DoSearch(new Patient());
+
+            sw.Stop();
+
+            System.Console.WriteLine("Treatments Time taken: {0}ms", sw.Elapsed.TotalMilliseconds);
 
             //PatientRepository pacientes = new PatientRepository(FactorryNhibernate.GetSession(DbEnum.Copa));
 

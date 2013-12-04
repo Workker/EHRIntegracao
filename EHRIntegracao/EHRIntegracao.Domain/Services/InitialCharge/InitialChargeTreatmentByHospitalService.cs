@@ -1,6 +1,5 @@
 ﻿using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
-using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.GetEntities;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,8 +60,9 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
 
         public virtual void DoSearch()
         {
-            var repository = new Hospitals();
-            var hospitals = repository.GetAllCached();
+            System.Console.WriteLine("Start");
+
+            var hospitals = GetValues();
 
             foreach (var hospital in hospitals)
             {
@@ -71,6 +71,8 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
                     DoSearchTreatments(hospital);
                 }
             }
+
+            System.Console.WriteLine("Save Treatments");
 
             SaveTreatments();
         }

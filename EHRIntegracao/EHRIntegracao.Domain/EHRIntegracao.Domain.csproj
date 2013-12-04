@@ -135,6 +135,7 @@
     <Compile Include="Services\Domain\RemoveDuplicatePatientService.cs" />
     <Compile Include="Services\GetEntities\GetCidFromLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetDefFromLuceneService.cs" />
+    <Compile Include="Services\GetEntities\GetRecordsLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetTusFromLuceneService.cs" />
     <Compile Include="Services\GetEntities\GetValuesDbEnumService.cs" />
     <Compile Include="Services\GetEntities\GetPatientsLuceneService.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Services\SaveLucene\SaveDefInLuceneService.cs" />
     <Compile Include="Services\SaveLucene\SavePatientsDbforToLuceneService.cs" />
     <Compile Include="Services\SaveLucene\SavePatientsLuceneService.cs" />
+    <Compile Include="Services\SaveLucene\SaveRecordsLuceneService.cs" />
     <Compile Include="Services\SaveLucene\SaveTusInLuceneService.cs" />
     <Compile Include="Services\SaveLucene\TreatmentsLuceneService.cs" />
   </ItemGroup>
