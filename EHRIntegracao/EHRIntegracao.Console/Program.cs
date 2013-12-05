@@ -13,15 +13,15 @@ namespace EHRIntegracao.Console
 
             Stopwatch sw;
 
-            //var serviceInitial = new InitialChargeTreatmentByHospitalService();
+            var serviceInitial = new InitialChargeTreatmentByHospitalService();
 
-            //sw = Stopwatch.StartNew();
+            sw = Stopwatch.StartNew();
 
-            //serviceInitial.DoSearch();
+            serviceInitial.DoSearch();
 
-            //sw.Stop();
+            sw.Stop();
 
-            //System.Console.WriteLine("Treatments Time taken: {0}ms", sw.Elapsed.TotalMilliseconds);
+            System.Console.WriteLine("Treatments Time taken: {0}ms", sw.Elapsed.TotalMilliseconds);
 
             var service = new InitialChargeByHospitalService();
 
