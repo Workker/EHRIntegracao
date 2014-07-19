@@ -1,5 +1,4 @@
-﻿using EHR.CoreShared;
-using EHR.CoreShared.Entities;
+﻿using EHR.CoreShared.Entities;
 using EHRLucene.Domain;
 using System.Collections.Generic;
 
@@ -9,7 +8,7 @@ namespace EHRIntegracao.Domain.Services.SaveLucene
     {
         public void Save(List<DEF> defs)
         {
-            var lucene = new LuceneClientDEF("C:\\");
+            var lucene = new LuceneClientDEF(string.Empty);
             lucene.UpdateIndex(defs);
         }
     }

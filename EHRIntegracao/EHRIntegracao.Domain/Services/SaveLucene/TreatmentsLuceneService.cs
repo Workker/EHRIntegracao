@@ -18,7 +18,7 @@ namespace EHRIntegracao.Domain.Services
         private LuceneClientTreatment luceneClientTreatment;
         public virtual LuceneClientTreatment LuceneClientTreatment
         {
-            get { return luceneClientTreatment ?? (luceneClientTreatment = new LuceneClientTreatment("")); }
+            get { return luceneClientTreatment ?? (luceneClientTreatment = new LuceneClientTreatment(string.Empty)); }
             set
             {
                 luceneClientTreatment = value;

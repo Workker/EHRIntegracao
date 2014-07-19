@@ -8,7 +8,7 @@ namespace EHRIntegracao.Domain.Services.SaveLucene
     {
         public void Save(List<TUSS> tuss)
         {
-            var lucene = new LuceneClientTUSS("C:\\");
+            var lucene = new LuceneClientTUSS(string.Empty);
             lucene.UpdateIndex(tuss);
         }
     }

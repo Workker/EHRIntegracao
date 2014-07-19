@@ -8,7 +8,7 @@ namespace EHRIntegracao.Domain.Services
     {
         public virtual void SavePatientsLucene(List<IPatient> patients)
         {
-            var lucene = new LuceneClient("");
+            var lucene = new LuceneClient(string.Empty);
             lucene.AddUpdateLuceneIndex(patients);
         }
     }
