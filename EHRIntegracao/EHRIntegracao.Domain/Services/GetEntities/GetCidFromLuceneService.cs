@@ -9,9 +9,17 @@ namespace EHRIntegracao.Domain.Services.GetEntities
     public class GetCidFromLuceneService
     {
         private LuceneClientCID _luceneClientCid;
+
+        private string _luceneIndexPath;
+
+        public GetCidFromLuceneService(string path)
+        {
+            _luceneIndexPath = path;
+        }
+
         public virtual LuceneClientCID LuceneClientCid
         {
-            get { return _luceneClientCid ?? (_luceneClientCid = new LuceneClientCID("C:\\")); }
+            get { return _luceneClientCid ?? (_luceneClientCid = new LuceneClientCID(_luceneIndexPath)); }
             set
             {
                 _luceneClientCid = value;

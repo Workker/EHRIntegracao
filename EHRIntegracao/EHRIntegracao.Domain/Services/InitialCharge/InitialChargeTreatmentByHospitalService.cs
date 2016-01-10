@@ -1,4 +1,5 @@
-﻿using EHR.CoreShared.Entities;
+﻿using System.Configuration;
+using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Services.GetEntities;
 using System.Collections.Generic;
@@ -49,7 +50,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         private TreatmentsLuceneService treatmentsLuceneService;
         public virtual TreatmentsLuceneService TreatmentsLuceneService
         {
-            get { return treatmentsLuceneService ?? (treatmentsLuceneService = new TreatmentsLuceneService()); }
+            get { return treatmentsLuceneService ?? (treatmentsLuceneService = new TreatmentsLuceneService(ConfigurationManager.AppSettings["TreatmentIndexPath"])); }
             set
             {
                 treatmentsLuceneService = value;

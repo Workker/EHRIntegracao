@@ -70,7 +70,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
             else
                 totalDePacientesProcessados += fatia;
 
-            Console.WriteLine("Processados" + totalDePacientesProcessados.ToString());
+            Console.WriteLine("Processados" + totalDePacientesProcessados);
         }
 
         public void MetodoQueSeraExecutadoAposOMetodoDoDelegate(IAsyncResult iar)

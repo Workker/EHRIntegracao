@@ -6,6 +6,13 @@ namespace EHRIntegracao.Domain.Services.SaveLucene
 {
     public class SaveDefInLuceneService
     {
+        private string _luceneIndexPath;
+
+        public SaveDefInLuceneService(string path)
+        {
+            _luceneIndexPath = path;
+        }
+
         public void Save(List<DEF> defs)
         {
             var lucene = new LuceneClientDEF(string.Empty);

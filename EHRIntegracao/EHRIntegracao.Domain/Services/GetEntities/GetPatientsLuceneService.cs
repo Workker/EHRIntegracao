@@ -14,21 +14,28 @@ namespace EHRIntegracao.Domain.Services.GetEntities
         public int TotalDePacientesEmProcessamento = 0;
         public int totalRecordsProcess = 0;
 
+        private string _luceneIndexPath;
+
+        public GetPatientsLuceneService(string path)
+        {
+            _luceneIndexPath = path;
+        }
+
         public IPatient GetPatientBy(string cpf)
         {
-            var lucene = new LuceneClient("");
+            var lucene = new LuceneClient(_luceneIndexPath);
             return lucene.SearchBy(cpf);
         }
 
         public List<IPatient> GetPatients(string name)
         {
-            var lucene = new LuceneClient("");
+            var lucene = new LuceneClient(_luceneIndexPath);
             return lucene.SimpleSearch(name).Take(10).ToList();
         }
 
         public List<IPatient> GetPatientsAdvancedSearch(IPatient patient, List<string> hospitals)
         {
-            var lucene = new LuceneClient("");
+            var lucene = new LuceneClient(_luceneIndexPath);
             return lucene.AdvancedSearch(patient, hospitals).ToList();
         }
 
@@ -37,7 +44,7 @@ namespace EHRIntegracao.Domain.Services.GetEntities
 
             try
             {
-                var lucene = new LuceneClient("");
+                var lucene = new LuceneClient(_luceneIndexPath);
                 Totalrecords = patients.Count;
                 var patientsLucene = new List<IPatient>();
                 while (totalRecordsProcess < Totalrecords)

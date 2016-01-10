@@ -16,9 +16,10 @@ namespace EHRIntegracao.Domain.Services
         public int TotalDePacientesEmProcessamento = 0;
         public int totalRecordsProcess = 0;
         private LuceneClientTreatment luceneClientTreatment;
+
         public virtual LuceneClientTreatment LuceneClientTreatment
         {
-            get { return luceneClientTreatment ?? (luceneClientTreatment = new LuceneClientTreatment(string.Empty)); }
+            get { return luceneClientTreatment ?? (luceneClientTreatment = new LuceneClientTreatment(_luceneIndexPath)); }
             set
             {
                 luceneClientTreatment = value;
@@ -26,6 +27,13 @@ namespace EHRIntegracao.Domain.Services
         }
 
         #endregion
+
+        private string _luceneIndexPath;
+
+        public TreatmentsLuceneService(string path)
+        {
+            _luceneIndexPath = path;
+        }
 
         #region Methods
 

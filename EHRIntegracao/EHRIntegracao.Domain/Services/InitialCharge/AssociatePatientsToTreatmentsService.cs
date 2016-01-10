@@ -1,4 +1,5 @@
-﻿using EHR.CoreShared.Interfaces;
+﻿using System.Configuration;
+using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         private TreatmentsLuceneService getTreatmentsLuceneService;
         public TreatmentsLuceneService GetTreatmentsLuceneService
         {
-            get { return getTreatmentsLuceneService ?? (getTreatmentsLuceneService = new TreatmentsLuceneService()); }
+            get { return getTreatmentsLuceneService ?? (getTreatmentsLuceneService = new TreatmentsLuceneService(ConfigurationManager.AppSettings["TreatmentIndexPath"])); }
             set
             {
                 getTreatmentsLuceneService = value;

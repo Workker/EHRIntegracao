@@ -9,9 +9,17 @@ namespace EHRIntegracao.Domain.Services.GetEntities
     public class GetDefFromLuceneService
     {
         private LuceneClientDEF _luceneClientDef;
+
+        private string _luceneIndexPath;
+
+        public GetDefFromLuceneService(string path)
+        {
+            _luceneIndexPath = path;
+        }
+
         public virtual LuceneClientDEF LuceneClientDef
         {
-            get { return _luceneClientDef ?? (_luceneClientDef = new LuceneClientDEF("C:\\")); }
+            get { return _luceneClientDef ?? (_luceneClientDef = new LuceneClientDEF(_luceneIndexPath)); }
             set
             {
                 _luceneClientDef = value;

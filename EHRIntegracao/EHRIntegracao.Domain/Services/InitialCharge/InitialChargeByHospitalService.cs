@@ -1,4 +1,5 @@
-﻿using EHR.CoreShared.Entities;
+﻿using System.Configuration;
+using EHR.CoreShared.Entities;
 using EHR.CoreShared.Interfaces;
 using EHRIntegracao.Domain.Repository;
 using EHRIntegracao.Domain.Services.Domain;
@@ -28,14 +29,14 @@ namespace EHRIntegracao.Domain.Services.InitialCharge
         private SaveRecordsLuceneService _saveRecordsLuceneService;
         public virtual SaveRecordsLuceneService SaveRecordsLuceneService
         {
-            get { return _saveRecordsLuceneService ?? (_saveRecordsLuceneService = new SaveRecordsLuceneService()); }
+            get { return _saveRecordsLuceneService ?? (_saveRecordsLuceneService = new SaveRecordsLuceneService(ConfigurationManager.AppSettings["PatientIndexPath"])); }
             set { _saveRecordsLuceneService = value; }
         }
 
         private SavePatientsLuceneService savePatientsLuceneService;
         public virtual SavePatientsLuceneService SavePatientsLuceneService
         {
-            get { return savePatientsLuceneService ?? (savePatientsLuceneService = new SavePatientsLuceneService()); }
+            get { return savePatientsLuceneService ?? (savePatientsLuceneService = new SavePatientsLuceneService(ConfigurationManager.AppSettings["PatientIndexPath"])); }
             set { savePatientsLuceneService = value; }
         }
 
