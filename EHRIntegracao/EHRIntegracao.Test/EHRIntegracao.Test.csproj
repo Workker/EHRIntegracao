@@ -51,7 +51,7 @@
       <HintPath>..\packages\db4o-nq-devel.8.1.184.15492\lib\net40\Db4objects.Db4o.NativeQueries.dll</HintPath>
     </Reference>
     <Reference Include="EHR.CoreShared">
-      <HintPath>..\..\..\..\LibEHR\EHR.CoreShared.dll</HintPath>
+      <HintPath>..\..\..\LibEHR\EHR.CoreShared.dll</HintPath>
     </Reference>
     <Reference Include="FizzWare.NBuilder">
       <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>

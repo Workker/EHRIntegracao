@@ -13,9 +13,9 @@ namespace EHRIntegracao.Domain.Services.SaveLucene
             _luceneIndexPath = path;
         }
 
-        public void Save(List<DEF> defs)
+        public void Save(List<DEF> defs, string path)
         {
-            var lucene = new LuceneClientDEF(string.Empty);
+            var lucene = new LuceneClientDEF(path);
             lucene.UpdateIndex(defs);
         }
     }

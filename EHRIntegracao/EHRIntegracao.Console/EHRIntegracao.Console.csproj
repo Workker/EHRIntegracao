@@ -34,13 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EHR.CoreShared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\LibEHR\EHR.CoreShared.dll</HintPath>
+    <Reference Include="EHR.CoreShared">
+      <HintPath>..\..\..\LibEHR\EHR.CoreShared.dll</HintPath>
     </Reference>
-    <Reference Include="EHRCache, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\LibEHR\EHRCache.dll</HintPath>
+    <Reference Include="EHRCache">
+      <HintPath>..\..\..\LibEHR\EHRCache.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
